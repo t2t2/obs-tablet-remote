@@ -1,9 +1,9 @@
-import { EventEmitter } from 'events';
+import Emitter from 'component-emitter'
 import ws from 'ws'
 import Sha256Hash from 'sha.js/sha256'
 
 export default
-class OBSRemote extends EventEmitter {
+class OBSRemote extends Emitter {
 
 	/**
 	 * Create an instance of OBS remote connection
@@ -91,9 +91,8 @@ class OBSRemote extends EventEmitter {
 				authResponse.update(challenge);
 				authResponse = authResponse.digest('base64');
 
-				return this.authenticate(authResponse).then((response) => {
-					console.log(response)
-					return response
+				return this.authenticate(authResponse).then(() => {
+					return true
 				}, (error) => {
 					throw error.error
 				})
@@ -103,6 +102,21 @@ class OBSRemote extends EventEmitter {
 		})
 	}
 
+	/**
+	 * Close socket connection
+	 */
+	close() {
+		if (this._socket) {
+			this._socket.close();
+		}
+	}
+
+	/**
+	 * OBS Remote Authenticate method
+	 *
+	 * @param auth
+	 * @returns {Promise}
+	 */
 	authenticate(auth) {
 		return this.send({
 			'request-type': 'Authenticate',
@@ -110,14 +124,49 @@ class OBSRemote extends EventEmitter {
 		})
 	}
 
+	/**
+	 * OBS Remote GetAuthRequired method
+	 *
+	 * @returns {Promise}
+	 */
 	getAuthRequired() {
 		return this.send({'request-type': 'GetAuthRequired'})
 	}
 
+	/**
+	 * OBS Remote GetSceneList method
+	 *
+	 * @returns {Promise}
+	 */
+	getSceneList() {
+		return this.send({'request-type': 'GetSceneList'})
+	}
+
+	/**
+	 * OBS Remote GetVersion method
+	 *
+	 * @returns {Promise}
+	 */
 	getVersion() {
 		return this.send({'request-type': 'GetVersion'})
 	}
 
+	/**
+	 * OBS Remote SetCurrentScene method
+	 *
+	 * @param sceneName
+	 * @returns {Promise}
+	 */
+	setCurrentScene(sceneName) {
+		return this.send({'request-type': 'SetCurrentScene', 'scene-name': sceneName})
+	}
+
+	/**
+	 * Get ID for next request
+	 *
+	 * @returns {string}
+	 * @private
+	 */
 	_nextID() {
 		return this._idCounter++ + '';
 	}
@@ -159,7 +208,7 @@ function socketOnMessage(message) {
 
 	var type = received['update-type'];
 	if (type) {
-		this._handleUpdate(type, received);
+		handleUpdate.call(this, type, received);
 	} else {
 		handleCallback.call(this, received['message-id'], received);
 	}
@@ -172,7 +221,6 @@ function socketOnMessage(message) {
  * @param error
  */
 function socketOnError(error) {
-	console.log('error', error)
 	this.emit('socket.error', error)
 }
 
@@ -195,8 +243,7 @@ function socketOnClose(event) {
 		this._connecting = null
 	}
 
-	this.emit('socket.close', event)
-	console.log('close', arguments)
+	this.emit('socket.close')
 }
 
 /**
@@ -216,5 +263,43 @@ function handleCallback(id, message) {
 		delete this._promises[id];
 	} else if (message['status'] == 'error') {
 		this.emit('error', message['error'], message);
+	}
+}
+
+/**
+ * Handle general updates
+ *
+ * @param type
+ * @param message
+ */
+function handleUpdate(type, message) {
+	switch (type) {
+		case 'StreamStatus':
+			this.emit('stream.status', message);
+			break;
+		case 'StreamStarting':
+			this.emit('stream.start', message);
+			break;
+		case 'StreamStopping':
+			this.emit('stream.stop', message);
+			break;
+		case 'SwitchScenes':
+			this.emit('scenes.switch', message);
+			break;
+		case 'ScenesChanged':
+			this.emit('scenes.change', message);
+			break;
+		case 'SourceOrderChanged':
+			this.emit('sources.order', message);
+			break;
+		case 'SourceChanged':
+			this.emit('source.change', message);
+			break;
+		case 'RepopulateSources':
+			this.emit('source.repopulate', message);
+			break;
+		case 'VolumeChanged':
+			this.emit('volume.change', message);
+			break;
 	}
 }

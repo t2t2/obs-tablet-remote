@@ -97,8 +97,10 @@ export default Vue.extend({
 			if (!host) host = 'localhost'
 			if (!port) port = 4444
 
-			this.$obs = new OBSRemote(host, port)
+			this.$obs.host = host
+			this.$obs.port = port
 			this.obs.connecting = true
+
 			return this.$obs.connect().then(({version, auth}) => {
 				this.obs.connected = true
 				this.obs.connecting = false
@@ -130,7 +132,6 @@ export default Vue.extend({
 		resetOBS: function () {
 			if (this.$obs) {
 				this.$obs.close()
-				this.$obs = null
 			}
 
 			this.connectionError = undefined
@@ -155,6 +156,14 @@ export default Vue.extend({
 				leaveFullScreen.apply(document);
 			}
 		}
+	},
+
+	created: function () {
+		this.$obs = new OBSRemote()
+
+		this.$obs.on('socket.close', () => {
+			this.obs.connected = false
+		})
 	},
 
 	ready: function () {

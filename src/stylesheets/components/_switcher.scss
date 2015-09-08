@@ -1,4 +1,32 @@
+$switcher-scene-bg: #e0e0e0;
+$switcher-active-scene-bg: #80cbc4;
+
 .switcher {
 	display: flex;
-	flex-grow: 1;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	overflow-y: auto;
+
+	.scene {
+		border: none;
+		background-color: $switcher-scene-bg;
+		font-size: 2rem;
+		@include ellipsis();
+		min-height: 20%;
+		outline: none;
+
+		transition: background-color 0.2s;
+
+		&:hover, &:focus {
+			background-color: darken($switcher-scene-bg, 5%);
+		}
+		&.active {
+			background-color: $switcher-active-scene-bg;
+		}
+	}
+
+	&.per-row-4 .scene {
+		flex-basis: 25%;
+	}
+
 }
