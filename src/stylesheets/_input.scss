@@ -27,6 +27,7 @@ $input-wide-bottom-border: $input-thin-bottom-border * 3;
 #{$all-buttons} {
 	background-color: $main-color;
 	border: 1px solid darken($main-color, 10%);
+	color: #fafafa;
 	cursor: pointer;
 	padding: $spacing $spacing * 1.5;
 }
