@@ -6,6 +6,7 @@
     "node": "0.12.2",
     "npm": "2.7.4"
   },
+  "homepage": "https://t2t2.github.io/obs-remote-tablet/",
   "private": true,
   "scripts": {
     "deploy": "gulp deploy",
