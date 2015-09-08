@@ -1,0 +1,25 @@
+.overlay {
+	@include position(fixed, 0 0 0 0);
+	background-color: rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999999;
+
+	& > .modal {
+		background-color: #fff;
+		max-height: 80%;
+		overflow-y: auto;
+		padding: $spacing * 2;
+		width: 100%;
+
+		@include medium {
+			width: 40%;
+
+			&.wide {
+				width: 80%;
+			}
+		}
+
+	}
+}

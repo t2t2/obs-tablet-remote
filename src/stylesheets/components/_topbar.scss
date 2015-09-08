@@ -1,0 +1,15 @@
+.top-bar {
+	background-color: darken($main-color, 10%);
+	color: #fafafa;
+	display: flex;
+	height: 3rem;
+	width: 100%;
+
+	.space {
+		flex-grow: 1;
+	}
+	.item {
+		@include margin(null 1rem);
+		line-height: 3rem;
+	}
+}
