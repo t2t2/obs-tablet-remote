@@ -1,7 +1,0 @@
-<div class="switcher" v-class="classes">
-	<button v-repeat="scene: scenes" class="scene" v-class="active: scene.name == currentScene"
-	        v-on="mousedown: switchToScene(scene, $event),
-	              touchstart: switchToScene(scene, $event)">
-		{{scene.name}}
-	</button>
-</div>
