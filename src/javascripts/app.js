@@ -181,7 +181,7 @@ export default Vue.extend({
 		this.baseURL = location.origin + location.pathname
 
 		// Check for auto-login
-		if (location.hash.indexOf('#!')) {
+		if (location.hash.indexOf('#!') == 0) {
 			// https://gist.github.com/zaus/5201739
 			let vars = {}, hashes = location.hash.slice(location.hash.indexOf('#!') + 2).split('&');
 
