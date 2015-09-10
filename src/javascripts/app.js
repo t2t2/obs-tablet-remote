@@ -6,6 +6,8 @@ import template from './app.html'
 import modal from './components/modal'
 import switcher from './components/switcher'
 
+import store from './storage'
+
 export default Vue.extend({
 	template,
 
@@ -50,7 +52,7 @@ export default Vue.extend({
 
 	data: function () {
 		return {
-			autoConnecting:         false,
+			autoConnecting:      false,
 			authenticationError: undefined,
 			baseURL:             '',
 			connectionError:     undefined,
@@ -87,7 +89,7 @@ export default Vue.extend({
 			})
 		},
 
-		connectToOBS: function () {
+		connectToOBS: function ({ autoConnecting = false }) {
 			if (this.obs.connecting) return
 
 			this.resetOBS()
@@ -107,6 +109,12 @@ export default Vue.extend({
 				this.obs.authRequired = auth
 				this.obs.version = version
 
+				// Save last successful login to storage if not automatic
+				if (!autoConnecting) {
+					this.$store('obs.host', host != 'localhost' ? host : null)
+					this.$store('obs.port', port != 4444 ? port : null)
+				}
+
 				return {version, auth}
 			}, (error) => {
 				this.connectionError = error.reason
@@ -117,8 +125,8 @@ export default Vue.extend({
 
 		doAutoLogin: function () {
 			this.autoConnecting = true
-			return this.connectToOBS().then(({auth}) => {
-				if(auth) {
+			return this.connectToOBS({autoConnecting: true}).then(({auth}) => {
+				if (auth) {
 					return this.authOBS()
 				}
 				return true
@@ -167,11 +175,13 @@ export default Vue.extend({
 	},
 
 	ready: function () {
+		this.$store = store
+
 		// Generate baseURL
 		this.baseURL = location.origin + location.pathname
 
 		// Check for auto-login
-		if (location.hash) {
+		if (location.hash.indexOf('#!')) {
 			// https://gist.github.com/zaus/5201739
 			let vars = {}, hashes = location.hash.slice(location.hash.indexOf('#!') + 2).split('&');
 
@@ -181,17 +191,30 @@ export default Vue.extend({
 				vars[hash[0]] = hash.length > 1 ? hash[1] : null
 			}
 
-			if(vars.host) {
+			if (vars.host) {
 				this.obs.host = vars.host
 			}
-			if(vars.port) {
+			if (vars.port) {
 				this.obs.port = vars.port
 			}
-			if(vars.password) {
+			if (vars.password) {
 				this.obs.password = vars.password
 			}
-			if('auto' in vars) {
+			if ('auto' in vars) {
 				this.doAutoLogin()
+			}
+		}
+
+		// If not using auto-login load obs settings
+		if (!this.autoConnecting) {
+			var storedHost = this.$store('obs.host')
+			if (!this.obs.host && storedHost) {
+				this.obs.host = storedHost
+			}
+
+			var storedPort = this.$store('obs.port')
+			if (!this.obs.port && storedPort) {
+				this.obs.port = storedPort
 			}
 		}
 	},

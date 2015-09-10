@@ -16,6 +16,7 @@
   "dependencies": {
     "component-emitter": "^1.2.0",
     "sha.js": "^2.4.2",
+    "store2": "^2.3.0",
     "vue": "^0.12.13",
     "ws": "^0.8.0"
   },
