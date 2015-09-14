@@ -4,11 +4,16 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 9999999;
+	z-index: 9999;
+	top: $top-bar-height-small;
+
+	@include medium {
+		top: $top-bar-height-medium;
+	}
 
 	& > .modal {
 		background-color: #fff;
-		max-height: 80%;
+		max-height: 90%;
 		overflow-y: auto;
 		padding: $spacing * 2;
 		width: 100%;

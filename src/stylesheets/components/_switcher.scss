@@ -11,10 +11,14 @@ $switcher-active-scene-bg: #80cbc4;
 		border: none;
 		background-color: $switcher-scene-bg;
 		color: #000000;
-		font-size: 2rem;
+		font-size: 1.1rem;
 		@include ellipsis();
-		min-height: 20%;
+		min-height: 4rem;
 		outline: none;
+
+		@include medium {
+			font-size: 2rem;
+		}
 
 		transition: background-color 0.2s;
 

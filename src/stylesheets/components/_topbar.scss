@@ -1,24 +1,59 @@
 $top-bar-text-color: #fafafa;
 
 .top-bar {
-	background-color: darken($main-color, 10%);
+	background-color: darken($main-color, 20%);
 	color: $top-bar-text-color;
 	display: flex;
-	height: 3rem;
+	height: $top-bar-height-small;
+	@include padding(null 0.5rem);
 	width: 100%;
+	z-index: 99999;
+
+	@include medium {
+		height: $top-bar-height-medium;
+	}
 
 	.space {
 		flex-grow: 1;
 	}
 	.item {
-		@include margin(null 1rem);
-		line-height: 3rem;
+		@include margin(null 0.2rem);
+		line-height: $top-bar-height-small;
+		
+		@include medium {
+			@include margin(null 0.5rem);
+			line-height: $top-bar-height-medium;
+		}
+		
 		& > #{$all-buttons} {
 			background-color: $main-color;
+			border: none;
 			color: $top-bar-text-color;
-			font-size: 1.2em;
-			height: 3rem;
-			line-height: 1;
+			font-size: 1rem;
+			height: $top-bar-height-small;
+			line-height: 1rem;
+			padding: (($top-bar-height-small - 1rem) / 2);
+
+			@include medium {
+				font-size: 1.2em;
+				height: $top-bar-height-medium;
+				padding: $spacing;
+			}
+
+			transition: background-color 0.5s;
+
+			.material-icons {
+				@include margin(-6px null);
+
+				@include medium {
+					@include margin(0 null);
+				}
+			}
+
+		}
+		
+		& > #{$all-buttons-hover} {
+			background-color: darken($main-color, 10%);
 		}
 	}
 }

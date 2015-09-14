@@ -1,8 +1,12 @@
+// tap events
+import 'tocca'
+
 import Vue from 'vue'
 
 import template from './switcher.html'
 
 import obsMixIn from '../mixins/obsUser'
+
 
 export default Vue.extend({
 	template,
