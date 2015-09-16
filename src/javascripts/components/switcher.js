@@ -15,7 +15,7 @@ export default Vue.extend({
 
 	computed: {
 		classes: function () {
-			return 'per-row-4'
+			return 'per-row-' + this.settings.switcher.perRow
 		},
 	},
 
@@ -28,7 +28,7 @@ export default Vue.extend({
 
 	methods: {
 
-		getScenes:     function () {
+		getScenes: function () {
 			this.$obs().getSceneList().then((response) => {
 				this.scenes = response['scenes'].map(({name}) => {
 					return {
@@ -43,7 +43,7 @@ export default Vue.extend({
 		switchToScene: function (scene, event) {
 			this.$obs().setCurrentScene(scene.name)
 
-			if(event) {
+			if (event) {
 				event.stopPropagation()
 				event.preventDefault()
 			}
@@ -64,6 +64,9 @@ export default Vue.extend({
 
 	props: {
 		connectionReady: {},
+		settings: {
+			type: Object,
+		},
 	},
 
 	watch: {

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "component-emitter": "^1.2.0",
+    "lodash": "^3.10.1",
     "sha.js": "^2.4.2",
     "store2": "^2.3.0",
     "tocca": "^0.1.7",

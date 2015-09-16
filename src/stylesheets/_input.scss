@@ -31,3 +31,12 @@ $input-wide-bottom-border: $input-thin-bottom-border * 3;
 	cursor: pointer;
 	padding: $spacing $spacing * 1.5;
 }
+
+.input-group {
+	display: flex;
+	flex-direction: row;
+
+	input {
+		flex-grow: 1;
+	}
+}

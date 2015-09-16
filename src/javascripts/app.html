@@ -5,11 +5,14 @@
 		</div>
 		<div class="space"></div>
 		<div class="item">
+			<button v-on="click: toggleSettings"><i class="material-icons">settings</i></button>
+		</div>
+		<div class="item">
 			<button v-on="click: toggleFullscreen">Full Screen</button>
 		</div>
 	</div>
 	<div class="panels">
-		<switcher connection-ready="{{obsConnectionReady}}"></switcher>
+		<panels settings="{{settings}}" connection-ready="{{obsConnectionReady}}"></panels>
 	</div>
 	<!-- Modals -->
 	<modal modal-class="wide" v-if="!autoConnecting && !obs.connected">
@@ -65,5 +68,8 @@
 	</modal>
 	<modal v-if="autoConnecting">
 		<h2>Connecting...</h2>
+	</modal>
+	<modal v-if="settingsOpen" on-overlay-click="{{toggleSettings}}">
+		<settings settings="{{@ settings}}"></settings>
 	</modal>
 </div>

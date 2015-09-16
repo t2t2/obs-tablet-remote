@@ -4,16 +4,28 @@ import OBSRemote from './obs-remote/index'
 import template from './app.html'
 
 import modal from './components/modal'
-import switcher from './components/switcher'
+import panels from './components/panels'
+import settings from './components/settings'
 
 import store from './storage'
+import defaultsDeep from 'lodash/object/defaultsDeep'
+
+var defaultSettings = function () {
+	return {
+		switcher: {
+			enabled: true,
+			perRow:  4,
+		}
+	}
+}
 
 export default Vue.extend({
 	template,
 
 	components: {
 		modal,
-		switcher,
+		panels,
+		settings,
 	},
 
 	computed: {
@@ -51,7 +63,7 @@ export default Vue.extend({
 	},
 
 	data: function () {
-		return {
+		var data = {
 			autoConnecting:      false,
 			authenticationError: undefined,
 			baseURL:             '',
@@ -66,7 +78,12 @@ export default Vue.extend({
 				port:           null,
 				version:        null,
 			},
+			settingsOpen:        false,
 		}
+
+		data.settings = defaultSettings()
+
+		return data
 	},
 
 	methods: {
@@ -163,7 +180,11 @@ export default Vue.extend({
 			} else {
 				leaveFullScreen.apply(document);
 			}
-		}
+		},
+
+		toggleSettings: function () {
+			this.settingsOpen = !this.settingsOpen
+		},
 	},
 
 	created: function () {
@@ -179,6 +200,9 @@ export default Vue.extend({
 
 		// Generate baseURL
 		this.baseURL = location.origin + location.pathname
+
+		// Load last settings
+		this.settings = defaultsDeep({}, this.$store('settings'), defaultSettings())
 
 		// Check for auto-login
 		if (location.hash.indexOf('#!') == 0) {
@@ -218,4 +242,13 @@ export default Vue.extend({
 			}
 		}
 	},
+
+	watch: {
+		'settings': {
+			handler: function (newValue) {
+				this.$store('settings', newValue)
+			},
+			deep: true
+		}
+	}
 })

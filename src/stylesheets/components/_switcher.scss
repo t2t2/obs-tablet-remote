@@ -30,8 +30,12 @@ $switcher-active-scene-bg: #80cbc4;
 		}
 	}
 
-	&.per-row-4 .scene {
-		flex-basis: 25%;
+	@for $i from 1 through 10 {
+		&.per-row-#{$i} .scene {
+			flex-basis: 100% / $i;
+		}
 	}
+
+
 
 }
