@@ -1,13 +1,26 @@
 var gulp = require('gulp');
 
 gulp.task('deploy', ['build:production'], function () {
-	var ghPages = require('gulp-gh-pages'),
+	var config = require('../config'),
+		ghPages = require('gulp-gh-pages'),
 		open = require('open'),
-		config = require('../config/deploy');
+		os = require('os'),
+		package = require('../../package.json'),
+		path = require('path')
 
-	return gulp.src(config.src)
-		.pipe(ghPages(config.ghPages))
+	var settings = {
+		url:     package.homepage,
+		src:     path.join(config.root.dest, '/**/*'),
+		ghPages: {
+			cacheDir: path.join(os.tmpdir(), package.name)
+		}
+	}
+
+	return gulp.src(settings.src)
+		.pipe(ghPages(settings.ghPages))
 		.on('end', function () {
-			open(config.url);
+			setTimeout(function () {
+				open(settings.url)
+			}, 1000)
 		})
 });

@@ -1,14 +1,19 @@
-var gulp = require('gulp');
+var gulp = require('gulp')
 
 gulp.task('watch', ['browserSync'], function () {
-	var html = require('../config/html'),
-		sass = require('../config/sass'),
-		watch = require('gulp-watch');
+	var config = require('../config'),
+		path = require('path'),
+		watch = require('gulp-watch')
 
-	watch(sass.src, function () {
-		gulp.start('sass');
-	});
-	watch(html.watch, function () {
-		gulp.start('html');
-	});
-});
+	var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite', 'html', 'css']
+
+	watchableTasks.forEach(function (taskName) {
+		var task = config.tasks[taskName]
+		if (task) {
+			var filePattern = path.join(config.root.src, task.src, '**/*.{' + task.extensions.join(',') + '}')
+			watch(filePattern, function () {
+				gulp.start(taskName)
+			})
+		}
+	})
+})

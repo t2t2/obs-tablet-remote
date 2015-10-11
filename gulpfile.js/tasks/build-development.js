@@ -1,7 +1,10 @@
 var gulp = require('gulp')
 
 gulp.task('build:development', function (cb) {
-	var gulpSequence = require('gulp-sequence')
+	var config = require('../config'),
+		getEnabledTasks = require('../lib/getEnabledTasks'),
+		gulpSequence = require('gulp-sequence'),
+		tasks = getEnabledTasks('development')
 
-	gulpSequence('clean', ['sass', 'webpack:development', 'html'], cb)
-});
+	gulpSequence('clean', tasks.assetTasks, tasks.codeTasks, 'rev', cb)
+})

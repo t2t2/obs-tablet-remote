@@ -1,9 +1,8 @@
-import Emitter from 'component-emitter'
+import EventEmitter from 'events'
 import ws from 'ws'
 import Sha256Hash from 'sha.js/sha256'
 
-export default
-class OBSRemote extends Emitter {
+export default class OBSRemote extends EventEmitter {
 
 	/**
 	 * Create an instance of OBS remote connection
