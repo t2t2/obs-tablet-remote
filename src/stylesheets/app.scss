@@ -1,21 +1,44 @@
-@import "bourbon";
-@import "responsive";
+$root-font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
 
-$main-color: #2196f3;
-$success-color: #4caf50;
-$warning-color: #ffff00;
-$error-color: #f44336;
-$spacing: 3rem / 4;
-$top-bar-height-small: 2rem;
-$top-bar-height-medium: 3rem;
+* {
+	// https://github.com/10up/sanitize.css/issues/2
+	position: relative;
+	overflow: hidden;
+}
 
-@import "base";
-@import "input";
+[hidden], head, body script, body style, body template {
+	display: none;
+}
 
-@import "components/modal";
+html, body {
+	height: 100%;
+}
+
+@import "../../node_modules/sanitize.css/sanitize";
+
+:root {
+	overflow-y: auto; // don't really want
+}
+
+@import "configs/breakpoints";
+@import "configs/colors";
+@import "configs/sizes";
+
+@import "components/buttons";
+@import "components/input";
+@import "components/text";
+
 @import "components/container";
+@import "components/modal";
+@import "components/panels";
 @import "components/topbar";
 @import "components/switcher";
 
 @import "pages/connect";
-@import "pages/authentication";
+
+#__bs_notify__ {
+	bottom: 0;
+	border-bottom-left-radius: 0 !important;
+	border-top-left-radius: 5px;
+	top: auto !important;
+}

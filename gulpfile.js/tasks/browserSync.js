@@ -1,3 +1,4 @@
+/*
 var gulp = require('gulp');
 
 gulp.task('browserSync', function () {
@@ -11,3 +12,4 @@ gulp.task('browserSync', function () {
 		}
 	});
 });
+*/

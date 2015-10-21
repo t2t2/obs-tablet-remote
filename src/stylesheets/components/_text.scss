@@ -1,0 +1,18 @@
+h2, h3, h4, h5, h6 {
+	margin-top: $spacing;
+	margin-bottom: $spacing;
+}
+
+p {
+	margin-bottom: $spacing;
+}
+
+.success-text {
+	color: lighten($success-color, 30%);
+}
+.warning-text {
+	color: lighten($warning-color, 30%);
+}
+.error-text {
+	color: lighten($error-color, 30%);
+}

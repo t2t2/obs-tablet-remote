@@ -1,11 +1,10 @@
-$top-bar-text-color: #fafafa;
-
 .top-bar {
 	background-color: darken($main-color, 20%);
-	color: $top-bar-text-color;
+	color: $white-color;
 	display: flex;
 	height: $top-bar-height-small;
-	@include padding(null 0.5rem);
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 	width: 100%;
 	z-index: 99999;
 
@@ -16,44 +15,40 @@ $top-bar-text-color: #fafafa;
 	.space {
 		flex-grow: 1;
 	}
+
 	.item {
-		@include margin(null 0.2rem);
+		margin: 0 $spacing / 2;
 		line-height: $top-bar-height-small;
-		
+
 		@include medium {
-			@include margin(null 0.5rem);
+			margin: 0 $spacing;
 			line-height: $top-bar-height-medium;
 		}
-		
-		& > #{$all-buttons} {
+
+		& > button {
 			background-color: $main-color;
 			border: none;
-			color: $top-bar-text-color;
-			font-size: 1rem;
+			color: $white-color;
 			height: $top-bar-height-small;
 			line-height: 1rem;
-			padding: (($top-bar-height-small - 1rem) / 2);
+			padding: (($top-bar-height-small - 1rem) / 2) $spacing;
+			transition: background-color 0.3s;
 
 			@include medium {
 				font-size: 1.2em;
 				height: $top-bar-height-medium;
-				padding: $spacing;
+				padding: (($top-bar-height-medium - 1.2rem) / 2) ($spacing * 1.5);
 			}
 
-			transition: background-color 0.5s;
+			&:hover {
+				background-color: darken($main-color, 10%);
+			}
 
 			.material-icons {
-				@include margin(-6px null);
-
-				@include medium {
-					@include margin(0 null);
-				}
+				// somehow looks best, I dunno why
+				margin-top: -6px;
+				margin-bottom: -6px;
 			}
-
-		}
-		
-		& > #{$all-buttons-hover} {
-			background-color: darken($main-color, 10%);
 		}
 	}
 }

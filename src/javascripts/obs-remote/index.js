@@ -13,6 +13,7 @@ export default class OBSRemote extends EventEmitter {
 	constructor(host = 'localhost', port = 4444) {
 		super()
 
+		this.debug = false
 		this.host = host
 		this.port = port
 
@@ -75,7 +76,7 @@ export default class OBSRemote extends EventEmitter {
 	 */
 	login(password) {
 		return this.getAuthRequired().then(({authRequired, salt, challenge}) => {
-			if(authRequired) {
+			if (authRequired) {
 				if (!password) {
 					throw 'Password Required'
 				}
@@ -91,6 +92,8 @@ export default class OBSRemote extends EventEmitter {
 				authResponse = authResponse.digest('base64');
 
 				return this.authenticate(authResponse).then(() => {
+					this.emit('ready')
+
 					return true
 				}, (error) => {
 					throw error.error
@@ -119,7 +122,7 @@ export default class OBSRemote extends EventEmitter {
 	authenticate(auth) {
 		return this.send({
 			'request-type': 'Authenticate',
-			auth,
+			                auth,
 		})
 	}
 
@@ -182,6 +185,10 @@ function socketOnOpen() {
 				version: version.version,
 				auth:    authRequired.authRequired,
 			})
+
+			if (!authRequired) {
+				this.emit('ready')
+			}
 		});
 		this._connecting = null
 	}
@@ -203,6 +210,10 @@ function socketOnMessage(message) {
 
 	if (!received) {
 		return
+	}
+
+	if (this.debug) {
+		console.log(received)
 	}
 
 	var type = received['update-type'];

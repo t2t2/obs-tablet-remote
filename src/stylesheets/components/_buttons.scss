@@ -1,0 +1,7 @@
+button {
+	background-color: $main-color;
+	border: 1px solid darken($main-color, 10%);
+	color: #fafafa;
+	cursor: pointer;
+	padding: $spacing $spacing * 1.5;
+}

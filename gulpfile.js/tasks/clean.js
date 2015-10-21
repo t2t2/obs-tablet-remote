@@ -10,7 +10,7 @@ gulp.task('clean', function (cb) {
 	for (var key in config.tasks) {
 		if (config.tasks.hasOwnProperty(key)) {
 			var task = config.tasks[key]
-			var filePattern = path.join(config.root.dest, task.dest, '**/*.{' + task.extensions.join(',') + ',map}')
+			var filePattern = path.join(config.root.dest, task.dest, '**/*.{' + (task.cleanExtensons || task.extensions).join(',') + ',map}')
 			files.push(filePattern)
 		}
 	}

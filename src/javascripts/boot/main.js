@@ -1,3 +1,4 @@
-import App from '../app'
+import Vue from 'vue'
+import appOptions from '../app.vue'
 
-var app = global.app = new App({ el: '#app' })
+var app = global.app = new Vue(appOptions).$mount('#app')

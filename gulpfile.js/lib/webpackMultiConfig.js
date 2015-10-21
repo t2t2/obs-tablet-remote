@@ -8,11 +8,14 @@ if (config.tasks.js) {
 	module.exports = function (env) {
 		var jsSrc = path.resolve(config.root.src, config.tasks.js.src),
 			jsDest = path.resolve(config.root.dest, config.tasks.js.dest),
-			publicPath = path.join(config.tasks.js.src, '/'),
+			publicPath = path.join(config.tasks.js.dest, '/').replace('\\', '/'),
 			filenamePattern = env === 'production' ? '[name]-[hash].js' : '[name].js',
 			extensions = config.tasks.js.extensions.map(function (extension) {
 				return '.' + extension
 			})
+
+		var babelLoader = 'babel-loader?optional[]=runtime&stage=1',
+			vue = require('vue-loader')
 
 		var webpackConfig = {
 			context: jsSrc,
@@ -24,13 +27,19 @@ if (config.tasks.js) {
 				loaders: [
 					{
 						test:    /\.js$/,
-						loader:  'babel-loader?stage=1',
+						loader:  babelLoader,
 						exclude: /node_modules/
 					},
 					{
 						test:    /\.html$/,
 						loader:  'html',
 						exclude: /node_modules/,
+					},
+					{
+						test:   /\.vue$/,
+						loader: vue.withLoaders({
+							js: babelLoader,
+						})
 					}
 				]
 			}
