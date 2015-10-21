@@ -21,7 +21,7 @@
     "store2": "^2.3.0",
     "tocca": "^0.1.7",
     "ultron": "^1.0.2",
-    "vue": "^1.0.0-alpha.8",
+    "vue": "^1.0.0-rc.1",
     "ws": "^0.8.0"
   },
   "devDependencies": {

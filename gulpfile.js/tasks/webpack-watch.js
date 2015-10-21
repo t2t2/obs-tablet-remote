@@ -11,7 +11,8 @@ if (config.tasks.js) {
 			middleware: [],
 		},
 	}, {
-		name: 'main'
+		name: 'main',
+		reload: false,
 	})
 
 	gulp.task('webpack:watch', function (callback) {
@@ -21,8 +22,7 @@ if (config.tasks.js) {
 			webpackConfig = require('../lib/webpackMultiConfig')('development')
 
 		// Set up browsersync
-		var
-			webpackDevMiddleware = require('webpack-dev-middleware'),
+		var	webpackDevMiddleware = require('webpack-dev-middleware'),
 			webpackHotMiddleware = require('webpack-hot-middleware')
 
 		Object.keys(webpackConfig.entry).map(function (bundle) {
