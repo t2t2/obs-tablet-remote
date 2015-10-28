@@ -14,9 +14,6 @@ if (config.tasks.js) {
 				return '.' + extension
 			})
 
-		var babelLoader = 'babel-loader?optional[]=runtime&stage=1',
-			vue = require('vue-loader')
-
 		var webpackConfig = {
 			context: jsSrc,
 			plugins: [],
@@ -27,7 +24,7 @@ if (config.tasks.js) {
 				loaders: [
 					{
 						test:    /\.js$/,
-						loader:  babelLoader,
+						loader:  'babel-loader?optional[]=runtime&stage=1&-nonStandard',
 						exclude: /node_modules/
 					},
 					{
@@ -37,9 +34,7 @@ if (config.tasks.js) {
 					},
 					{
 						test:   /\.vue$/,
-						loader: vue.withLoaders({
-							js: babelLoader,
-						})
+						loader: 'vue'
 					}
 				]
 			}
