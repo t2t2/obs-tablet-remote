@@ -1,0 +1,9 @@
+.alert {
+	margin-bottom: $spacing;
+	padding: $spacing;
+
+	&.error {
+		background-color: $error-color;
+		color: #ffffff;
+	}
+}

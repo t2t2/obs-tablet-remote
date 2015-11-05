@@ -1,11 +1,16 @@
-$switcher-scene-bg: #e0e0e0;
-$switcher-active-scene-bg: #80cbc4;
+$switcher-scene-bg: $inactive-color;
+$switcher-active-scene-bg: $active-color;
 
 .switcher {
 	display: flex;
-	flex: 1 1 auto;
+	flex: 1 1 70%;
 	flex-wrap: wrap;
+	min-height: 70%;
 	overflow-y: auto;
+
+	@include medium {
+		flex: 1 1 75%;
+	}
 
 	.scene {
 		border: none;
@@ -19,7 +24,7 @@ $switcher-active-scene-bg: #80cbc4;
 		white-space: nowrap;
 		word-wrap: normal;
 
-		@include medium {
+		@include large {
 			font-size: 2rem;
 		}
 

@@ -1,5 +1,5 @@
-$medium-width: 40.063em;
-$large-width: 64.063em;
+$medium-width: 40em;
+$large-width: 64em;
 
 @mixin medium {
 	@media (min-width: #{$medium-width}) {

@@ -28,13 +28,17 @@ html, body {
 @import "components/input";
 @import "components/text";
 
+@import "components/alert";
 @import "components/container";
 @import "components/modal";
 @import "components/panels";
 @import "components/topbar";
-@import "components/switcher";
+
+@import "panels/_sources";
+@import "panels/_switcher";
 
 @import "pages/connect";
+@import "pages/settings";
 
 #__bs_notify__ {
 	bottom: 0;

@@ -4,12 +4,13 @@ if (config.tasks.js) {
 		gulp = require('gulp'),
 		path = require('path')
 
-	// Made outside to allow others hook into earlier
+	// Made outside to allow others hook into browsersync instance
 	var browserSync = new BrowserSyncPlugin({
 		server: {
 			baseDir:    path.resolve(config.root.dest, config.tasks.html.dest),
 			middleware: [],
 		},
+		ghostMode: false,
 	}, {
 		name: 'main',
 		reload: false,

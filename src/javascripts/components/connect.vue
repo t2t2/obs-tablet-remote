@@ -1,6 +1,6 @@
 <template>
 	<div class="connection">
-		<div class="connection-error" v-if="connectionError" v-text="'Connection Error: ' + connectionError"></div>
+		<div class="alert error" v-if="connectionError" v-text="'Connection Error: ' + connectionError"></div>
 		<form class="connection-settings" @submit.prevent="connectToOBS">
 			<label>
 				Host

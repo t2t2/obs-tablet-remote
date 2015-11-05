@@ -15,7 +15,7 @@ $top-bar-height-medium: 3rem;
 @import "components/modal";
 @import "components/container";
 @import "components/topbar";
-@import "components/switcher";
+@import "panels/_switcher";
 
 @import "pages/connect";
 @import "pages/authentication";

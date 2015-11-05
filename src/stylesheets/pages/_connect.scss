@@ -2,13 +2,6 @@
 	display: flex;
 	flex-wrap: wrap;
 
-	.connection-error {
-		background-color: $error-color;
-		color: #ffffff;
-		margin-bottom: $spacing;
-		padding: $spacing;
-	}
-
 	.connection-info, .connection-settings {
 		margin: 0 $spacing $spacing;
 	}
@@ -20,7 +13,7 @@
 			flex-grow: 1;
 			flex-basis: 40%;
 		}
-		.connection-error {
+		.alert {
 			width: 100%;
 			flex-basis: 100%;
 		}

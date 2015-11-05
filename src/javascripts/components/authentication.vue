@@ -1,6 +1,6 @@
 <template>
 	<div class="authentication">
-		<div class="authentication-error" v-if="authenticationError" v-text="'Error: ' + authenticationError"></div>
+		<div class="alert error" v-if="authenticationError" v-text="'Error: ' + authenticationError"></div>
 		<form @submit.prevent="authOBS">
 			<h2>Password required</h2>
 			<label>

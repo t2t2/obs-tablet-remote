@@ -164,6 +164,18 @@ export default class OBSRemote extends EventEmitter {
 	}
 
 	/**
+	 * OBS Remote SetSourceRender method
+	 *
+	 * @param scene ignored
+	 * @param sourceName
+	 * @param render
+	 * @returns {Promise}
+	 */
+	setSourceRender(scene, sourceName, render) {
+		return this.send({'request-type': 'SetSourceRender', 'source': sourceName, render: render})
+	}
+
+	/**
 	 * Get ID for next request
 	 *
 	 * @returns {string}

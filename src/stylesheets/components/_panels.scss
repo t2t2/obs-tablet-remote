@@ -2,5 +2,10 @@
 	align-items: stretch;
 	display: flex;
 	flex: 1;
+	flex-direction: column;
 	min-height: 0;
+
+	@include medium {
+		flex-direction: row;
+	}
 }

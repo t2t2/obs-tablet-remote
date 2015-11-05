@@ -12,7 +12,7 @@
 		<modal v-if="autoConnecting">
 			<h2>Connecting...</h2>
 		</modal>
-		<modal v-if="settingsOpen" @overlay-click="toggleSettings">
+		<modal v-if="settingsOpen" modal-class="wide" @overlay-click="toggleSettings">
 			<settings :settings.sync="settings"></settings>
 		</modal>
 	</div>
@@ -33,10 +33,13 @@
 
 	var defaultSettings = function () {
 		return {
+			sources: {
+				enabled: false,
+			},
 			switcher: {
 				enabled: true,
 				perRow:  4,
-			}
+			},
 		}
 	}
 

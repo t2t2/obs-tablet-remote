@@ -1,3 +1,4 @@
+import 'tocca'
 import Vue from 'vue'
 import appOptions from '../app.vue'
 

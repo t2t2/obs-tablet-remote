@@ -1,5 +1,5 @@
 <template>
-	<div class="switcher" :class="classes">
+	<div class="panel switcher" :class="classes">
 		<button v-for="scene in obs.scenes" class="scene" :class="{active: scene.name == obs.currentScene}"
 		        @mousedown.stop.prevent="switchToScene(scene)"
 		        @tap.stop.prevent="switchToScene(scene)">
@@ -9,9 +9,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-	import 'tocca'
-
-	import OBSUserMixin from '../mixins/obs-user.js'
+	import OBSUserMixin from '../../mixins/obs-user.js'
 
 	export default {
 		computed: {
