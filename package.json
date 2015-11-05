@@ -1,6 +1,6 @@
 {
   "name": "obs-remote-tablet",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "OBS Remote interface that's pretty okay I suppose",
   "engines": {
     "node": "0.12.2",
