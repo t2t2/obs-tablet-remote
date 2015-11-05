@@ -6,11 +6,7 @@ gulp.task('default', function (cb) {
 
 	var tasks = getEnabledTasks('watch')
 
-	gulpSequence('clean',
-		tasks.assetTasks.length ? tasks.assetTasks : 'noop',
-		tasks.codeTasks.length ? tasks.codeTasks : 'noop',
-		'watch', cb
-	)
+	gulpSequence('clean', tasks.assetTasks, tasks.codeTasks, 'watch', cb)
 });
 
 gulp.task('noop', function (cb) {

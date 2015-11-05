@@ -21,8 +21,16 @@ module.exports = function (env) {
 		}
 	}
 
-	return {
+	var tasks = {
 		assetTasks: compact(assetTasks.map(matchFilter)),
 		codeTasks:  compact(codeTasks.map(matchFilter))
 	}
+
+	Object.keys(tasks).map(function (type) {
+		if(tasks[type].length == 0) {
+			tasks[type] = 'noop'
+		}
+	})
+
+	return tasks
 }
