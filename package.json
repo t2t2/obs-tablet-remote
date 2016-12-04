@@ -3,60 +3,89 @@
   "version": "1.1.1",
   "description": "OBS Remote interface that's pretty okay I suppose",
   "engines": {
-    "node": "0.12.2",
-    "npm": "2.7.4"
+    "node": "> 4.0.0",
+    "npm": "> 3.0.0"
   },
   "homepage": "http://t2t2.github.io/obs-remote-tablet/",
   "private": true,
   "scripts": {
-    "deploy": "gulp deploy",
-    "start": "gulp",
-    "production": "gulp build:production"
+    "build": "npm-run-all clean build:prod",
+    "build:deploy": "webpack -p --env.prod 1 --env.deploy 1",
+    "build:prod": "webpack -p --env.prod 1",
+    "clean": "rimraf public/**/*",
+    "deploy": "npm-run-all clean build:deploy deploy:upload",
+    "deploy:upload": "gh-pages -d public",
+    "dev": "webpack-dev-server --inline --hot",
+    "lint": "xo"
   },
   "dependencies": {
-    "babel-runtime": "^5.8.29",
-    "lodash": "^3.10.1",
-    "sanitize.css": "^2.1.1",
-    "sha.js": "^2.4.4",
+    "lodash": "^4.17.2",
+    "sanitize.css": "^4.1.0",
+    "sha.js": "^2.4.8",
     "store2": "^2.3.2",
-    "tocca": "^0.1.7",
+    "tocca": "^1.1.0",
     "ultron": "^1.0.2",
-    "vue": "^1.0.1",
-    "ws": "^0.8.0"
+    "vue": "^2.1.4"
   },
   "devDependencies": {
-    "babel-core": "^5.8.30",
-    "babel-loader": "^5.3.2",
-    "browser-sync": "^2.9.11",
-    "browser-sync-webpack-plugin": "^1.0.0",
-    "css-loader": "^0.21.0",
-    "del": "^2.0.2",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^2.3.1",
-    "gulp-gh-pages": "^0.5.4",
-    "gulp-htmlmin": "~1.1.4",
-    "gulp-if": "~1.2.5",
-    "gulp-minify-css": "^1.2.1",
-    "gulp-notify": "^2.2.0",
-    "gulp-nunjucks-render": "^0.2.1",
-    "gulp-rev": "^5.1.0",
-    "gulp-rev-napkin": "^0.1.0",
-    "gulp-rev-replace": "^0.4.2",
-    "gulp-sass": "^2.1.0",
-    "gulp-sequence": "^0.4.1",
-    "gulp-sizereport": "^1.1.3",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.5",
-    "html-loader": "^0.3.0",
-    "open": "^0.0.5",
-    "require-dir": "^0.3.0",
-    "style-loader": "^0.13.0",
-    "vue-hot-reload-api": "^1.2.1",
-    "vue-html-loader": "^1.0.0",
-    "vue-loader": "^6.0.0",
-    "webpack": "^1.12.2",
-    "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.4.1"
+    "autoprefixer": "^6.5.3",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-env": "^0.0.9",
+    "css-loader": "^0.26.1",
+    "eslint-import-resolver-webpack": "^0.7.0",
+    "eslint-plugin-html": "^1.7.0",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "file-loader": "^0.9.0",
+    "gh-pages": "^0.12.0",
+    "html-webpack-plugin": "^2.24.1",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.13.0",
+    "npm-run-all": "^3.1.2",
+    "postcss-flexbugs-fixes": "^2.0.0",
+    "postcss-loader": "^1.2.0",
+    "rimraf": "^2.5.4",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "vue-loader": "^10.0.2",
+    "vue-style-loader": "^1.0.0",
+    "vue-template-compiler": "^2.1.4",
+    "webpack": "^2.1.0-beta.27",
+    "webpack-dev-server": "^2.1.0-beta.11",
+    "webpack-merge": "^1.0.2",
+    "webpack-notifier": "^1.4.1",
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "browser"
+    ],
+    "semicolon": false,
+    "plugins": [
+      "html"
+    ],
+    "extensions": [
+      "vue"
+    ],
+    "settings": {
+      "import/resolver": "webpack"
+    },
+    "overrides": [
+      {
+        "files": "**/*.vue",
+        "rules": {
+          "unicorn/no-abusive-eslint-disable": "off",
+          "unicorn/filename-case": [
+            "error",
+            {
+              "case": "pascalCase"
+            }
+          ]
+        }
+      }
+    ]
   }
 }

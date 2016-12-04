@@ -1,0 +1,10 @@
+{
+	// Settings for webpack.config.babel.js
+	"presets": [
+		["env", {
+			"targets": {
+				"node": true
+			}
+		}]
+	]
+}

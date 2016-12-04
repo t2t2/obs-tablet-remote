@@ -15,8 +15,7 @@
 		<div class="connection-info">
 			<h2>Usage Instructions</h2>
 
-			<p>To use OBS Tablet Remote make sure you have installed the <a href="http://www.obsremote.com/">OBS Remote
-				plugin</a>.</p>
+			<p>To use OBS Tablet Remote make sure you have installed <a href="https://obsproject.com/forum/resources/websocket-plugin.466/" target="_blank">Websocket Plugin</a> for OBS Studio</p>
 
 			<h2>Automatic Login</h2>
 
@@ -25,7 +24,7 @@
 
 			<label>
 				Current settings:
-				<input type="text" readonly v-model="exampleURL"/>
+				<input type="text" readonly :value="exampleURL" @click="selectValue" />
 			</label>
 
 			<p>To include password add &password={password}. Note that all fields can't include &amp; or =.</p>
@@ -40,12 +39,12 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	export default {
 
 		computed: {
-			exampleURL:         function () {
-				var url = this.baseURL + '#!auto'
+			exampleURL() {
+				let url = this.baseURL + '#!auto'
 				if (this.host) {
 					url += '&host=' + this.host
 				}
@@ -54,40 +53,64 @@
 				}
 				return url
 			},
-		},
-
-		created: function () {
-			// Generate baseURL
-			this.baseURL = location.origin + location.pathname
-		},
-
-		data: function () {
-			return {
-				baseUrl:         '',
-				connectionError: null,
+			host: {
+				get() {
+					if (this.userValue.host !== null) {
+						return this.userValue.host
+					}
+					return this.obs.host
+				},
+				set(value) {
+					this.userValue.host = value
+				}
+			},
+			port: {
+				get() {
+					if (this.userValue.port !== null) {
+						return this.userValue.port
+					}
+					return this.obs.port
+				},
+				set(value) {
+					this.userValue.port = value
+				}
 			}
 		},
-
+		data() {
+			return {
+				baseURL: location.origin + location.pathname,
+				connectionError: null,
+				userValue: {
+					host: null,
+					port: null
+				}
+			}
+		},
 		methods: {
-			connectToOBS: function () {
+			connectToOBS() {
 				this.connectionError = null
 
-				this.$root.connectToOBS().catch((error) => {
-					this.connectionError = error.reason
-					throw error
+				const callback = async promise => {
+					try {
+						await promise
+					} catch (err) {
+						this.connectionError = err.error
+					}
+				}
+				this.$emit('connect-to-obs', {
+					callback,
+					host: this.host || undefined,
+					port: this.port || undefined
 				})
 			},
+			selectValue(e) {
+				e.target.select()
+			}
 		},
-
 		props: {
 			connecting: Boolean,
-			host:       {
-				twoWay: true,
-			},
-			port:       {
-				twoWay: true,
-			},
-		},
+			obs: Object
+		}
 	}
 
 </script>

@@ -1,45 +1,48 @@
 <template>
 	<div class="panel sources-panel">
-		<div class="scene" v-for="scene in obs.scenes | filterBy isCurrentScene" track-by="name">
-			<h3 class="scene-name" v-text="scene.name">title</h3>
+		<div class="scene" v-if="currentScene">
+			<h3 class="scene-name" v-text="currentScene.name"></h3>
 
 			<div class="sources">
 				<button class="source"
-				        v-for="source in scene.sources" track-by="name"
+				        v-for="source in currentScene.sources" :key="source.name"
 				        :class="{ active: source.render }" v-text="source.name"
-				        @click="toggleSource(scene.name, source.name, !source.render)">
+				        @click="toggleSource(currentScene.name, source.name, !source.render)">
 				</button>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
-	import OBSUserMixin from '../../mixins/obs-user.js'
-
-	import findFirst from 'lodash/collection/find.js'
+<script>
+	import OBSUserMixin from '../../mixins/obs-user'
 
 	export default {
-		data: function () {
-			return {}
+		computed: {
+			currentScene() {
+				return this.obs.scenes.find(scene => {
+					return scene.name === this.obs.currentScene
+				})
+			}
 		},
 
 		methods: {
-			isCurrentScene: function (scene) {
-				return scene.name == this.obs.currentScene
+			isCurrentScene(scene) {
+				return scene.name === this.obs.currentScene
 			},
 
-			toggleSource: function (scene, source, render) {
-				this.$obs.setSourceRender(scene, source, render)
-			},
+			async toggleSource(scene, source, render) {
+				await this.$obs.setSourceRender(scene, source, render)
+				// No automatic update as of obs-websocket 0.3.1
+				this.$emit('force-refresh')
+			}
 		},
 
 		mixins: [OBSUserMixin],
 
 		props: {
-			obs:      Object,
-			settings: Object,
-		},
-
+			obs: Object,
+			settings: Object
+		}
 	}
 </script>

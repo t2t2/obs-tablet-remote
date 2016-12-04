@@ -1,26 +1,29 @@
 <template>
 	<div class="top-bar">
-		<div class="item" :title="obs.version ? 'OBS Remote Version: ' + obs.version : false">
-			Connections: <span :class="connectionStateClass" v-text="connectionStateText"></span>
+		<div class="item" :title="obs.version ? 'OBS Websocket Version: ' + obs.version : false">
+			Connection: <span :class="connectionStateClass" v-text="connectionStateText"></span>
 		</div>
 		<div class="space"></div>
+		<div class="item">
+			<button @click="forceRefresh" title="Force Refresh (In case things get out of sync)"><i class="material-icons">refresh</i></button>
+		</div>
 		<div class="item">
 			<button @click="toggleSettings"><i class="material-icons">settings</i></button>
 		</div>
 		<div class="item">
-			<button @click="toggleFullscreen">Full Screen</button>
+			<button @click="toggleFullscreen"><i class="material-icons">fullscreen</i></button>
 		</div>
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	import toggleFullscreenMixin from '../mixins/fullscreen'
 
 	export default {
 		mixins: [toggleFullscreenMixin],
 
 		computed: {
-			connectionStateClass: function () {
+			connectionStateClass() {
 				if (!this.obs.connected) {
 					return 'error-text'
 				}
@@ -29,7 +32,7 @@
 				}
 				return 'success-text'
 			},
-			connectionStateText:  function () {
+			connectionStateText() {
 				if (!this.obs.connected) {
 					return 'Down'
 				}
@@ -37,19 +40,21 @@
 					return 'Authenticate'
 				}
 				return 'Ok'
-			},
+			}
 		},
-
 		methods: {
-			toggleSettings: function () {
-				this.$emit('toggle-settings')
+			forceRefresh() {
+				this.$emit('force-refresh')
 			},
+			toggleSettings() {
+				this.$emit('toggle-settings')
+			}
 		},
-
 		props: {
 			obs: {
-				required: true,
-			},
-		},
+				type: Object,
+				required: true
+			}
+		}
 	}
 </script>

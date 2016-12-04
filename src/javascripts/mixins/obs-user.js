@@ -1,17 +1,17 @@
 import Ultron from 'ultron'
 
 export default {
-	created: function () {
+	created() {
 		Object.defineProperty(this, '$obs', {
 			get: () => {
-				return this.$root.$obs
+				return this.$root.$refs.app.$obs
 			}
 		})
 
 		this._obs = new Ultron(this.$obs)
 	},
 
-	destroyed: function () {
+	destroyed() {
 		this._obs.destroy()
 	},
 
@@ -24,7 +24,7 @@ export default {
 		 * @param fn
 		 * @returns {OBSRemote}
 		 */
-		$onObs: function (event, fn) {
+		$onObs(event, fn) {
 			return this._obs.on(event, fn)
 		},
 
@@ -35,7 +35,7 @@ export default {
 		 * @param fn
 		 * @returns {OBSRemote}
 		 */
-		$onceObs: function (event, fn) {
+		$onceObs(event, fn) {
 			return this._obs.once(event, fn)
 		},
 
@@ -46,13 +46,11 @@ export default {
 		 * @param fn
 		 * @returns {OBSRemote}
 		 */
-		$offObs: function (event, fn) {
-			if(!fn) {
-				return this._obs.remove(event)
-			} else {
+		$offObs(event, fn) {
+			if (fn) {
 				return this.$obs.removeListener(event, fn)
 			}
-		},
-
-	},
+			return this._obs.remove(event)
+		}
+	}
 }

@@ -11,6 +11,7 @@
 	& > .scene {
 		display: flex;
 		flex: 1 1 100%;
+		max-height: 100%;
 		flex-direction: column;
 
 		& > .scene-name {

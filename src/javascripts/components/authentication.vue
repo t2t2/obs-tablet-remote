@@ -12,28 +12,47 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	export default {
-		data: function () {
-			return {
-				authenticationError: null,
+		computed: {
+			password: {
+				get() {
+					if (this.userValue.password !== null) {
+						return this.userValue.password
+					}
+					return this.obs.password
+				},
+				set(value) {
+					this.userValue.password = value
+				}
 			}
 		},
-
-		methods: {
-			authOBS: function () {
-				return this.$root.authOBS().catch((error) => {
-					this.authenticationError = error
-					throw error
-				})
-			},
+		data() {
+			return {
+				authenticationError: null,
+				userValue: {
+					password: null
+				}
+			}
 		},
-
+		methods: {
+			authOBS() {
+				const callback = async promise => {
+					try {
+						await promise
+					} catch (err) {
+						this.authenticationError = err.message
+					}
+				}
+				this.$emit('auth-obs', {
+					callback,
+					password: this.password
+				})
+			}
+		},
 		props: {
 			authenticating: Boolean,
-			password:       {
-				twoWay: true,
-			},
-		},
+			obs: Object
+		}
 	}
 </script>

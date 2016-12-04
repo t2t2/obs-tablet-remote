@@ -1,5 +1,9 @@
-import 'tocca'
 import Vue from 'vue'
-import appOptions from '../app.vue'
+import App from '../App'
 
-var app = global.app = new Vue(appOptions).$mount('#app')
+const app = new Vue({
+	el: '#app',
+	render: h => h(App, {ref: 'app'})
+})
+
+global.app = app.$refs.app

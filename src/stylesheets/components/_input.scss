@@ -25,13 +25,13 @@ textarea {
 	display: block;
 	font-size: 1rem;
 	margin-bottom: $spacing;
-	padding: ($spacing / 2) ($spacing / 3);
+	padding: ($spacing / 2) ($spacing / 3) ($spacing / 2 + ($input-wide-bottom-border - $input-thin-bottom-border));
 	width: 100%;
 
 	&:focus, &:active {
 		border-bottom-width: $input-wide-bottom-border;
 		border-bottom-color: $main-color;
-		margin-bottom: $spacing - ($input-wide-bottom-border - $input-thin-bottom-border);
+		padding-bottom: $spacing / 2;
 	}
 }
 

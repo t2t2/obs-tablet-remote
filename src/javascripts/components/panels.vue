@@ -1,23 +1,29 @@
 <template>
 	<div class="panels">
 		<switcher :obs="obs" :settings="settings"></switcher>
-		<sources v-if="settings.sources.enabled" :obs="obs" :settings="settings"></sources>
+		<sources v-if="settings.sources.enabled" :obs="obs" :settings="settings" @force-refresh="forceRefresh"></sources>
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
-	import sources from './panels/sources.vue'
-	import switcher from './panels/switcher.vue'
+<script>
+	import Sources from './panels/Sources.vue'
+	import Switcher from './panels/Switcher.vue'
 
 	export default {
 		components: {
-			sources,
-			switcher,
+			Sources,
+			Switcher
+		},
+
+		methods: {
+			forceRefresh() {
+				this.$emit('force-refresh')
+			}
 		},
 
 		props: {
-			obs:      Object,
-			settings: Object,
-		},
+			obs: Object,
+			settings: Object
+		}
 	}
 </script>

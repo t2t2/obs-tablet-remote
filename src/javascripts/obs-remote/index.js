@@ -1,5 +1,4 @@
 import EventEmitter from 'events'
-import ws from 'ws'
 import Sha256Hash from 'sha.js/sha256'
 
 export default class OBSRemote extends EventEmitter {
@@ -31,14 +30,14 @@ export default class OBSRemote extends EventEmitter {
 	connect() {
 		if (this._socket) {
 			this._socket.onopen = this._socket._onmessage = this._socket.onerror = this._socket._onclose = null
-			this._socket.close();
+			this._socket.close()
 		}
 
 		return new Promise((resolve, reject) => {
 			this._connecting = {resolve, reject}
 
-			let url = 'ws://' + this.host + ':' + this.port
-			this._socket = ws(url, 'obsapi')
+			const url = 'ws://' + this.host + ':' + this.port
+			this._socket = new WebSocket(url)
 
 			this._socket.onopen = socketOnOpen.bind(this)
 			this._socket.onmessage = socketOnMessage.bind(this)
@@ -56,14 +55,14 @@ export default class OBSRemote extends EventEmitter {
 	send(message) {
 		return new Promise((resolve, reject) => {
 			if (this._socket) {
-				var id = this._nextID()
+				const id = this._nextID()
 				this._promises[id] = {resolve, reject}
 
 				message['message-id'] = id
 
 				this._socket.send(JSON.stringify(message))
 			} else {
-				throw new Error("Connection isn't opened");
+				throw new Error('Connection isn\'t opened')
 			}
 		})
 	}
@@ -78,29 +77,28 @@ export default class OBSRemote extends EventEmitter {
 		return this.getAuthRequired().then(({authRequired, salt, challenge}) => {
 			if (authRequired) {
 				if (!password) {
-					throw 'Password Required'
+					throw new Error('Password Required')
 				}
 
-				let authHash = new Sha256Hash();
-				authHash.update(password);
-				authHash.update(salt);
-				authHash = authHash.digest('base64');
+				let authHash = new Sha256Hash()
+				authHash.update(password)
+				authHash.update(salt)
+				authHash = authHash.digest('base64')
 
-				let authResponse = new Sha256Hash();
-				authResponse.update(authHash);
-				authResponse.update(challenge);
-				authResponse = authResponse.digest('base64');
+				let authResponse = new Sha256Hash()
+				authResponse.update(authHash)
+				authResponse.update(challenge)
+				authResponse = authResponse.digest('base64')
 
 				return this.authenticate(authResponse).then(() => {
 					this.emit('ready')
 
 					return true
-				}, (error) => {
+				}, error => {
 					throw error.error
 				})
-			} else {
-				return true
 			}
+			return true
 		})
 	}
 
@@ -109,7 +107,7 @@ export default class OBSRemote extends EventEmitter {
 	 */
 	close() {
 		if (this._socket) {
-			this._socket.close();
+			this._socket.close()
 		}
 	}
 
@@ -122,7 +120,7 @@ export default class OBSRemote extends EventEmitter {
 	authenticate(auth) {
 		return this.send({
 			'request-type': 'Authenticate',
-			                auth,
+			auth
 		})
 	}
 
@@ -167,12 +165,12 @@ export default class OBSRemote extends EventEmitter {
 	 * OBS Remote SetSourceRender method
 	 *
 	 * @param scene ignored
-	 * @param sourceName
+	 * @param source
 	 * @param render
 	 * @returns {Promise}
 	 */
-	setSourceRender(scene, sourceName, render) {
-		return this.send({'request-type': 'SetSourceRender', 'source': sourceName, render: render})
+	setSourceRender(scene, source, render) {
+		return this.send({'request-type': 'SetSourceRender', source, render})
 	}
 
 	/**
@@ -182,7 +180,7 @@ export default class OBSRemote extends EventEmitter {
 	 * @private
 	 */
 	_nextID() {
-		return this._idCounter++ + '';
+		return String(this._idCounter++)
 	}
 }
 
@@ -191,17 +189,17 @@ export default class OBSRemote extends EventEmitter {
  */
 function socketOnOpen() {
 	if (this._connecting) {
-		var resolve = this._connecting.resolve
+		const resolve = this._connecting.resolve
 		Promise.all([this.getVersion(), this.getAuthRequired()]).then(([version, authRequired]) => {
 			resolve({
-				version: version.version,
-				auth:    authRequired.authRequired,
+				version: version['obs-websocket-version'] || version.version,
+				auth: authRequired.authRequired
 			})
 
-			if (!authRequired) {
+			if (!authRequired.authRequired) {
 				this.emit('ready')
 			}
-		});
+		})
 		this._connecting = null
 	}
 	this.emit('socket.open')
@@ -213,11 +211,11 @@ function socketOnOpen() {
  * @param message
  */
 function socketOnMessage(message) {
-	var received;
+	let received
 	try {
-		received = JSON.parse(message.data);
-	} catch (e) {
-		this.emit('error', e);
+		received = JSON.parse(message.data)
+	} catch (err) {
+		this.emit('error', err)
 	}
 
 	if (!received) {
@@ -228,13 +226,12 @@ function socketOnMessage(message) {
 		console.log(received)
 	}
 
-	var type = received['update-type'];
+	const type = received['update-type']
 	if (type) {
-		handleUpdate.call(this, type, received);
+		handleUpdate.call(this, type, received)
 	} else {
-		handleCallback.call(this, received['message-id'], received);
+		handleCallback.call(this, received['message-id'], received)
 	}
-
 }
 
 /**
@@ -246,8 +243,8 @@ function socketOnError(error) {
 	this.emit('socket.error', error)
 }
 
-var disconnectReasons = {
-	1006: 'Server not reachable',
+const disconnectReasons = {
+	1006: 'Server not reachable'
 }
 
 /**
@@ -257,11 +254,11 @@ var disconnectReasons = {
  */
 function socketOnClose(event) {
 	if (this._connecting) {
-		let reason = 'Unknown Error';
+		let message = 'Unknown Error'
 		if (event.code in disconnectReasons) {
-			reason = disconnectReasons[event.code]
+			message = disconnectReasons[event.code]
 		}
-		this._connecting.reject({reason, event})
+		this._connecting.reject({error: message, event})
 		this._connecting = null
 	}
 
@@ -275,16 +272,16 @@ function socketOnClose(event) {
  * @param message
  */
 function handleCallback(id, message) {
-	var promise = this._promises[id];
+	const promise = this._promises[id]
 	if (promise) {
-		if (message['status'] == 'error') {
-			promise.reject(message);
+		if (message.status === 'error') {
+			promise.reject(message)
 		} else {
-			promise.resolve(message);
+			promise.resolve(message)
 		}
-		delete this._promises[id];
-	} else if (message['status'] == 'error') {
-		this.emit('error', message['error'], message);
+		delete this._promises[id]
+	} else if (message.status === 'error') {
+		this.emit('error', message.error, message)
 	}
 }
 
@@ -297,31 +294,33 @@ function handleCallback(id, message) {
 function handleUpdate(type, message) {
 	switch (type) {
 		case 'StreamStatus':
-			this.emit('stream.status', message);
-			break;
+			this.emit('stream.status', message)
+			break
 		case 'StreamStarting':
-			this.emit('stream.start', message);
-			break;
+			this.emit('stream.start', message)
+			break
 		case 'StreamStopping':
-			this.emit('stream.stop', message);
-			break;
+			this.emit('stream.stop', message)
+			break
 		case 'SwitchScenes':
-			this.emit('scenes.switch', message);
-			break;
+			this.emit('scenes.switch', message)
+			break
 		case 'ScenesChanged':
-			this.emit('scenes.change', message);
-			break;
+			this.emit('scenes.change', message)
+			break
 		case 'SourceOrderChanged':
-			this.emit('sources.order', message);
-			break;
+			this.emit('sources.order', message)
+			break
 		case 'SourceChanged':
-			this.emit('source.change', message);
-			break;
+			this.emit('source.change', message)
+			break
 		case 'RepopulateSources':
-			this.emit('source.repopulate', message);
-			break;
+			this.emit('source.repopulate', message)
+			break
 		case 'VolumeChanged':
-			this.emit('volume.change', message);
-			break;
+			this.emit('volume.change', message)
+			break
+		default:
+			// Unhandled
 	}
 }

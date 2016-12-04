@@ -4,10 +4,13 @@ button {
 	color: #fafafa;
 	cursor: pointer;
 	padding: $spacing $spacing * 1.5;
-	
+
 	&[disabled] {
 		$disabled-color: mix($main-color, #dddddd, 20%);
 		background-color: $disabled-color;
 		border-color: darken($disabled-color, 10%);
+	}
+	&:hover {
+		background-color: darken($main-color, 6%);
 	}
 }
