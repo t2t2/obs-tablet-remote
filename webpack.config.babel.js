@@ -112,7 +112,7 @@ export default function ({
 	if (deploy) {
 		settings = merge(settings, {
 			output: {
-				publicPath: '/obs-remote-tablet/'
+				publicPath: '/obs-tablet-remote/'
 			}
 		})
 	}

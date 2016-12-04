@@ -1,12 +1,12 @@
 {
-  "name": "obs-remote-tablet",
+  "name": "obs-tablet-remote",
   "version": "1.1.1",
   "description": "OBS Remote interface that's pretty okay I suppose",
   "engines": {
     "node": "> 4.0.0",
     "npm": "> 3.0.0"
   },
-  "homepage": "http://t2t2.github.io/obs-remote-tablet/",
+  "homepage": "http://t2t2.github.io/obs-tablet-remote/",
   "private": true,
   "scripts": {
     "build": "npm-run-all clean build:prod",

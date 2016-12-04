@@ -31,7 +31,7 @@
 
 			<h2>Bugs / Feature requests?</h2>
 
-			<a href="https://github.com/t2t2/obs-remote-tablet/issues" target="_blank">
+			<a href="https://github.com/t2t2/obs-tablet-remote/issues" target="_blank">
 				<img src="https://img.shields.io/badge/github-issues-brightgreen.svg?style=flat-square"
 				     alt="Github Issues"/>
 			</a>
