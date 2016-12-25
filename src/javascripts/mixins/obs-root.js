@@ -42,8 +42,8 @@ export default {
 	data() {
 		return {
 			obs: {
-				host: null,
-				port: null,
+				host: undefined,
+				port: undefined,
 				password: '',
 
 				authenticating: false,

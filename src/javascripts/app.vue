@@ -103,12 +103,13 @@
 
 					// Save last successful login to storage if not automatic
 					if (!autoConnecting) {
-						this.$store('obs.host', host === 'localhost' ? null : host)
-						this.$store('obs.port', port === 4444 ? null : port)
+						this.$store('obs.host', host === 'localhost' ? undefined : host)
+						this.$store('obs.port', port === 4444 ? undefined : port)
 					}
 
 					return {version, auth}
 				}, err => {
+					console.log(err)
 					this.obs.connecting = false
 					throw err
 				})
@@ -121,9 +122,15 @@
 
 			doAutoLogin() {
 				this.autoConnecting = true
-				return this.connectToOBS({autoConnecting: true}).then(({auth}) => {
+				return this.connectToOBS({
+					autoConnecting: true,
+					host: this.obs.host,
+					port: this.obs.port
+				}).then(({auth}) => {
 					if (auth) {
-						return this.authOBS()
+						return this.authOBS({
+							password: this.obs.password
+						})
 					}
 					return true
 				}).then(() => {

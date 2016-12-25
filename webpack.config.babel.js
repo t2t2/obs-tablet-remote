@@ -8,7 +8,7 @@ import WebpackNotifierPlugin from 'webpack-notifier'
 
 const BASE_SETTINGS = {
 	entry: {
-		app: ['./src/javascripts/boot/main.js', './src/stylesheets/app.scss']
+		app: ['babel-polyfill', './src/javascripts/boot/main.js', './src/stylesheets/app.scss']
 	},
 	output: {
 		filename: 'assets/[name].js',
