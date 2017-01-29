@@ -24,7 +24,7 @@
 			}
 		},
 		props: {
-                        obs: Object,
+			obs: Object,
 			settings: Object
 		}
 	}

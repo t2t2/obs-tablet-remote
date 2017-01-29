@@ -10,20 +10,20 @@
 		</label>
                 <h3>Transition Scene</h3>
                 <label>
-                        Transition scene
-                        <div class="input-group">
-                                <select v-model="transitionScene">
-                                        <option value="">None</option>
-                                        <option v-for="scene in obs.scenes" v-bind:value="scene.name">{{ scene.name }}</option>
-                                </select>
-                        </div>
-                </label>
-                <label>
-                        Transition time 
-                        <div class="input-group">
-                                <input v-model.number="transitionSeconds" type="number">
-                        </div>
-                </label>
+			Transition scene
+			<div class="input-group">
+				<select v-model="transitionScene">
+					<option value="">None</option>
+					<option v-for="scene in obs.scenes" v-bind:value="scene.name">{{ scene.name }}</option>
+				</select>
+			</div>
+		</label>
+		<label>
+			Transition time 
+			<div class="input-group">
+				<input v-model.number="transitionSeconds" type="number">
+			</div>
+		</label>
 	</div>
 </template>
 
@@ -40,28 +40,28 @@
 					this.$emit('change', 'perRow', value)
 				}
 			},
-                        transitionScene: {
-                                get() {
-                                        return this.settings.transitionScene
-                                },
-                                set(value) {
-                                        this.$emit('change', 'transitionScene', value)
-                                }
-                        },
-                        transitionSeconds: {
-                                get() {
-                                        return this.settings.transitionSeconds
-                                },
-                                set(value) {
-                                        this.$emit('change', 'transitionSeconds', value)
-                                }
-                        }
+			transitionScene: {
+				get() {
+					return this.settings.transitionScene
+				},
+				set(value) {
+					this.$emit('change', 'transitionScene', value)
+				}
+			},
+			transitionSeconds: {
+				get() {
+					return this.settings.transitionSeconds
+				},
+				set(value) {
+					this.$emit('change', 'transitionSeconds', value)
+				}
+			}
 		},
 
-                mixins: [OBSUserMixin],
+		mixins: [OBSUserMixin],
 
 		props: {
-                        obs: Object,
+			obs: Object,
 			settings: Object
 		}
 	}
