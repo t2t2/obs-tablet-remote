@@ -8,9 +8,9 @@ function defaultSettings() {
 		},
 		switcher: {
 			enabled: true,
-			perRow: 4,
-                        transitionScene: "",
-                        transitionSeconds: 0.5
+		        perRow: 4,
+                    transitionScene: "",
+                    transitionSeconds: 0.5
 		}
 	}
 }
