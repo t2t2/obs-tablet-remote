@@ -21,11 +21,11 @@
 <script>
 	import setPath from 'lodash/set'
 
-	import Authentication from './components/Authentication'
-	import Connect from './components/Connect'
-	import Modal from './components/Modal'
-	import Panels from './components/Panels'
-	import Settings from './components/Settings'
+	import Authentication from './components/authentication'
+	import Connect from './components/connect'
+	import Modal from './components/modal'
+	import Panels from './components/panels'
+	import Settings from './components/settings'
 	import TopBar from './components/TopBar'
 
 	import ObsRootMixin from './mixins/obs-root'
