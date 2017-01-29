@@ -6,8 +6,8 @@
 </template>
 
 <script>
-	import Sources from './panels/Sources.vue'
-	import Switcher from './panels/Switcher.vue'
+	import Sources from './panels/sources.vue'
+	import Switcher from './panels/switcher.vue'
 
 	export default {
 		components: {
