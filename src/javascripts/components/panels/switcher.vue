@@ -19,7 +19,15 @@
 
 		methods: {
 			switchToScene(scene) {
-				this.$obs.setCurrentScene(scene.name)
+                                if (this.settings.switcher.transitionScene !== "") {
+                                        this.$obs.setCurrentScene(this.settings.switcher.transitionScene);
+                                        var scope = this;
+                                        setTimeout(function() {
+                                                scope.$obs.setCurrentScene(scene.name);
+                                        }, this.settings.switcher.transitionSeconds * 1000);
+                                } else {
+				        this.$obs.setCurrentScene(scene.name)
+                                }
 			}
 		},
 
