@@ -8,8 +8,8 @@
 				<span style="width: 2.5em" v-text="perRow"></span>
 			</div>
 		</label>
-                <h3>Transition Scene</h3>
-                <label>
+		<h3>Transition Scene</h3>
+		<label>
 			Transition scene
 			<div class="input-group">
 				<select v-model="transitionScene">
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-        import OBSUserMixin from '../../mixins/obs-user'
+	import OBSUserMixin from '../../mixins/obs-user'
 
 	export default {
 		computed: {
