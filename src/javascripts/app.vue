@@ -13,7 +13,7 @@
 			<h2>Connecting...</h2>
 		</modal>
 		<modal v-if="settingsOpen" modal-class="wide" @overlay-click="toggleSettings">
-			<settings :settings="settings" @update-setting="updateSetting"></settings>
+			<settings :obs="obs" :settings="settings" @update-setting="updateSetting"></settings>
 		</modal>
 	</div>
 </template>

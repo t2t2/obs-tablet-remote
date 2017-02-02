@@ -3,7 +3,7 @@
 		<h2>Settings</h2>
 
 		<div class="settings-container">
-			<switcher-settings :settings="settings.switcher" @change="setValue(`switcher.${arguments[0]}`, arguments[1])"></switcher-settings>
+			<switcher-settings :obs="obs" :settings="settings.switcher" @change="setValue(`switcher.${arguments[0]}`, arguments[1])"></switcher-settings>
 			<sources-settings :settings="settings.sources" @change="setValue(`sources.${arguments[0]}`, arguments[1])"></sources-settings>
 		</div>
 	</div>
@@ -24,6 +24,7 @@
 			}
 		},
 		props: {
+			obs: Object,
 			settings: Object
 		}
 	}
