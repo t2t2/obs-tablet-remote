@@ -19,9 +19,9 @@
 			</div>
 		</label>
 		<label>
-			Transition time 
+			Transition time
 			<div class="input-group">
-				<input v-model.number="transitionSeconds" type="number">
+				<input v-model.number="transitionSeconds" type="number" step="0.1">
 			</div>
 		</label>
 	</div>
