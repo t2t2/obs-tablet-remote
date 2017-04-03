@@ -1,0 +1,45 @@
+.panel {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+
+	.panel-header {
+		display: none;
+		padding-bottom: $spacing;
+		.panel-name {
+			flex: 1;
+		}
+		button {
+			font-size: 17px;
+			line-height: 1em;
+			padding: 0.3rem 0.5rem;
+			.material-icons {
+				font-size: inherit;
+			}
+		}
+	}
+	.panel-content {
+		flex: 1;
+		overflow: hidden;
+
+		&.is-scrollable {
+			overflow: auto;
+		}
+	}
+}
+
+.editing-mode {
+	background: $editor-bg;
+	color: #ffffff;
+	padding: $spacing;
+
+	.panel {
+		background: rgba($editor-color, 0.2);
+		border: 1px solid rgba($editor-color, 0.2);
+		padding: $spacing;
+		.panel-header {
+			display: flex;
+		}
+	}
+}

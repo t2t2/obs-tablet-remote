@@ -1,0 +1,36 @@
+.panel-scenes {
+	display: flex;
+	flex-wrap: wrap;
+
+	.scene {
+		border: none;
+		background-color: $inactive-color;
+		color: #000000;
+		font-size: 1.1rem;
+		min-height: 16rem;
+		outline: none;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		word-wrap: normal;
+
+		@include large {
+			font-size: 2rem;
+		}
+
+		transition: background-color 0.2s;
+
+		&:hover, &:focus {
+			background-color: darken($inactive-color, 5%);
+		}
+		&.is-active {
+			background-color: $active-color;
+		}
+	}
+
+	@for $i from 1 through 10 {
+		&.per-row-#{$i} .scene {
+			flex-basis: 100% / $i;
+		}
+	}
+}

@@ -18,11 +18,16 @@ html {
 @import "components/alert";
 @import "components/container";
 @import "components/modal";
-@import "components/panels";
+@import "components/panel";
+@import "components/topbar";
+@import "components/tab";
 @import "components/topbar";
 
+@import "panels/grid";
 @import "panels/_sources";
-@import "panels/_switcher";
+@import "panels/scenes";
 
 @import "pages/connect";
+@import "pages/dashboard";
+@import "pages/home";
 @import "pages/settings";

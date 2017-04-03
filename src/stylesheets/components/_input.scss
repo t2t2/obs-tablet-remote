@@ -4,6 +4,10 @@ label {
 	font-size: 0.8em;
 	margin-top: $spacing / 2;
 	margin-bottom: $spacing;
+
+	input {
+		margin-top: $spacing;
+	}
 }
 
 input:not([type]),
