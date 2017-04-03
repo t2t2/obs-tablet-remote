@@ -9,8 +9,9 @@ button {
 		$disabled-color: mix($main-color, #dddddd, 20%);
 		background-color: $disabled-color;
 		border-color: darken($disabled-color, 10%);
+		cursor: default;
 	}
-	&:hover {
+	&:hover:not([disabled]) {
 		background-color: darken($main-color, 6%);
 	}
 }

@@ -1,6 +1,7 @@
-.DS_Store
-.sass-cache
-.publish
-public
-Desktop.ini
 node_modules
+.DS_Store
+
+# produced by vbuild
+dist
+
+yarn-error.log
