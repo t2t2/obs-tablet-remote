@@ -6,15 +6,18 @@ const state = {
 	panels: {
 		1: {
 			type: 'GridX',
-			parent: null
+			parent: null,
+			settings: {}
 		},
 		2: {
 			type: 'Scenes',
-			parent: 1
+			parent: 1,
+			settings: {}
 		},
 		3: {
 			type: 'Invalid',
-			parent: 1
+			parent: 1,
+			settings: {}
 		}
 	},
 	tabs: [

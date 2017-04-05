@@ -17,6 +17,7 @@
 
 	& > .modal {
 		background-color: #fff;
+		color: #333;
 		max-height: 100%;
 		overflow-y: auto;
 		padding: $spacing * 2;
@@ -30,5 +31,21 @@
 			}
 		}
 
+		.modal-header {
+			display: flex;
+			margin-bottom: $spacing;
+
+			.title {
+				flex: 1;
+				font-size: 1.5rem;
+				line-height: 1em;
+				margin: 0;
+			}
+			.close {
+				height: 1.5rem;
+				margin-left: $spacing;
+				width: 1.5rem;
+			}
+		}
 	}
 }
