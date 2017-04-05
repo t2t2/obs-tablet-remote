@@ -1,3 +1,3 @@
-export function editing({ commit }, editing) {
-	commit('editing', { editing })
+export function editing({commit}, editing) {
+	commit('editing', {editing})
 }

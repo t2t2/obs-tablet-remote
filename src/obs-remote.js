@@ -20,7 +20,10 @@ export default class OBSRemote extends EventEmitter {
 	 */
 	connect(host = 'localhost', port = 4444) {
 		if (this._socket) {
-			this._socket.onopen = this._socket.onmessage = this._socket.onerror = this._socket.onclose = null
+			this._socket.onopen = null
+			this._socket.onmessage = null
+			this._socket.onerror = null
+			this._socket.onclose = null
 			this._socket.close()
 		}
 
@@ -120,8 +123,8 @@ function socketOnOpen() {
 	if (this._connecting) {
 		const {resolve, reject} = this._connecting
 
-		this.send({'request-type': 'GetAuthRequired'}).then(({ authRequired }) => {
-			resolve({ authRequired })
+		this.send({'request-type': 'GetAuthRequired'}).then(({authRequired}) => {
+			resolve({authRequired})
 
 			if (authRequired) {
 				this.emit('socket.auth')

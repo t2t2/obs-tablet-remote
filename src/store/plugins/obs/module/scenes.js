@@ -4,35 +4,35 @@ export default {
 		list: []
 	},
 	actions: {
-		'connection/closed'({ commit }) {
+		'connection/closed'({commit}) {
 			commit('scenes/reset')
 		},
-		async 'connection/ready'({ dispatch }) {
+		async 'connection/ready'({dispatch}) {
 			return dispatch('scenes/reload')
 		},
-		async 'scenes/reload'({ commit, getters: { client }}) {
+		async 'scenes/reload'({commit, getters: {client}}) {
 			const {'current-scene': current, scenes} = await client.send({'request-type': 'GetSceneList'})
 
-			commit('scenes/list', { scenes })
+			commit('scenes/list', {scenes})
 			commit('scenes/current', {
 				name: current
 			})
 		},
-		'scenes/current'({ getters: { client }}, { name }) {
+		'scenes/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentScene', 'scene-name': name})
 		},
-		'event/SwitchScenes'({ commit }, { 'scene-name': name }) {
-			commit('scenes/current', { name })
+		'event/SwitchScenes'({commit}, {'scene-name': name}) {
+			commit('scenes/current', {name})
 		},
-		'event/ScenesChanged'({ dispatch }) {
+		'event/ScenesChanged'({dispatch}) {
 			return dispatch('scenes/reload')
 		}
 	},
 	mutations: {
-		'scenes/current'(state, { name }) {
+		'scenes/current'(state, {name}) {
 			state.current = name
 		},
-		'scenes/list'(state, { scenes }) {
+		'scenes/list'(state, {scenes}) {
 			state.list = scenes
 		},
 		'scenes/reset'(state) {

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-	import { mapState, mapActions, mapGetters } from 'vuex'
+	import {mapState, mapActions, mapGetters} from 'vuex'
 
 	import fullscreen from '../mixins/fullscreen'
 

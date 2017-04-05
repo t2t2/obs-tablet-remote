@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, {Store} from 'vuex'
 
 import * as actions from './actions'
 import * as getters from './getters'
@@ -16,7 +16,7 @@ const state = {
 	editing: false
 }
 
-const store = new Vuex.Store({
+const store = new Store({
 	state,
 	getters,
 	actions,

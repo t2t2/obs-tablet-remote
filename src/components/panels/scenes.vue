@@ -14,15 +14,14 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from 'vuex'
+	import {mapState, mapActions} from 'vuex'
 
 	import panelMixin from '../mixins/panel'
-	import Panel from '../panel'
 
 	export default {
 		mixins: [panelMixin],
 		computed: {
-			// vuex#708
+			// Vuex#708
 			...mapState({
 				currentScene: state => state.obs.scenes.current,
 				scenes: state => state.obs.scenes.list
