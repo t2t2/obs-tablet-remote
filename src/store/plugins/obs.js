@@ -10,7 +10,8 @@ const state = {
 }
 
 export default function (store) {
-	const client = store._obs = new OBSRemote();
+	const client = new OBSRemote()
+	store._obs = client
 
 	if (process.env.NODE_ENV === 'development') {
 		client.debug = console.log.bind(console, 'obs')
@@ -21,16 +22,16 @@ export default function (store) {
 		state,
 		actions: {
 			...actions,
-			'connection/authNeeded'({ commit }) {
+			'connection/authNeeded'({commit}) {
 				commit('connectionAuthNeeded')
 			},
-			'connection/closed'({ commit }) {
+			'connection/closed'({commit}) {
 				commit('connectionClosed')
 			},
-			'connection/ready'({ commit }) {
+			'connection/ready'({commit}) {
 				commit('connectionReady')
 			},
-			'connection/started'({ commit }) {
+			'connection/started'({commit}) {
 				commit('connectionStarted')
 			}
 		},

@@ -10,11 +10,11 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+	import {mapGetters} from 'vuex'
 
 	import TopBar from './layout/top-bar'
 
-	import Dashboard from './views/Dashboard'
+	import Dashboard from './views/dashboard'
 	import Home from './views/home'
 
 	export default {

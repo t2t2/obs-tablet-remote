@@ -9,7 +9,7 @@ const components = {
 	GridX,
 	Invalid,
 	Scenes
-};
+}
 
 export default {
 	functional: true,

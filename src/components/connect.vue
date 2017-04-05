@@ -25,7 +25,7 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import {mapState} from 'vuex'
 
 	export default {
 		computed: {
@@ -48,27 +48,27 @@
 				this.connecting = true
 				this.error = null
 				try {
-					const result = await this.$store.dispatch('obs/connect', {
+					await this.$store.dispatch('obs/connect', {
 						host: this.host.length ? this.host : undefined,
 						port: this.port
 					})
-				} catch(err) {
+				} catch (err) {
 					this.error = err
 				}
 				this.connecting = false
 			},
 			async login() {
-				if (!this.password.length) {
+				if (this.password.length === 0) {
 					return
 				}
 
 				this.authenticating = true
 				this.error = null
 				try {
-					const result = await this.$store.dispatch('obs/authenticate', {
+					await this.$store.dispatch('obs/authenticate', {
 						password: this.password
 					})
-				} catch(err) {
+				} catch (err) {
 					this.error = err
 				}
 				this.authenticating = false

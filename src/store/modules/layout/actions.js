@@ -1,3 +1,3 @@
-export function removePanel({ commit }, { id }) {
-	commit('removePanel', { id });
+export function removePanel({commit}, {id}) {
+	commit('removePanel', {id})
 }
