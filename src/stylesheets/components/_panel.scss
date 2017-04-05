@@ -14,6 +14,9 @@
 			font-size: 17px;
 			line-height: 1em;
 			padding: 0.3rem 0.5rem;
+			& + button {
+				margin-left: $spacing;
+			}
 			.material-icons {
 				font-size: inherit;
 			}

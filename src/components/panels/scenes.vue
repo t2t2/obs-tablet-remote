@@ -1,5 +1,5 @@
 <template>
-	<panel-wrapper :content-class="['is-scrollable', 'panel-scenes', 'per-row-4']">
+	<panel-wrapper :content-class="['is-scrollable', 'panel-scenes', 'per-row-' + perRow]">
 		<template slot="name">Scenes</template>
 		<button
 			class="scene"
@@ -10,6 +10,15 @@
 		>
 			{{ scene.name }}
 		</button>
+		<div slot="settings">
+			<label>
+				Scenes per row
+				<div class="input-group">
+					<input type="range" min="1" max="10" v-model.number="perRow" />
+					<span style="width: 2.5em" v-text="perRow"></span>
+				</div>
+			</label>
+		</div>
 	</panel-wrapper>
 </template>
 
@@ -25,7 +34,18 @@
 			...mapState({
 				currentScene: state => state.obs.scenes.current,
 				scenes: state => state.obs.scenes.list
-			})
+			}),
+			perRow: {
+				get() {
+					if (this.settings.perRow) {
+						return this.settings.perRow
+					}
+					return 4
+				},
+				set(value) {
+					this.setSetting('perRow', value)
+				}
+			}
 		},
 		methods: {
 			...mapActions('obs', {
