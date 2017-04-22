@@ -19,6 +19,9 @@ export default {
 		}
 	},
 	props: {
+		depth: {
+			type: Number
+		},
 		id: {
 			type: [Number, String],
 			required: true
@@ -26,9 +29,6 @@ export default {
 		panel: {
 			type: Object,
 			required: true
-		},
-		root: {
-			type: Boolean
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <template>
 	<div class="tab">
-		<panel v-if="rootPanel" :id.prop="tab.root" :panel.prop="rootPanel" :root.prop="true" />
+		<panel v-if="rootPanel" :id="tab.root" :panel="rootPanel" :depth="0" />
 	</div>
 </template>
 

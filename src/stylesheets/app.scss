@@ -12,12 +12,14 @@ html {
 @import "configs/sizes";
 
 @import "components/buttons";
+@import "components/icons";
 @import "components/input";
 @import "components/text";
 
 @import "components/alert";
 @import "components/close";
 @import "components/container";
+@import "components/media";
 @import "components/modal";
 @import "components/panel";
 @import "components/topbar";
@@ -25,7 +27,7 @@ html {
 @import "components/topbar";
 
 @import "panels/grid";
-@import "panels/_sources";
+@import "panels/sources";
 @import "panels/scenes";
 
 @import "pages/connect";

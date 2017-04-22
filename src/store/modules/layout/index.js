@@ -3,9 +3,10 @@ import * as actions from './actions'
 import * as mutations from './mutations'
 
 const state = {
+	nextId: 4,
 	panels: {
 		1: {
-			type: 'GridX',
+			type: 'Grid',
 			parent: null,
 			settings: {}
 		},

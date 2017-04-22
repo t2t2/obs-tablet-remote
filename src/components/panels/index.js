@@ -1,12 +1,12 @@
 // Dynamic component resolver
 import panelMixin from '../mixins/panel'
 
-import GridX from './grid-x'
+import Grid from './grid'
 import Invalid from './invalid'
 import Scenes from './scenes'
 
 const components = {
-	GridX,
+	Grid,
 	Invalid,
 	Scenes
 }

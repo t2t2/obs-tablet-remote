@@ -7,7 +7,7 @@
 			<button v-if="hasSettings" @click="settingsOpen = !settingsOpen">
 				<i class="material-icons">settings</i>
 			</button>
-			<button v-if="!root" @click="remove">
+			<button v-if="depth > 0" @click="remove">
 				<i class="material-icons">delete_forever</i>
 			</button>
 		</div>
@@ -35,14 +35,14 @@
 		},
 		computed: {
 			...mapState(['editing']),
+			depth() {
+				return this.$parent.depth
+			},
 			id() {
 				return this.$parent.id
 			},
 			panel() {
 				return this.$parent.panel
-			},
-			root() {
-				return this.$parent.root
 			},
 			hasSettings() {
 				return Boolean(this.$slots.settings)

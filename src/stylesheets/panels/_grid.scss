@@ -7,4 +7,15 @@
 	&.is-vertical {
 		flex-direction: column;
 	}
+
+	.editing-mode & > .panel {
+		margin-right: $spacing;
+	}
+
+	.add-panel {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: $spacing;
+	}
 }
