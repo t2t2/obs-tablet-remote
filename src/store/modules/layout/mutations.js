@@ -1,5 +1,10 @@
 import Vue from 'vue'
 
+export function addPanel(state, {type, parent, settings}) {
+	const id = state.nextId++;
+	Vue.set(state.panels, id, {type, parent, settings})
+}
+
 export function removePanel(state, {id}) {
 	Vue.delete(state.panels, id)
 }

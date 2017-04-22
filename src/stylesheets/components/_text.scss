@@ -16,3 +16,7 @@ p {
 .error-text {
 	color: lighten($error-color, 30%);
 }
+
+.is-marginless {
+	margin: 0;
+}

@@ -37,12 +37,15 @@
 	color: #ffffff;
 	padding: $spacing;
 
-	.panel {
+	.panel, .add-panel {
 		background: rgba($editor-color, 0.2);
 		border: 1px solid rgba($editor-color, 0.2);
 		padding: $spacing;
 		.panel-header {
 			display: flex;
 		}
+	}
+	.add-panel:hover:not([disabled]) {
+		background: rgba($editor-color, 0.3);
 	}
 }
