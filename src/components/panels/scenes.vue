@@ -10,6 +10,7 @@
 		>
 			{{ scene.name }}
 		</button>
+
 		<div slot="settings">
 			<label>
 				Scenes per row

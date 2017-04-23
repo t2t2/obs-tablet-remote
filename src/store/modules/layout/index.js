@@ -8,7 +8,7 @@ const state = {
 		1: {
 			type: 'Grid',
 			parent: null,
-			settings: {}
+			settings: { direction: 'row' }
 		},
 		2: {
 			type: 'Scenes',

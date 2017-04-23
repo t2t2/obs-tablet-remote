@@ -3,13 +3,15 @@
 	align-items: stretch;
 	&.is-horizontal {
 		flex-direction: row;
+		.editing-mode & > .panel {
+			margin-right: $spacing;
+		}
 	}
 	&.is-vertical {
 		flex-direction: column;
-	}
-
-	.editing-mode & > .panel {
-		margin-right: $spacing;
+		.editing-mode & > .panel {
+			margin-bottom: $spacing;
+		}
 	}
 
 	.add-panel {
