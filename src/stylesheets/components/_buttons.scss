@@ -14,4 +14,17 @@ button {
 	&:hover:not([disabled]) {
 		background-color: darken($main-color, 6%);
 	}
+	&.is-inactive {
+		background-color: $inactive-color;
+		border-color: darken($inactive-color, 10%);
+		&[disabled] {
+			$disabled-color: mix($inactive-color, #dddddd, 20%);
+			background-color: $disabled-color;
+			border-color: darken($disabled-color, 10%);
+		}
+		&:hover:not([disabled]) {
+			background-color: darken($inactive-color, 6%);
+		}
+
+	}
 }

@@ -27,10 +27,22 @@
 			description: 'Put more panels side by side!',
 			icon: 'view_column',
 			type: 'Grid',
-			maxDepth: 1,
+			maxDepth: 2,
 			defaults() {
 				return {
 					direction: 'row'
+				}
+			}
+		},
+		{
+			name: 'Vertical Splitter',
+			description: 'Stack panels on top of eachother',
+			icon: 'view_stream',
+			type: 'Grid',
+			maxDepth: 2,
+			defaults() {
+				return {
+					direction: 'column'
 				}
 			}
 		},
@@ -62,7 +74,7 @@
 			},
 			canBeAdded(item) {
 				if (item.maxDepth) {
-					return this.parentDepth <= item.maxDepth
+					return this.parentDepth < item.maxDepth
 				}
 				return true
 			}
