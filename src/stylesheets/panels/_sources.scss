@@ -19,20 +19,9 @@
 
 		& > .source {
 			border: none;
-			background-color: $inactive-color;
-			color: #000000;
 			flex: 0 0 auto;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-
-			transition: background-color 0.2s;
-
-			&:hover, &:focus {
-				background-color: darken($inactive-color, 5%);
-			}
-			&.is-active {
-				background-color: $active-color;
-			}
 		}
 	}
 }

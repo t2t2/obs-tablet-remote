@@ -7,7 +7,7 @@
 				class="source"
 				v-for="source in currentScene.sources"
 				:key="source.name"
-				:class="{'is-active': source.render}"
+				:class="[source.render ? 'is-active' : 'is-inactive']"
 				@click="setRender({scene: currentScene.name, source: source.name, render: !source.render})">
 				{{ source.name }}
 			</button>

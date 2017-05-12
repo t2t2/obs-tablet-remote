@@ -5,7 +5,7 @@
 			class="scene"
 			v-for="scene in scenes"
 			:key="scene.name"
-			:class="{'is-active': scene.name === currentScene}"
+			:class="[scene.name === currentScene ? 'is-active' : 'is-inactive']"
 			@click="setScene({ name: scene.name })"
 		>
 			{{ scene.name }}

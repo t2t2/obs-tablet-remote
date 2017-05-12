@@ -4,7 +4,6 @@
 
 	.scene {
 		border: none;
-		background-color: $inactive-color;
 		color: #000000;
 		font-size: 1.1rem;
 		min-height: 8rem;
@@ -16,15 +15,6 @@
 
 		@include large {
 			font-size: 2rem;
-		}
-
-		transition: background-color 0.2s;
-
-		&:hover, &:focus {
-			background-color: darken($inactive-color, 5%);
-		}
-		&.is-active {
-			background-color: $active-color;
 		}
 	}
 
