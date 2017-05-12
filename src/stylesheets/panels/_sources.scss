@@ -1,45 +1,37 @@
-.sources-panel {
+.panel-sources {
 	display: flex;
-	flex: 1 1 30%;
 	flex-direction: column;
-	min-height: 30%;
 
-	@include medium {
-		flex: 1 1 25%;
+	& > .scene-name {
+		flex: 0 0 auto;
+		margin: 0;
+		padding: $spacing;
+		text-align: center;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
-	& > .scene {
+	& > .sources {
 		display: flex;
-		flex: 1 1 100%;
-		max-height: 100%;
 		flex-direction: column;
+		flex: 1 1 auto;
+		overflow-y: auto;
 
-		& > .scene-name {
+		& > .source {
+			border: none;
+			background-color: $inactive-color;
+			color: #000000;
 			flex: 0 0 auto;
-			margin: 0;
-			padding: $spacing;
-			text-align: center;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-		}
 
-		& > .sources {
-			display: flex;
-			flex-direction: column;
-			flex: 1 1 auto;
-			overflow-y: auto;
+			transition: background-color 0.2s;
 
-			& > .source {
-				border: none;
-				background-color: $inactive-color;
-				color: #000000;
-				flex: 0 0 auto;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-
-				&.active {
-					background-color: $active-color;
-				}
+			&:hover, &:focus {
+				background-color: darken($inactive-color, 5%);
+			}
+			&.is-active {
+				background-color: $active-color;
 			}
 		}
 	}

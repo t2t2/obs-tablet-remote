@@ -2,4 +2,4 @@
 const vbuild = require('vbuild')
 const config = require('./vbuild.config')
 
-module.exports = vbuild.getConfig(config).webpackConfig
+module.exports = vbuild(config).getWebpackConfig()

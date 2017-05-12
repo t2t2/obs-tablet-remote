@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export function addPanel(state, {type, parent, settings}) {
-	const id = state.nextId++;
+	const id = state.nextId++
 	Vue.set(state.panels, id, {type, parent, settings})
 }
 
