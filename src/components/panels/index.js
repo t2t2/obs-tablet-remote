@@ -4,11 +4,13 @@ import panelMixin from '../mixins/panel'
 import Grid from './grid'
 import Invalid from './invalid'
 import Scenes from './scenes'
+import Sources from './sources'
 
 const components = {
 	Grid,
 	Invalid,
-	Scenes
+	Scenes,
+	Sources
 }
 
 export default {

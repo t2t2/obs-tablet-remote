@@ -5,8 +5,8 @@ export function addPanel({commit}, data) {
 export async function removePanel({commit, dispatch, getters}, {id}) {
 	const children = getters.getPanelsFor(id)
 	const childKeys = Object.keys(children)
-	if (childKeys.length) {
-		await Promise.all(childKeys.map(id => dispatch('removePanel', { id })))
+	if (childKeys.length > 0) {
+		await Promise.all(childKeys.map(id => dispatch('removePanel', {id})))
 	}
 	commit('removePanel', {id})
 }

@@ -31,10 +31,9 @@
 	export default {
 		mixins: [panelMixin],
 		computed: {
-			// Vuex#708
-			...mapState({
-				currentScene: state => state.obs.scenes.current,
-				scenes: state => state.obs.scenes.list
+			...mapState('obs', {
+				currentScene: state => state.scenes.current,
+				scenes: state => state.scenes.list
 			}),
 			perRow: {
 				get() {

@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "build": "vbuild",
-    "dev": "vbuild -d",
+    "dev": "vbuild dev",
     "lint": "xo"
   },
   "dependencies": {
@@ -28,9 +28,9 @@
     "eslint-plugin-import": "^2.2.0",
     "loader-utils": "^1.1.0",
     "node-sass": "^4.5.2",
-    "postcss-flexbugs-fixes": "^2.1.0",
+    "postcss-flexbugs-fixes": "^3.0.0",
     "sass-loader": "^6.0.3",
-    "vbuild": "^6.24.14",
+    "vbuild": "^7.1.0",
     "xo": "^0.18.1"
   },
   "xo": {

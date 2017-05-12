@@ -15,21 +15,37 @@ export default {
 
 			commit('scenes/list', {scenes})
 			commit('scenes/current', {
-				name: current
+				'scene-name': current
 			})
 		},
 		'scenes/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentScene', 'scene-name': name})
 		},
-		'event/SwitchScenes'({commit}, {'scene-name': name}) {
-			commit('scenes/current', {name})
+		async 'sources/render'({getters: {client}}, {scene, source, render}) {
+			return client.send({
+				'request-type': 'SetSourceRender',
+				'scene-name': scene,
+				source,
+				render
+			})
+		},
+		'event/SwitchScenes'({commit}, data) {
+			commit('scenes/current', data)
 		},
 		'event/ScenesChanged'({dispatch}) {
 			return dispatch('scenes/reload')
+		},
+		'event/SceneItemVisibilityChanged'({commit}, data) {
+			commit('scenes/itemVisibilityChanged', data)
+		}
+	},
+	getters: {
+		currentScene(state) {
+			return state.list.find(scene => scene.name === state.current)
 		}
 	},
 	mutations: {
-		'scenes/current'(state, {name}) {
+		'scenes/current'(state, {'scene-name': name}) {
 			state.current = name
 		},
 		'scenes/list'(state, {scenes}) {
@@ -38,6 +54,16 @@ export default {
 		'scenes/reset'(state) {
 			state.current = null
 			state.list = []
+		},
+		'scenes/itemVisibilityChanged'(state, {'scene-name': sceneName, 'item-name': sourceName, 'item-visible': render}) {
+			const scene = state.list.find(scene => scene.name === sceneName)
+
+			if (scene) {
+				const source = scene.sources.find(source => source.name === sourceName)
+				if (source) {
+					source.render = render
+				}
+			}
 		}
 	}
 }

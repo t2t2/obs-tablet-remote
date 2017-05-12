@@ -51,6 +51,12 @@
 			description: 'Switch the current scene',
 			icon: 'video_label',
 			type: 'Scenes'
+		},
+		{
+			name: 'Sources List',
+			description: 'Toggle sources on and off',
+			icon: 'view_list',
+			type: 'Sources'
 		}
 	]
 

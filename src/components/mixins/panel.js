@@ -6,7 +6,7 @@ export default {
 	},
 	computed: {
 		settings() {
-			return this.panel.settings || {};
+			return this.panel.settings || {}
 		}
 	},
 	methods: {
