@@ -1,5 +1,5 @@
 .panel {
-	flex: 1;
+	flex: 1 1 100%;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
@@ -9,6 +9,9 @@
 		padding-bottom: $spacing;
 		.panel-name {
 			flex: 1;
+			overflow: hidden;
+			text-overflow: clip;
+			white-space: nowrap;
 		}
 		button {
 			font-size: 17px;

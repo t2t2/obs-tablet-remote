@@ -1,15 +1,33 @@
 <template>
-	<panel-wrapper :content-class="['panel-grid', this.directionClass]" :is-grid="true">
+	<panel-wrapper
+		:content-class="['panel-grid', this.directionClass]"
+		:is-grid="true"
+		@dragover.native="handleResize"
+		@drop.native="stopResizing">
 		<template slot="name">{{ this.settings.direction === 'column' ? 'Vertical' : 'Horizontal' }} Splitter</template>
-		<panel
-			v-for="(panel, id) in childPanels"
-			:key="id"
-			:panel="panel"
-			:id="id"
-			:depth="depth + 1"
-		/>
+		<template v-for="(panel, id, index) in childPanels">
+			<div
+				v-if="editing && index > 0"
+				class="resize-handler"
+				draggable="true"
+				@dragstart="startResize($event, index - 1)"
+			>
+				<span class="dot"></span>
+				<span class="dot"></span>
+				<span class="dot"></span>
+			</div>
+			<panel
+				ref="panels"
+				:key="id"
+				:panel="panel"
+				:id="id"
+				:depth="depth + 1"
+				:style="{flexBasis: (weights[index] || 1) * 100 / childCount + '%'}"
+				:data-basis="childCount"
+			/>
+		</template>
 		<!-- adding in edit mode -->
-		<button v-if="editing" class="add-panel" @click="showAddPanel=true">
+		<button ref="addButton" v-if="editing" class="add-panel" @click="showAddPanel=true">
 			<i class="material-icons">add_box</i>
 		</button>
 		<overlay v-if="showAddPanel" @overlay-click="showAddPanel=false">
@@ -29,6 +47,7 @@
 </template>
 
 <script>
+	import sum from 'lodash/sum'
 	import {mapState} from 'vuex'
 
 	import hasChildPanels from '../mixins/has-child-panels'
@@ -36,6 +55,8 @@
 
 	import PanelList from '../panel-list'
 	import Overlay from '../overlay'
+
+	const MIN_PANEL_SIZE_MULTI = 0.05
 
 	export default {
 		mixins: [hasChildPanels, panelMixin],
@@ -45,6 +66,9 @@
 		},
 		computed: {
 			...mapState(['editing']),
+			childCount() {
+				return Object.keys(this.childPanels).length
+			},
 			directionClass() {
 				switch (this.settings.direction) {
 					case 'column':
@@ -56,15 +80,92 @@
 			},
 			shouldClosePanel() {
 				return this.showAddPanel && !this.editing
+			},
+			weights() {
+				if (this.draggingWeights) {
+					return this.draggingWeights
+				}
+				if (this.settings.weights) {
+					return this.settings.weights
+				}
+				return []
 			}
 		},
 		data() {
 			return {
+				dragging: false,
+				draggingWeights: null,
 				showAddPanel: false
 			}
 		},
 		methods: {
+			startResize(e, i) {
+				// get current sizes and set as current value
+				const sizeAttr = this.settings.direction === 'row' ? 'width' : 'height'
+				const sizes = this.$refs.panels.map(panel => panel.$el.getBoundingClientRect()[sizeAttr])
+				const total = sum(sizes)
+				const count = sizes.length
 
+				this.dragging = i
+				this.draggingWeights = sizes.map(size => size / total * count)
+
+				e.dataTransfer.setData('text/plain', 'resize' + i)
+				e.dataTransfer.effectAllowed = 'move'
+			},
+			handleResize(e) {
+				if (this.dragging !== false) {
+					e.preventDefault()
+					const rects = this.$el.getBoundingClientRect()
+					const addButtonRects = this.$refs.addButton.getBoundingClientRect()
+
+					const i = this.dragging
+					let mouse
+					let base
+					let range
+					if (this.settings.direction === 'row') {
+						mouse = e.pageX
+						base = rects.left
+						range = rects.width - addButtonRects.width
+					} else {
+						mouse = e.pageY
+						base = rects.top
+						range = rects.height - addButtonRects.height
+					}
+					let target = (mouse - base) / range * this.draggingWeights.length
+
+					const targetRange = [0, this.draggingWeights.length]
+					this.draggingWeights.forEach((value, index) => {
+						if (index < this.dragging) {
+							targetRange[0] += value
+							return
+						}
+						if (index - 1 > this.dragging) {
+							targetRange[1] -= value
+						}
+					})
+
+					const minSize = MIN_PANEL_SIZE_MULTI * this.draggingWeights.length
+					if (target < targetRange[0] + minSize) {
+						target = targetRange[0] + minSize
+					} else if (target > targetRange[1] - minSize) {
+						target = targetRange[1] - minSize
+					}
+					const value = target - targetRange[0]
+					const nextValue = targetRange[1] - targetRange[0] - value
+
+					this.draggingWeights.splice(i, 2, value, nextValue)
+				}
+			},
+			stopResizing(e) {
+				if (this.dragging !== false) {
+					e.preventDefault()
+
+					this.setSetting('weights', this.draggingWeights)
+
+					this.dragging = false
+					this.draggingWeights = null
+				}
+			}
 		},
 		watch: {
 			shouldClosePanel(value) {
