@@ -5,9 +5,11 @@
 			<button class="close" @click="$emit('close')"></button>
 		</div>
 
-		<a v-for="item in list"
+		<a
+			v-for="item in list"
 			class="media"
 			:class="{'is-disabled': !canBeAdded(item)}"
+			:key="item.name"
 			@click="addPanel(item)">
 			<div class="media-left">
 				<i class="material-icons md-48">{{ item.icon }}</i>
@@ -61,6 +63,16 @@
 	]
 
 	export default {
+		props: {
+			parentId: {
+				type: [Number, String],
+				required: true
+			},
+			parentDepth: {
+				type: Number,
+				required: true
+			}
+		},
 		computed: {
 			list() {
 				return PANELS_INFO
@@ -83,16 +95,6 @@
 					return this.parentDepth < item.maxDepth
 				}
 				return true
-			}
-		},
-		props: {
-			parentId: {
-				type: [Number, String],
-				required: true
-			},
-			parentDepth: {
-				type: Number,
-				required: true
 			}
 		}
 	}

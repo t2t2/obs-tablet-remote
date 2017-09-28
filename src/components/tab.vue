@@ -1,6 +1,11 @@
 <template>
 	<div class="tab">
-		<panel v-if="rootPanel" :id="tab.root" :panel="rootPanel" :depth="0" />
+		<panel
+			v-if="rootPanel"
+			:id="tab.root"
+			:panel="rootPanel"
+			:depth="0"
+		/>
 	</div>
 </template>
 
@@ -13,15 +18,15 @@
 		components: {
 			Panel
 		},
+		props: {
+			tab: Object
+		},
 		computed: {
 			...mapState('layout', {
 				rootPanel(state) {
 					return state.panels[this.tab.root]
 				}
 			})
-		},
-		props: {
-			tab: Object
 		}
 	}
 </script>

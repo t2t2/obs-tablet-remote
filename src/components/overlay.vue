@@ -1,5 +1,9 @@
 <template>
-	<div class="overlay" ref="overlay" v-show="show" @click.self="$emit('overlay-click')">
+	<div
+		class="overlay"
+		v-show="show"
+		@click.self="$emit('overlay-click')"
+	>
 		<div class="modal" :class="modalClass">
 			<slot></slot>
 		</div>

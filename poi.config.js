@@ -1,6 +1,5 @@
 module.exports = () => ({
 	entry: ['src/app.js', 'src/stylesheets/app.scss'],
-	host: '0.0.0.0',
 	html: {
 		template: './src/index.html'
 	},

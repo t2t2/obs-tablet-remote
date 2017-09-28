@@ -2,7 +2,7 @@
 	<div class="panel">
 		<div class="panel-header">
 			<div class="panel-name">
-				<slot name="name" />
+				<slot name="name"></slot>
 			</div>
 			<button v-if="hasSettings" @click="settingsOpen = !settingsOpen">
 				<i class="material-icons">settings</i>
@@ -12,14 +12,14 @@
 			</button>
 		</div>
 		<div v-if="!editing || isGrid" class="panel-content" :class="contentClass">
-			<slot />
+			<slot></slot>
 		</div>
 		<overlay class="overlay" v-if="settingsOpen" @overlay-click="settingsOpen = false">
 			<div class="modal-header">
 				<h2 class="title">Settings</h2>
 				<button class="close" @click="settingsOpen = false"></button>
 			</div>
-			<slot name="settings" />
+			<slot name="settings"></slot>
 		</overlay>
 	</div>
 </template>
@@ -32,6 +32,18 @@
 	export default {
 		components: {
 			Overlay
+		},
+		props: {
+			contentClass: null,
+			isGrid: {
+				type: Boolean,
+				default: () => false
+			}
+		},
+		data() {
+			return {
+				settingsOpen: false
+			}
 		},
 		computed: {
 			...mapState(['editing']),
@@ -48,28 +60,16 @@
 				return Boolean(this.$slots.settings)
 			}
 		},
-		data() {
-			return {
-				settingsOpen: false
-			}
-		},
-		methods: {
-			remove() {
-				this.$store.dispatch('layout/removePanel', {id: this.id})
-			}
-		},
-		props: {
-			contentClass: null,
-			isGrid: {
-				type: Boolean,
-				default: () => false
-			}
-		},
 		watch: {
 			editing(newval) {
 				if (!newval) {
 					this.settingsOpen = false
 				}
+			}
+		},
+		methods: {
+			remove() {
+				this.$store.dispatch('layout/removePanel', {id: this.id})
 			}
 		}
 	}

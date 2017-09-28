@@ -8,29 +8,29 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "vbuild",
-    "dev": "vbuild dev",
+    "build": "poi build",
+    "dev": "poi",
     "lint": "xo"
   },
   "dependencies": {
     "lodash": "^4.17.4",
     "sanitize.css": "^5.0.0",
-    "sha.js": "^2.4.8",
-    "vue": "^2.2.6",
-    "vuex": "^2.2.1",
+    "sha.js": "^2.4.9",
+    "vue": "^2.4.4",
+    "vuex": "^2.4.1",
     "vuex-persistedstate": "^1.3.0"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.3.2",
+    "babel-preset-env": "^1.6.0",
     "eslint": "^4.0.0",
-    "eslint-import-resolver-webpack": "^0.8.1",
-    "eslint-plugin-html": "^3.0.0",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-vue": "beta",
+    "eslint-plugin-import": "^2.7.0",
     "loader-utils": "^1.1.0",
     "node-sass": "^4.5.2",
-    "postcss-flexbugs-fixes": "^3.0.0",
+    "postcss-flexbugs-fixes": "^3.2.0",
     "sass-loader": "^6.0.3",
-    "vbuild": "^7.1.0",
+    "poi": "^9.3.8",
     "xo": "^0.18.2"
   },
   "xo": {
@@ -39,13 +39,39 @@
     ],
     "semicolon": false,
     "plugins": [
-      "html"
+      "vue"
     ],
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
     "extensions": [
       "vue"
     ],
+    "extends": [
+      "plugin:vue/recommended"
+    ],
     "settings": {
       "import/resolver": "webpack"
+    },
+    "rules": {
+      "vue/no-dupe-keys": "error",
+      "vue/no-reserved-keys": "error",
+      "vue/no-shared-component-data": "error",
+      "vue/no-template-key": "error",
+      "vue/require-render-return": "error",
+      "vue/require-valid-default-prop": "error",
+      "vue/return-in-computed-property": "error",
+      "vue/no-async-in-computed-properties": "error",
+      "vue/no-duplicate-attributes": "error",
+      "vue/no-side-effects-in-computed-properties": "error",
+      "vue/order-in-components": "error",
+      "vue/attribute-hyphenation": "error",
+      "vue/html-quotes": "error",
+      "vue/html-self-closing": "error",
+      "vue/max-attributes-per-line": "error",
+      "vue/mustache-interpolation-spacing": "error",
+      "vue/v-bind-style": "error",
+      "vue/v-on-style": "error"
     },
     "overrides": [
       {

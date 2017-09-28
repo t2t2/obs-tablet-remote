@@ -15,7 +15,12 @@
 			<label>
 				Scenes per row
 				<div class="input-group">
-					<input type="range" min="1" max="10" v-model.number="perRow" />
+					<input
+						type="range"
+						min="1"
+						max="10"
+						v-model.number="perRow"
+					>
 					<span style="width: 2.5em" v-text="perRow"></span>
 				</div>
 			</label>

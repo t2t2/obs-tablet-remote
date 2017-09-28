@@ -20,8 +20,9 @@
 </template>
 
 <script>
+	import {mapActions, mapGetters} from 'vuex'
+
 	import panelMixin from '../mixins/panel'
-	import { mapActions, mapGetters } from 'vuex'
 
 	export default {
 		mixins: [panelMixin],
