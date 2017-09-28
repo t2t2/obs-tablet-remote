@@ -24,13 +24,14 @@
     "babel-preset-env": "^1.6.0",
     "eslint": "^4.7.2",
     "eslint-import-resolver-webpack": "^0.8.3",
-    "eslint-plugin-vue": "beta",
     "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-vue": "beta",
     "loader-utils": "^1.1.0",
     "node-sass": "^4.5.3",
+    "poi": "^9.3.8",
     "postcss-flexbugs-fixes": "^3.2.0",
     "sass-loader": "^6.0.6",
-    "poi": "^9.3.8",
+    "uglify-js": "^2.8.29",
     "xo": "^0.18.2"
   },
   "xo": {
