@@ -32,6 +32,11 @@ const store = new Store({
 	})]
 })
 
+// Clean slate if fresh user
+if (store.state.layout.tabs.length === 0) {
+	store.commit('layout/resetLayout')
+}
+
 if (module.hot) {
 	module.hot.accept(['./actions', './getters', './modules/layout', './modules/settings', './mutations'], () => {
 		store.hotUpdate({
