@@ -9,6 +9,12 @@
 
 				<p>Control <a href="https://obsproject.com/" target="_blank">OBS Studio</a> over the network, on any device with a web browser</p>
 
+				<div class="alert warning" v-if="showHTTPSWarning">
+					<h2>Warning: HTTPS Detected</h2>
+
+					<p>It appears like you have loaded this page over a secure connection. While security is cool, obs websocket plugins don't support it and browsers will block the connection. <a :href="httpURL">Click here to attempt to load http version of this page</a></p>
+				</div>
+
 				<h2>Usage Instructions</h2>
 
 				<p>To use OBS Tablet Remote make sure you have installed the <a href="https://obsproject.com/forum/resources/websocket-plugin.466/" target="_blank">Websocket Plugin</a> for OBS Studio</p>
@@ -47,6 +53,12 @@
 		computed: {
 			exampleURL() {
 				return `${location.origin + location.pathname}#!auto${this.urlArgs}`
+			},
+			httpURL() {
+				return location.href.replace('https://', 'http://')
+			},
+			showHTTPSWarning() {
+				return location.protocol === 'https:'
 			}
 		},
 		methods: {
