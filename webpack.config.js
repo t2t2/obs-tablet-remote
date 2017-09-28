@@ -1,5 +1,5 @@
 // THIS IS FOR eslint-import-resolver-webpack to properly resolve
-const vbuild = require('vbuild')
-const config = require('./vbuild.config')
+const poi = require('poi')
+const config = require('./poi.config')
 
-module.exports = vbuild(config).getWebpackConfig()
+module.exports = poi(config).getWebpackConfig()

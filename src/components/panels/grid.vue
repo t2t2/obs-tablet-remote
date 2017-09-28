@@ -11,6 +11,7 @@
 				class="resize-handler"
 				draggable="true"
 				@dragstart="startResize($event, index - 1)"
+				:key="id + '-resize'"
 			>
 				<span class="dot"></span>
 				<span class="dot"></span>
@@ -27,7 +28,12 @@
 			/>
 		</template>
 		<!-- adding in edit mode -->
-		<button ref="addButton" v-if="editing" class="add-panel" @click="showAddPanel=true">
+		<button
+			ref="addButton"
+			v-if="editing"
+			class="add-panel"
+			@click="showAddPanel=true"
+		>
 			<i class="material-icons">add_box</i>
 		</button>
 		<overlay v-if="showAddPanel" @overlay-click="showAddPanel=false">
@@ -59,10 +65,17 @@
 	const MIN_PANEL_SIZE_MULTI = 0.05
 
 	export default {
-		mixins: [hasChildPanels, panelMixin],
 		components: {
 			PanelList,
 			Overlay
+		},
+		mixins: [hasChildPanels, panelMixin],
+		data() {
+			return {
+				dragging: false,
+				draggingWeights: null,
+				showAddPanel: false
+			}
 		},
 		computed: {
 			...mapState(['editing']),
@@ -91,16 +104,16 @@
 				return []
 			}
 		},
-		data() {
-			return {
-				dragging: false,
-				draggingWeights: null,
-				showAddPanel: false
+		watch: {
+			shouldClosePanel(value) {
+				if (value) {
+					this.showAddPanel = false
+				}
 			}
 		},
 		methods: {
 			startResize(e, i) {
-				// get current sizes and set as current value
+				// Get current sizes and set as current value
 				const sizeAttr = this.settings.direction === 'row' ? 'width' : 'height'
 				const sizes = this.$refs.panels.map(panel => panel.$el.getBoundingClientRect()[sizeAttr])
 				const total = sum(sizes)
@@ -164,13 +177,6 @@
 
 					this.dragging = false
 					this.draggingWeights = null
-				}
-			}
-		},
-		watch: {
-			shouldClosePanel(value) {
-				if (value) {
-					this.showAddPanel = false
 				}
 			}
 		}

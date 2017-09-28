@@ -5,11 +5,11 @@
 			<h2>Connect</h2>
 			<label>
 				Host
-				<input type="text" placeholder="localhost (Current computer)" v-model="host"/>
+				<input type="text" placeholder="localhost (Current computer)" v-model="host">
 			</label>
 			<label>
 				Port
-				<input type="number" placeholder="4444" v-model="port"/>
+				<input type="number" placeholder="4444" v-model="port">
 			</label>
 			<button :disabled="connecting" v-text="connecting ? 'Connecting...' : 'Connect'"></button>
 		</form>
@@ -17,7 +17,7 @@
 			<h2>Password required</h2>
 			<label>
 				Password
-				<input type="password" v-model="password"/>
+				<input type="password" v-model="password">
 			</label>
 			<button :disabled="authenticating" v-text="authenticating ? 'Checking...' : 'Log In'"></button>
 		</form>
@@ -28,11 +28,6 @@
 	import {mapState} from 'vuex'
 
 	export default {
-		computed: {
-			...mapState('obs', {
-				needAuth: state => state.connection === 'auth'
-			})
-		},
 		data() {
 			return {
 				authenticating: false,
@@ -42,6 +37,11 @@
 				password: '',
 				port: 4444
 			}
+		},
+		computed: {
+			...mapState('obs', {
+				needAuth: state => state.connection === 'auth'
+			})
 		},
 		methods: {
 			async connect() {
