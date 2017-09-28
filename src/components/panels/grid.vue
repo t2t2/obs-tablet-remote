@@ -53,6 +53,7 @@
 </template>
 
 <script>
+	import debounce from 'lodash/debounce'
 	import sum from 'lodash/sum'
 	import {mapState} from 'vuex'
 
@@ -126,8 +127,26 @@
 				e.dataTransfer.effectAllowed = 'move'
 			},
 			handleResize(e) {
+				if (!this._resizeDebounce) {
+					this._resizeDebounce = debounce(this.doResize.bind(this))
+				}
 				if (this.dragging !== false) {
 					e.preventDefault()
+					this._resizeDebounce(e)
+				}
+			},
+			stopResizing(e) {
+				if (this.dragging !== false) {
+					e.preventDefault()
+
+					this.setSetting('weights', this.draggingWeights)
+
+					this.dragging = false
+					this.draggingWeights = null
+				}
+			},
+			doResize(e) {
+				if (this.dragging !== false) {
 					const rects = this.$el.getBoundingClientRect()
 					const addButtonRects = this.$refs.addButton.getBoundingClientRect()
 
@@ -167,16 +186,6 @@
 					const nextValue = targetRange[1] - targetRange[0] - value
 
 					this.draggingWeights.splice(i, 2, value, nextValue)
-				}
-			},
-			stopResizing(e) {
-				if (this.dragging !== false) {
-					e.preventDefault()
-
-					this.setSetting('weights', this.draggingWeights)
-
-					this.dragging = false
-					this.draggingWeights = null
 				}
 			}
 		}
