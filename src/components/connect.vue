@@ -27,9 +27,11 @@
 <script>
 	import {mapState} from 'vuex'
 
+	import {parseHashBang} from '../util'
+
 	export default {
 		data() {
-			return {
+			const data = {
 				authenticating: false,
 				connecting: false,
 				error: null,
@@ -37,11 +39,41 @@
 				password: '',
 				port: 4444
 			}
+
+			const vars = parseHashBang()
+			if (vars.host) {
+				data.host = vars.host
+			}
+			if (vars.port) {
+				data.port = parseInt(vars.port, 10)
+			}
+			if (vars.password) {
+				data.password = vars.password
+			}
+			return data
 		},
 		computed: {
 			...mapState('obs', {
 				needAuth: state => state.connection === 'auth'
-			})
+			}),
+			urlified() {
+				let url = ''
+				if (this.host) {
+					url += '&host=' + this.host
+				}
+				if (this.port && this.port !== 4444) {
+					url += '&port=' + this.port
+				}
+				return url
+			}
+		},
+		watch: {
+			'urlified': {
+				handler (newValue) {
+					this.$emit('update:query', newValue)
+				},
+				immediate: true
+			}
 		},
 		methods: {
 			async connect() {
