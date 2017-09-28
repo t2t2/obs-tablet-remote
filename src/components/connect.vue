@@ -43,9 +43,13 @@
 			const vars = parseHashBang()
 			if (vars.host) {
 				data.host = vars.host
+			} else {
+				data.host = this.$store.state.settings.defaultHost
 			}
 			if (vars.port) {
 				data.port = parseInt(vars.port, 10)
+			} else {
+				data.port = this.$store.state.settings.defaultPort
 			}
 			if (vars.password) {
 				data.password = vars.password
@@ -84,6 +88,18 @@
 						host: this.host.length ? this.host : undefined,
 						port: this.port
 					})
+					if (this.host.length) {
+						this.$store.commit('settings/set', {
+							key: 'defaultHost',
+							value: this.host
+						})
+					}
+					if (this.port) {
+						this.$store.commit('settings/set', {
+							key: 'defaultPort',
+							value: this.port
+						})
+					}
 				} catch (err) {
 					this.error = err
 				}
