@@ -1,3 +1,4 @@
+import createPersistedState from 'vuex-persistedstate'
 import Vue from 'vue'
 import Vuex, {Store} from 'vuex'
 
@@ -25,7 +26,10 @@ const store = new Store({
 		layout,
 		settings
 	},
-	plugins: [obs]
+	plugins: [obs, createPersistedState({
+		key: 'obs-remote-tablet-vuex',
+		paths: ['layout', 'settings']
+	})]
 })
 
 if (module.hot) {
