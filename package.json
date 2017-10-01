@@ -9,8 +9,9 @@
   "private": true,
   "scripts": {
     "build": "poi build",
+    "build:deploy": "poi build --homepage /obs-tablet-remote/",
     "dev": "poi",
-    "deploy": "npm-run-all build deploy:upload",
+    "deploy": "npm-run-all build:deploy deploy:upload",
     "deploy:upload": "gh-pages -d dist",
     "lint": "xo"
   },
