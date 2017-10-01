@@ -35,6 +35,16 @@
 			padding: (($top-bar-height-small - 1rem) / 2) $spacing;
 			transition: background-color 0.3s;
 
+			&.is-highlighted {
+				$highlight-color: #FDD835;
+				background-color: $highlight-color;
+				border-color: darken($highlight-color, 10%);
+				color: #fafafa;
+				&:hover {
+					background-color: darken($highlight-color, 10%);
+				}
+			}
+
 			@include medium {
 				font-size: 1.2em;
 				height: $top-bar-height-medium;

@@ -1,7 +1,10 @@
 <template>
-	<panel-wrapper>
+	<panel-wrapper :content-class="['panel-invalid', 'is-scrollable']">
 		<template slot="name">Unknown Panel</template>
-		404 PANEL NOT FOUND {{ panel.type }}
+		<div class="panel-invalid-content">
+			<p>PANEL NOT FOUND</p>
+			<p>Panel type "{{ panel.type }}" not found. Use edit mode to remove this panel.</p>
+		</div>
 	</panel-wrapper>
 </template>
 
