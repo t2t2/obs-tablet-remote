@@ -14,7 +14,8 @@ import obs from './plugins/obs'
 Vue.use(Vuex)
 
 const state = {
-	editing: false
+	editing: false,
+	showingSettings: false
 }
 
 const store = new Store({

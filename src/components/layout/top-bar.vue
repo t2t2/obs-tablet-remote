@@ -8,6 +8,9 @@
 			<button @click="setEditing(!editing)"><i class="material-icons">{{ editing ? 'done' : 'mode_edit' }}</i></button>
 		</div>
 		<div class="item">
+			<button @click="showSettings(!showingSettings)"><i class="material-icons">settings</i></button>
+		</div>
+		<div class="item">
 			<button @click="toggleFullscreen"><i class="material-icons">fullscreen</i></button>
 		</div>
 		<div class="item" v-if="connectionReady">
@@ -17,14 +20,14 @@
 </template>
 
 <script>
-	import {mapState, mapActions, mapGetters} from 'vuex'
+	import {mapActions, mapGetters, mapMutations, mapState} from 'vuex'
 
 	import fullscreen from '../mixins/fullscreen'
 
 	export default {
 		mixins: [fullscreen],
 		computed: {
-			...mapState(['editing']),
+			...mapState(['editing', 'showingSettings']),
 			...mapGetters('obs', ['connectionReady'])
 		},
 		methods: {
@@ -33,7 +36,8 @@
 			}),
 			...mapActions('obs', [
 				'disconnect'
-			])
+			]),
+			...mapMutations(['showSettings'])
 		}
 	}
 </script>

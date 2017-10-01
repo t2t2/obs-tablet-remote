@@ -1,3 +1,6 @@
+/* eslint-disable import/prefer-default-export */
+
+
 export function parseHashBang() {
 	// https://gist.github.com/zaus/5201739
 	const vars = {}
@@ -7,4 +10,10 @@ export function parseHashBang() {
 		vars[hash[0]] = hash.length > 1 ? hash[1] : null
 	}
 	return vars
+}
+
+export function timeoutPromise(time) {
+	return new Promise(resolve => {
+		setTimeout(resolve, time)
+	})
 }

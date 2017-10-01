@@ -6,26 +6,31 @@
 			class="content"
 			:is="activeView"
 		/>
+
+		<Settings v-if="showingSettings" />
 	</div>
 </template>
 
 <script>
-	import {mapGetters} from 'vuex'
+	import {mapGetters, mapState} from 'vuex'
 
 	import {parseHashBang} from '../util'
 
 	import Dashboard from './views/dashboard'
 	import Home from './views/home'
+	import Settings from './settings'
 	import TopBar from './layout/top-bar'
 
 	export default {
 		components: {
 			Dashboard,
 			Home,
+			Settings,
 			TopBar
 		},
 		computed: {
-			...mapGetters(['activeView'])
+			...mapGetters(['activeView']),
+			...mapState(['showingSettings'])
 		},
 		mounted() {
 			// Check if autoconnect is ready

@@ -14,7 +14,7 @@
 		<div v-if="!editing || isGrid" class="panel-content" :class="contentClass">
 			<slot></slot>
 		</div>
-		<overlay class="overlay" v-if="settingsOpen" @overlay-click="settingsOpen = false">
+		<overlay v-if="settingsOpen" @overlay-click="settingsOpen = false">
 			<div class="modal-header">
 				<h2 class="title">Settings</h2>
 				<button class="close" @click="settingsOpen = false"></button>

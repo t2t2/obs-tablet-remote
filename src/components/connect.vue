@@ -72,8 +72,8 @@
 			}
 		},
 		watch: {
-			'urlified': {
-				handler (newValue) {
+			urlified: {
+				handler(newValue) {
 					this.$emit('update:query', newValue)
 				},
 				immediate: true
@@ -88,7 +88,7 @@
 						host: this.host.length ? this.host : undefined,
 						port: this.port
 					})
-					if (this.host.length) {
+					if (this.host.length > 0) {
 						this.$store.commit('settings/set', {
 							key: 'defaultHost',
 							value: this.host

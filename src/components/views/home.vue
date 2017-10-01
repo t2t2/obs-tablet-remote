@@ -25,7 +25,12 @@
 
 				<label>
 					Current settings:
-					<input type="text" readonly :value="exampleURL" @click="selectValue" />
+					<input
+						type="text"
+						readonly
+						:value="exampleURL"
+						@click="selectValue"
+					>
 				</label>
 
 				<p>To include password add &password={password}. Note that all fields can't include &amp; or =.</p>
