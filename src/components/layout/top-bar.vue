@@ -4,7 +4,7 @@
 			OBS Remote
 		</div>
 		<div class="space"></div>
-		<div class="item" v-if="connectionReady">
+		<div class="item" v-if="connectionReady" key="editing-button">
 			<button @click="toggleEditing" :class="{'is-highlighted': !hasEdited}"><i class="material-icons">{{ editing ? 'done' : 'mode_edit' }}</i></button>
 		</div>
 		<div class="item">
@@ -13,7 +13,7 @@
 		<div class="item">
 			<button @click="toggleFullscreen"><i class="material-icons">fullscreen</i></button>
 		</div>
-		<div class="item" v-if="connectionReady">
+		<div class="item" v-if="connectionReady" key="disconnect-button">
 			<button @click="disconnect"><i class="material-icons">power_settings_new</i></button>
 		</div>
 	</div>
