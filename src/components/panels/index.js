@@ -5,12 +5,14 @@ import Grid from './grid'
 import Invalid from './invalid'
 import Scenes from './scenes'
 import Sources from './sources'
+import Stream from './stream'
 
 const components = {
 	Grid,
 	Invalid,
 	Scenes,
-	Sources
+	Sources,
+	Stream
 }
 
 export default {

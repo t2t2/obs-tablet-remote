@@ -14,3 +14,9 @@ export function timeoutPromise(time) {
 		setTimeout(resolve, time)
 	})
 }
+
+export function updateStateKey(key) {
+	return function (state, value) {
+		state[key] = value
+	}
+}

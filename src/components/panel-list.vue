@@ -59,6 +59,12 @@
 			description: 'Toggle sources on and off',
 			icon: 'view_list',
 			type: 'Sources'
+		},
+		{
+			name: 'Stream Status',
+			description: 'Manage stream & recording status',
+			icon: 'movie',
+			type: 'Stream'
 		}
 	]
 
