@@ -1,6 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
-
 export function parseHashBang() {
 	// https://gist.github.com/zaus/5201739
 	const vars = {}
