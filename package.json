@@ -10,6 +10,8 @@
   "scripts": {
     "build": "poi build",
     "dev": "poi",
+    "deploy": "npm-run-all build deploy:upload",
+    "deploy:upload": "gh-pages -d dist",
     "lint": "xo"
   },
   "dependencies": {
@@ -26,6 +28,7 @@
     "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-vue": "beta",
+    "gh-pages": "^1.0.0",
     "loader-utils": "^1.1.0",
     "node-sass": "^4.5.3",
     "poi": "^9.3.8",
