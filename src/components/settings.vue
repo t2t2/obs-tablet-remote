@@ -25,6 +25,7 @@
 		},
 		methods: {
 			askForReset() {
+				// eslint-disable-next-line no-alert
 				if (confirm('Are you sure you want to reset the layout?')) {
 					this.resetLayout()
 				}
