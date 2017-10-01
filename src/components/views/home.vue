@@ -35,6 +35,10 @@
 
 				<p>To include password add &password={password}. Note that all fields can't include &amp; or =.</p>
 
+				<h2><span class="success-text">New!</span> Layout Editor</h2>
+
+				<p>Make the remote just the way you like it! Now you can add, remove and resize panels all you want! (Note: On touch devices for resizing you have to hold down the drag handler first)</p>
+
 				<h2>Bugs / Feature requests?</h2>
 
 				<a href="https://github.com/t2t2/obs-tablet-remote/issues" target="_blank">Github Issues</a>

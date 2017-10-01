@@ -2,6 +2,7 @@
 	background-color: darken($main-color, 20%);
 	color: $white-color;
 	display: flex;
+	flex: 0 0 $top-bar-height-small;
 	height: $top-bar-height-small;
 	min-height: $top-bar-height-small;
 	padding-left: 0.5rem;
@@ -10,6 +11,7 @@
 	z-index: 99999;
 
 	@include medium {
+		flex-basis: $top-bar-height-medium;
 		height: $top-bar-height-medium;
 	}
 
