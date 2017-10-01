@@ -14,7 +14,7 @@ export function setSetting(state, {id, key, value}) {
 }
 
 export function resetLayout(state) {
-	state.nextId = 4
+	state.nextId = 3
 	state.panels = {
 		1: {
 			type: 'Grid',
@@ -23,11 +23,6 @@ export function resetLayout(state) {
 		},
 		2: {
 			type: 'Scenes',
-			parent: 1,
-			settings: {}
-		},
-		3: {
-			type: 'Invalid',
 			parent: 1,
 			settings: {}
 		}
