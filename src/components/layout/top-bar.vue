@@ -5,7 +5,7 @@
 		</div>
 		<div class="space"></div>
 		<div class="item" v-if="connectionReady">
-			<button @click="setEditing(!editing)"><i class="material-icons">{{ editing ? 'done' : 'mode_edit' }}</i></button>
+			<button @click="toggleEditing" :class="{'is-highlighted': !hasEdited}"><i class="material-icons">{{ editing ? 'done' : 'mode_edit' }}</i></button>
 		</div>
 		<div class="item">
 			<button @click="showSettings(!showingSettings)"><i class="material-icons">settings</i></button>
@@ -28,16 +28,29 @@
 		mixins: [fullscreen],
 		computed: {
 			...mapState(['editing', 'showingSettings']),
+			...mapState('settings', ['hasEdited']),
 			...mapGetters('obs', ['connectionReady'])
 		},
 		methods: {
+			toggleEditing() {
+				if (!this.hasEdited && !this.editing) {
+					this.setSetting({
+						key: 'hasEdited',
+						value: true
+					})
+				}
+				this.setEditing(!this.editing)
+			},
 			...mapActions({
 				setEditing: 'editing'
 			}),
 			...mapActions('obs', [
 				'disconnect'
 			]),
-			...mapMutations(['showSettings'])
+			...mapMutations(['showSettings']),
+			...mapMutations('settings', {
+				setSetting: 'set'
+			})
 		}
 	}
 </script>
