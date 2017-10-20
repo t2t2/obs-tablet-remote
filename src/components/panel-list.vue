@@ -65,6 +65,12 @@
 			description: 'Manage stream & recording status',
 			icon: 'movie',
 			type: 'Stream'
+		},
+		{
+			name: 'Frame',
+			description: 'Embed any webpage',
+			icon: 'web_asset',
+			type: 'Iframe'
 		}
 	]
 

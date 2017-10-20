@@ -2,6 +2,7 @@
 import panelMixin from '../mixins/panel'
 
 import Grid from './grid'
+import Iframe from './iframe'
 import Invalid from './invalid'
 import Scenes from './scenes'
 import Sources from './sources'
@@ -9,6 +10,7 @@ import Stream from './stream'
 
 const components = {
 	Grid,
+	Iframe,
 	Invalid,
 	Scenes,
 	Sources,
