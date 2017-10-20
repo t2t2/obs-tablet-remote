@@ -10,6 +10,9 @@
 
 <script>
 export default {
+	props: {
+		vibrate: Boolean
+	},
 	data() {
 		return {
 			cooldown: false,
@@ -41,9 +44,6 @@ export default {
 				window.navigator.vibrate(200)
 			}
 		}
-	},
-	props: {
-		vibrate: Boolean
 	}
 }
 </script>

@@ -44,5 +44,5 @@ export default {
 	'stream/set/recording': setRecording,
 	'stream/set/recTimecode': setRecTimecode,
 	'stream/set/streaming': setStreaming,
-	'stream/set/streamTimecode': setStreamTimecode,
+	'stream/set/streamTimecode': setStreamTimecode
 }

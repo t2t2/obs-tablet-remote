@@ -25,10 +25,10 @@
 	import DangerousButton from '../dangerous-button'
 
 	export default {
-		mixins: [panelMixin],
 		components: {
 			DangerousButton
 		},
+		mixins: [panelMixin],
 		computed: {
 			...mapState('obs', {
 				recording: state => state.stream.recording,

@@ -19,24 +19,24 @@
     "lodash": "^4.17.4",
     "sanitize.css": "^5.0.0",
     "sha.js": "^2.4.9",
-    "vue": "^2.4.4",
-    "vuex": "^2.4.1",
+    "vue": "^2.5.2",
+    "vuex": "^3.0.0",
     "vuex-persistedstate": "^2.0.0"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.6.0",
-    "eslint": "^4.7.2",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.9.0",
     "eslint-import-resolver-webpack": "^0.8.3",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-vue": "beta",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-vue": "^3.13.1",
     "gh-pages": "^1.0.0",
     "loader-utils": "^1.1.0",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.1.1",
-    "poi": "^9.3.8",
+    "poi": "^9.4.0",
     "postcss-flexbugs-fixes": "^3.2.0",
     "sass-loader": "^6.0.6",
-    "uglify-js": "^2.8.29",
+    "uglify-js": "^3.1.4",
     "xo": "^0.18.2"
   },
   "xo": {
@@ -57,7 +57,20 @@
       "plugin:vue/recommended"
     ],
     "settings": {
-      "import/resolver": "webpack"
+      "import/resolver": {
+        "webpack": {
+          "config": {
+            "resolve": {
+              "extensions": [
+                "",
+                ".js",
+                ".json",
+                ".vue"
+              ]
+            }
+          }
+        }
+      }
     },
     "rules": {
       "vue/no-dupe-keys": "error",
