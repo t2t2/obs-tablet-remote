@@ -63,13 +63,13 @@
 		{
 			name: 'Set Transition',
 			description: 'Set the current transition',
-			icon: 'timelapse',
+			icon: 'blur_linear',
 			type: 'Transitions'
 		},
 		{
 			name: 'Set Duration',
 			description: 'Set the current duration',
-			icon: 'timelapse', 
+			icon: 'timelapse',
 			type: 'Durations'
 		},
 		{
