@@ -18,14 +18,14 @@
 				@click="changeDuration(duration.duration)">{{ duration.duration }}ms</button>
 	  </div>
 		<div v-else>
-			Quick Transition list is empty! Should minimally have 'Cut' and 'Fade' ... Something is wrong :(
+			Transition list is empty! Should minimally have 'Cut' and 'Fade' ... Something is wrong :(
 		</div>
 
 	</panel-wrapper>
 
 </template>
 
-<script> //TODO: determine active transition and add is-active is-inactive logic (also something like that for duration)
+<script> 
 import {mapState, mapActions} from 'vuex'
 
 import panelMixin from '../mixins/panel'
@@ -51,9 +51,6 @@ import panelMixin from '../mixins/panel'
 		},
 
 		methods: {
-			setDurationX(duration) {
-				alert('TODO: duration to '+duration+'ms');
-			},
 			async switchTransitions(name) {
 				await this.setTransition({name})
 			},
