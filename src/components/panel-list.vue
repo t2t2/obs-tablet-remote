@@ -61,16 +61,22 @@
 			type: 'Sources'
 		},
 		{
-			name: 'Stream Status',
-			description: 'Manage stream & recording status',
-			icon: 'movie',
-			type: 'Stream'
-		},
-		{
 			name: 'Set Transition',
 			description: 'Set the current transition',
 			icon: 'view_list', // TODO: figure this out (needs a different icon)
 			type: 'Transitions'
+		},
+		{
+			name: 'Set Duration',
+			description: 'Set the current duration',
+			icon: 'view_list', // TODO: figure this out (needs a different icon)
+			type: 'Durations'
+		},
+		{
+			name: 'Stream Status',
+			description: 'Manage stream & recording status',
+			icon: 'movie',
+			type: 'Stream'
 		},
 		{
 			name: 'Frame',

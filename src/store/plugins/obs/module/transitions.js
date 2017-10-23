@@ -1,18 +1,17 @@
 export default {
 	state: {
 		current: null,
-		list: [],
-		duration: null
+		list: []
 	},
 	actions: {
 		'connection/closed'({commit}) {
 			commit('transitions/reset')
 		},
-		async 'connection/ready'({dispatch}) {
+		'connection/ready'({dispatch}) {
 			return dispatch('transitions/reload')
 		},
 		async 'transitions/reload'({commit, getters: {client}}) {
-			const {'current-transition': current, transitions} = await client.send({'request-type': 'GetTransitionList'})
+			const {'current-transition': current, 'transitions': transitions} = await client.send({'request-type': 'GetTransitionList'})
 
 			commit('transitions/list', {transitions})
 			commit('transitions/current', {
@@ -22,21 +21,15 @@ export default {
 		'transitions/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentTransition', 'transition-name': name})
 		},
-		'transitions/duration'({getters: {client}}, duration) {
-			return client.send({'request-type': 'SetTransitionDuration', duration})
-		},
 		'event/SwitchTransition'({dispatch}) {
 			return dispatch('transitions/reload')
 		},
 		'event/TransitionListChanged'({dispatch}) {
 			return dispatch('transitions/reload')
-		},
-		'event/TransitionBegin'({commit}, data) {
-			console.log('TransitionBegin', data) // TODO: figure out proper conditional logging
-		},
-		'event/TransitionDurationChanged'({commit}, data) {
-			commit('transitions/durationChanged', data)
 		}
+		//'event/TransitionBegin'({commit}, data) {
+		//	console.log('TransitionBegin', data) // TODO: figure out proper conditional logging
+		//}
 	},
 	mutations: {
 		'transitions/current'(state, {'current-transition': name}) {
@@ -48,10 +41,6 @@ export default {
 		'transitions/reset'(state) {
 			state.current = null
 			state.list = []
-			state.duration = null
-		},
-		'transitions/durationChanged'(state, {'new-duration': newDuration}) {
-			state.duration = newDuration
 		}
 	}
 }

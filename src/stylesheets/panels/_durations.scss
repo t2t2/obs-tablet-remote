@@ -1,18 +1,18 @@
-.panel-transitions {
+.panel-durations {
 	display: flex;
 	flex-direction: column;
 
-	& > .transitions-list {
+	& > .current-duration {
 			text-align: center;
 		}
 
-	& > .transitions {
+	& > .durations {
 		display: flex;
 		flex-direction: column;
 		flex: 1 1 auto;
 		overflow-y: auto;
 
-		& > .transition {
+		& > .duration {
 			border: none;
 			flex: 0 0 auto;
 			overflow: hidden;
