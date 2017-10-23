@@ -63,13 +63,13 @@
 		{
 			name: 'Set Transition',
 			description: 'Set the current transition',
-			icon: 'view_list', // TODO: figure this out (needs a different icon)
+			icon: 'timelapse',
 			type: 'Transitions'
 		},
 		{
 			name: 'Set Duration',
 			description: 'Set the current duration',
-			icon: 'view_list', // TODO: figure this out (needs a different icon)
+			icon: 'timelapse', 
 			type: 'Durations'
 		},
 		{
