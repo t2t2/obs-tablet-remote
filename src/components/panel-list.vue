@@ -69,7 +69,7 @@
 		{
 			name: 'Set Transition',
 			description: 'Set the current transition',
-			icon: 'view_list', //TODO: figure this out (needs a different icon)
+			icon: 'view_list', // TODO: figure this out (needs a different icon)
 			type: 'Transitions'
 		},
 		{

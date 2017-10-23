@@ -22,8 +22,8 @@ export default {
 		'transitions/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentTransition', 'transition-name': name})
 		},
-		'transitions/duration'({getters: {client}}, {ms}) {
-			return client.send({'request-type': 'SetTransitionDuration', 'duration': ms})
+		'transitions/duration'({getters: {client}}, duration) {
+			return client.send({'request-type': 'SetTransitionDuration', duration})
 		},
 		'event/SwitchTransition'({dispatch}) {
 			return dispatch('transitions/reload')
@@ -35,11 +35,9 @@ export default {
 			console.log('TransitionBegin', data) // TODO: figure out proper conditional logging
 		},
 		'event/TransitionDurationChanged'({commit}, data) {
-			//console.log('TransitionDurationChanged', data) // TODO: figure out proper conditional logging
-			commit('transitions/durationChanged',data)
+			commit('transitions/durationChanged', data)
 		}
 	},
-	// getters here?
 	mutations: {
 		'transitions/current'(state, {'current-transition': name}) {
 			state.current = name
