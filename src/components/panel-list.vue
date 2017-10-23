@@ -67,6 +67,12 @@
 			type: 'Stream'
 		},
 		{
+			name: 'Set Transition',
+			description: 'Set the current transition (based on the Quick Transition List)',
+			icon: 'view_list', //TODO: figure this out (needs a different icon)
+			type: 'Transitions'
+		},
+		{
 			name: 'Frame',
 			description: 'Embed any webpage',
 			icon: 'web_asset',

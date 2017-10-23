@@ -1,0 +1,30 @@
+.panel-transitions {
+	display: flex;
+	flex-direction: column;
+
+	& > .transitions-list {
+			text-align: center;
+		}
+
+	& > .transitions {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		overflow-y: auto;
+
+		& > .transition,
+		& > .duration {
+			border: none;
+			flex: 0 0 auto;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			/* border: 1px solid #0c7cd5; // eventually to be fixed in buttons? */
+		}
+		& > hr {
+			width: 20%;
+			height: 0;
+			margin:2px auto;
+		}
+	}
+}
