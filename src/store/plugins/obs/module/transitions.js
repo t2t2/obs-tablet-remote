@@ -21,8 +21,8 @@ export default {
 		'transitions/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentTransition', 'transition-name': name})
 		},
-		'event/SwitchTransition'({dispatch}) {
-			return dispatch('transitions/reload')
+		'event/SwitchTransition'({commit}, data) {
+			commit('transitions/newcurrent',  data)
 		},
 		'event/TransitionListChanged'({dispatch}) {
 			return dispatch('transitions/reload')
@@ -33,6 +33,9 @@ export default {
 	},
 	mutations: {
 		'transitions/current'(state, {'current-transition': name}) {
+			state.current = name
+		},
+		'transitions/newcurrent'(state, {'transition-name': name}) {
 			state.current = name
 		},
 		'transitions/list'(state, {transitions}) {
