@@ -40,7 +40,7 @@ export default {
 			await this.setDuration({ms})
 		},
 		...mapActions('obs', {
-			setDuration: 'duration/current'
+			setDuration: 'durations/current'
 		})
 	}
 }

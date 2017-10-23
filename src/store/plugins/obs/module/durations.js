@@ -9,26 +9,29 @@ export default {
 			commit('transitions/reset')
 		},
 		'connection/ready'({dispatch}) {
-			return dispatch('duration/reload')
+			return dispatch('durations/reload')
 		},
-		async 'duration/reload'({commit, getters: {client}}) {
+		async 'durations/reload'({commit, getters: {client}}) {
 			const {'transition-duration': duration} = await client.send({'request-type': 'GetTransitionDuration'})
 
-			commit('duration/current', {duration})
+			commit('durations/current', {duration})
 		},
-		'duration/current'({getters: {client}}, {ms}) {
+		'durations/current'({getters: {client}}, {ms}) {
 			return client.send({'request-type': 'SetTransitionDuration', 'duration': ms})
 		},
 		'event/TransitionDurationChanged'({commit}, data) {
-			commit('duration/durationChanged', data)
+			commit('durations/durationChanged', data)
 		}
 	},
 	mutations: {
-		'duration/reset'(state) {
+		'durations/current'(state, {duration}) {
+			state.current = duration
+		},
+		'durations/reset'(state) {
 			state.list = [{duration: 100}, {duration: 300}, {duration: 600}, {duration: 1000}, {duration: 1500}]
 			state.current = null
 		},
-		'duration/durationChanged'(state, {'new-duration': newDuration}) {
+		'durations/durationChanged'(state, {'new-duration': newDuration}) {
 			state.current = newDuration
 		}
 	}

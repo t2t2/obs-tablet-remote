@@ -26,10 +26,10 @@ export default {
 		},
 		'event/TransitionListChanged'({dispatch}) {
 			return dispatch('transitions/reload')
+		},
+		'event/TransitionBegin'({commit}, data) {
+			// Do I do anything or simple discard for now?!
 		}
-		//'event/TransitionBegin'({commit}, data) {
-		//	console.log('TransitionBegin', data) // TODO: figure out proper conditional logging
-		//}
 	},
 	mutations: {
 		'transitions/current'(state, {'current-transition': name}) {
