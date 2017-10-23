@@ -22,7 +22,7 @@ export default {
 			return client.send({'request-type': 'SetCurrentTransition', 'transition-name': name})
 		},
 		'event/SwitchTransition'({commit}, data) {
-			commit('transitions/newcurrent',  data)
+			commit('transitions/newcurrent', data)
 		},
 		'event/TransitionListChanged'({dispatch}) {
 			return dispatch('transitions/reload')
