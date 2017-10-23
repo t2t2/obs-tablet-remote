@@ -1,7 +1,7 @@
 export default {
 	state: {
 		// Static/initial durations logrithmic in nature
-		list: [{duration: 100}, {duration: 300}, {duration: 600}, {duration: 1000}, {duration: 1500}],
+		list: [ 100, 300, 600, 1000, 1500],
 		current: null
 	},
 	actions: {
@@ -28,7 +28,7 @@ export default {
 			state.current = duration
 		},
 		'durations/reset'(state) {
-			state.list = [{duration: 100}, {duration: 300}, {duration: 600}, {duration: 1000}, {duration: 1500}]
+			state.list = [ 100, 300, 600, 1000, 1500]
 			state.current = null
 		},
 		'durations/durationChanged'(state, {'new-duration': newDuration}) {

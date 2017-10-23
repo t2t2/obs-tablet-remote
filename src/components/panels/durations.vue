@@ -6,9 +6,9 @@
 			<button
 				class="duration"
 				v-for="duration in allDurations"
-				:class="[duration.duration === currentDuration ? 'is-active' : 'is-inactive']"
-				:key="duration.duration"
-				@click="changeDuration(duration.duration)">{{ duration.duration }}ms</button>
+				:class="[duration === currentDuration ? 'is-active' : 'is-inactive']"
+				:key="duration"
+				@click="changeDuration(duration)">{{ duration }}ms</button>
 		</div>
 	</panel-wrapper>
 </template>
