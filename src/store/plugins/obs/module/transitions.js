@@ -11,7 +11,7 @@ export default {
 			return dispatch('transitions/reload')
 		},
 		async 'transitions/reload'({commit, getters: {client}}) {
-			const {'current-transition': current, 'transitions': transitions} = await client.send({'request-type': 'GetTransitionList'})
+			const {'current-transition': current, transitions} = await client.send({'request-type': 'GetTransitionList'})
 
 			commit('transitions/list', {transitions})
 			commit('transitions/current', {

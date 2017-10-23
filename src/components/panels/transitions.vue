@@ -19,6 +19,7 @@
 <script>
 import {mapState, mapActions} from 'vuex'
 import panelMixin from '../mixins/panel'
+
 export default {
 
 	mixins: [panelMixin],
@@ -35,7 +36,7 @@ export default {
 			await this.setTransition({name})
 		},
 		...mapActions('obs', {
-			setTransition: 'transitions/current',
+			setTransition: 'transitions/current'
 		})
 	}
 }
