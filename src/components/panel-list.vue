@@ -61,6 +61,18 @@
 			type: 'Sources'
 		},
 		{
+			name: 'Set Transition',
+			description: 'Set the current transition',
+			icon: 'blur_linear',
+			type: 'Transitions'
+		},
+		{
+			name: 'Set Duration',
+			description: 'Set the current duration',
+			icon: 'timelapse',
+			type: 'Durations'
+		},
+		{
 			name: 'Stream Status',
 			description: 'Manage stream & recording status',
 			icon: 'movie',

@@ -7,6 +7,8 @@ import Invalid from './invalid'
 import Scenes from './scenes'
 import Sources from './sources'
 import Stream from './stream'
+import Transitions from './transitions'
+import Durations from './durations'
 
 const components = {
 	Grid,
@@ -14,6 +16,8 @@ const components = {
 	Invalid,
 	Scenes,
 	Sources,
+	Transitions,
+	Durations,
 	Stream
 }
 
