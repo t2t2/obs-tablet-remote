@@ -17,7 +17,7 @@ export default {
 			commit('durations/current', {duration})
 		},
 		'durations/current'({getters: {client}}, {ms}) {
-			return client.send({'request-type': 'SetTransitionDuration', 'duration': ms})
+			return client.send({'request-type': 'SetTransitionDuration', duration: ms})
 		},
 		'event/TransitionDurationChanged'({commit}, data) {
 			commit('durations/durationChanged', data)

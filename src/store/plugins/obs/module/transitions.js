@@ -27,7 +27,7 @@ export default {
 		'event/TransitionListChanged'({dispatch}) {
 			return dispatch('transitions/reload')
 		},
-		'event/TransitionBegin'({commit}, data) {
+		'event/TransitionBegin'() {
 			// Do I do anything or simple discard for now?!
 		}
 	},
