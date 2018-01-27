@@ -138,7 +138,6 @@
 				}
 			},
 			stopResizing(e) {
-				console.log('drag end', e)
 				if (this.dragging !== false) {
 					e.preventDefault()
 
@@ -149,8 +148,6 @@
 				}
 			},
 			doResize(e) {
-				console.log('drag', e.type, e, this.dragging)
-
 				if (this.dragging !== false) {
 					const rects = this.$el.getBoundingClientRect()
 					const addButtonRects = this.$refs.addButton.getBoundingClientRect()
