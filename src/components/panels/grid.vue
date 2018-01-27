@@ -2,15 +2,20 @@
 	<panel-wrapper
 		:content-class="['panel-grid', this.directionClass]"
 		:is-grid="true"
-		@dragover.native="handleResize"
-		@drop.native="stopResizing">
+		@mouseleave.native="stopResizing"
+		@mousemove.native="handleResize"
+		@mouseup.native="stopResizing"
+		@touchend.native="stopResizing"
+		@touchmove.native="handleResize"
+	>
 		<template slot="name">{{ this.settings.direction === 'column' ? 'Vertical' : 'Horizontal' }} Splitter</template>
 		<template v-for="(panel, id, index) in childPanels">
 			<div
 				v-if="editing && index > 0"
 				class="resize-handler"
 				draggable="true"
-				@dragstart="startResize($event, index - 1)"
+				@mousedown.prevent="startResize($event, index - 1)"
+				@touchstart.prevent="startResize($event, index - 1)"
 				:key="id + '-resize'"
 			>
 				<span class="dot"></span>
@@ -122,9 +127,6 @@
 
 				this.dragging = i
 				this.draggingWeights = sizes.map(size => size / total * count)
-
-				e.dataTransfer.setData('text/plain', 'resize' + i)
-				e.dataTransfer.effectAllowed = 'move'
 			},
 			handleResize(e) {
 				if (!this._resizeDebounce) {
@@ -136,6 +138,7 @@
 				}
 			},
 			stopResizing(e) {
+				console.log('drag end', e)
 				if (this.dragging !== false) {
 					e.preventDefault()
 
@@ -146,6 +149,8 @@
 				}
 			},
 			doResize(e) {
+				console.log('drag', e.type, e, this.dragging)
+
 				if (this.dragging !== false) {
 					const rects = this.$el.getBoundingClientRect()
 					const addButtonRects = this.$refs.addButton.getBoundingClientRect()
@@ -154,12 +159,18 @@
 					let mouse
 					let base
 					let range
+
+					let positionOwner = e
+					if (e.targetTouches && e.targetTouches.length > 0) {
+						positionOwner = e.targetTouches[0]
+					}
+
 					if (this.settings.direction === 'row') {
-						mouse = e.pageX
+						mouse = positionOwner.pageX
 						base = rects.left
 						range = rects.width - addButtonRects.width
 					} else {
-						mouse = e.pageY
+						mouse = positionOwner.pageY
 						base = rects.top
 						range = rects.height - addButtonRects.height
 					}
