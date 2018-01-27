@@ -9,7 +9,7 @@
 
 		<div slot="settings">
 			<label>
-				URKL
+				URL
 				<div class="input-group">
 					<input
 						type="text"
