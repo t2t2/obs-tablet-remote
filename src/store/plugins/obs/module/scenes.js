@@ -35,6 +35,13 @@ export default {
 		'event/ScenesChanged'({dispatch}) {
 			return dispatch('scenes/reload')
 		},
+		'event/SceneItemAdded'({dispatch}) {
+			return dispatch('scenes/reload')
+		},
+		'event/SceneItemRemoved'({dispatch}) {
+			return dispatch('scenes/reload')
+		},
+		// no event from obs-websocket (in 4.2.0 at least) for something like 'SceneItemChanged' (like rename)
 		'event/SceneItemVisibilityChanged'({commit}, data) {
 			commit('scenes/itemVisibilityChanged', data)
 		}
