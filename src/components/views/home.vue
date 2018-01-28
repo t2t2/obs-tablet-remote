@@ -15,8 +15,6 @@
 					<p>It appears like you have loaded this page over a secure connection. While security is cool, obs websocket plugins don't support it and browsers will block the connection. <a :href="httpURL">Click here to attempt to load http version of this page</a></p>
 				</div>
 
-				<h2>Usage Instructions</h2>
-
 				<p>To use OBS Tablet Remote make sure you have installed the <a href="https://obsproject.com/forum/resources/websocket-plugin.466/" target="_blank">Websocket Plugin</a> for OBS Studio</p>
 
 				<h2>Automatic Login</h2>
@@ -35,9 +33,9 @@
 
 				<p>To include password add &password={password}. Note that all fields can't include &amp; or =.</p>
 
-				<h2><span class="success-text">New!</span> Layout Editor</h2>
+				<h2>Layout Editor</h2>
 
-				<p>Make the remote just the way you like it! Now you can add, remove and resize panels all you want! (Note: On touch devices for resizing you have to hold down the drag handler first)</p>
+				<p>Make the remote just the way you like it! Now you can add, remove and resize panels all you want!</p>
 
 				<h2>Bugs / Feature requests?</h2>
 

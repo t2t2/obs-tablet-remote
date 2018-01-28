@@ -67,8 +67,8 @@
 			type: 'Transitions'
 		},
 		{
-			name: 'Set Duration',
-			description: 'Set the current duration',
+			name: 'Set Transition Duration',
+			description: 'Set the current transition duration',
 			icon: 'timelapse',
 			type: 'Durations'
 		},
