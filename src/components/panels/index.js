@@ -6,6 +6,7 @@ import Iframe from './iframe'
 import Invalid from './invalid'
 import Scenes from './scenes'
 import Sources from './sources'
+import Mixer from './mixer'
 import Stream from './stream'
 import Transitions from './transitions'
 import Durations from './durations'
@@ -16,6 +17,7 @@ const components = {
 	Invalid,
 	Scenes,
 	Sources,
+	Mixer,
 	Transitions,
 	Durations,
 	Stream

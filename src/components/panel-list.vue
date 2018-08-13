@@ -61,6 +61,12 @@
 			type: 'Sources'
 		},
 		{
+			name: 'Audio Devices',
+			description: 'Toggle Audio Devices on and off',
+			icon: 'view_list',
+			type: 'Mixer'
+		},
+		{
 			name: 'Set Transition',
 			description: 'Set the current transition',
 			icon: 'blur_linear',
