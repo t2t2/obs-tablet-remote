@@ -15,7 +15,7 @@
 				<input  type="range" min="0" max="1" step="0.0001" class="slider" style="width: 100%"
 						:id="'slider_' + audioDevice.name.replace(/\W/g,'-')"
 						:value="getVolume(audioDevice.name)"
-						@mouseup="setAudioVolume(audioDevice.name)"
+						v-on:change="setAudioVolume(audioDevice.name)"
 				>
 				</div>
 				<div>
