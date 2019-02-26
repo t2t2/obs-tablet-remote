@@ -1,10 +1,12 @@
 <template>
 	<panel-wrapper :content-class="['is-scrollable', 'panel-scenes', 'per-row-' + perRow]">
-		<template slot="name">Scenes</template>
+		<template slot="name">
+			Scenes
+		</template>
 		<button
-			class="scene"
 			v-for="scene in scenes"
 			:key="scene.name"
+			class="scene"
 			:class="[scene.name === currentScene ? 'is-active' : 'is-inactive']"
 			@click="switchScenes(scene.name)"
 		>
@@ -16,12 +18,15 @@
 				Scenes per row
 				<div class="input-group">
 					<input
+						v-model.number="perRow"
 						type="range"
 						min="1"
 						max="10"
-						v-model.number="perRow"
 					>
-					<span style="width: 2.5em" v-text="perRow"></span>
+					<span
+						style="width: 2.5em"
+						v-text="perRow"
+					/>
 				</div>
 			</label>
 			<h3>Transition Scene</h3>

@@ -3,18 +3,37 @@
 		<div class="item">
 			OBS Remote
 		</div>
-		<div class="space"></div>
-		<div class="item" v-if="connectionReady" key="editing-button">
-			<button @click="toggleEditing" :class="{'is-highlighted': !hasEdited}"><i class="material-icons">{{ editing ? 'done' : 'mode_edit' }}</i></button>
+		<div class="space" />
+		<div
+			v-if="connectionReady"
+			key="editing-button"
+			class="item"
+		>
+			<button
+				:class="{'is-highlighted': !hasEdited}"
+				@click="toggleEditing"
+			>
+				<i class="material-icons">{{ editing ? 'done' : 'mode_edit' }}</i>
+			</button>
 		</div>
 		<div class="item">
-			<button @click="showSettings(!showingSettings)"><i class="material-icons">settings</i></button>
+			<button @click="showSettings(!showingSettings)">
+				<i class="material-icons">settings</i>
+			</button>
 		</div>
 		<div class="item">
-			<button @click="toggleFullscreen"><i class="material-icons">fullscreen</i></button>
+			<button @click="toggleFullscreen">
+				<i class="material-icons">fullscreen</i>
+			</button>
 		</div>
-		<div class="item" v-if="connectionReady" key="disconnect-button">
-			<button @click="disconnect"><i class="material-icons">power_settings_new</i></button>
+		<div
+			v-if="connectionReady"
+			key="disconnect-button"
+			class="item"
+		>
+			<button @click="disconnect">
+				<i class="material-icons">power_settings_new</i>
+			</button>
 		</div>
 	</div>
 </template>

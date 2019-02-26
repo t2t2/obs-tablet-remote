@@ -19,7 +19,10 @@
 			Panel
 		},
 		props: {
-			tab: Object
+			tab: {
+				type: Object,
+				required: true
+			}
 		},
 		computed: {
 			...mapState('layout', {

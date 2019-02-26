@@ -20,9 +20,9 @@ export default class OBSRemote extends EventEmitter {
 	 */
 	connect(host = 'localhost', port = 4444) {
 		if (this._socket) {
-			this._socket.onopen = null
-			this._socket.onmessage = null
-			this._socket.onerror = null
+			this._socket.addEventListener('open', null)
+			this._socket.addEventListener('message', null)
+			this._socket.addEventListener('error', null)
 			this._socket.onclose = null
 			this._socket.close()
 		}
@@ -33,9 +33,9 @@ export default class OBSRemote extends EventEmitter {
 			const url = 'ws://' + host + ':' + port
 			this._socket = new WebSocket(url)
 
-			this._socket.onopen = socketOnOpen.bind(this)
-			this._socket.onmessage = socketOnMessage.bind(this)
-			this._socket.onerror = socketOnError.bind(this)
+			this._socket.addEventListener('open', socketOnOpen.bind(this))
+			this._socket.addEventListener('message', socketOnMessage.bind(this))
+			this._socket.addEventListener('error', socketOnError.bind(this))
 			this._socket.onclose = socketOnClose.bind(this)
 		})
 	}
@@ -147,8 +147,8 @@ function socketOnMessage(message) {
 	let received
 	try {
 		received = JSON.parse(message.data)
-	} catch (err) {
-		this.emit('error', err)
+	} catch (error) {
+		this.emit('error', error)
 	}
 
 	if (!received) {

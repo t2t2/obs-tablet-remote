@@ -2,24 +2,42 @@
 	<div class="panel">
 		<div class="panel-header">
 			<div class="panel-name">
-				<slot name="name"></slot>
+				<slot name="name" />
 			</div>
-			<button v-if="hasSettings" @click="settingsOpen = !settingsOpen">
+			<button
+				v-if="hasSettings"
+				@click="settingsOpen = !settingsOpen"
+			>
 				<i class="material-icons">settings</i>
 			</button>
-			<button v-if="depth > 0" @click="remove">
+			<button
+				v-if="depth > 0"
+				@click="remove"
+			>
 				<i class="material-icons">delete_forever</i>
 			</button>
 		</div>
-		<div v-if="!editing || isGrid" class="panel-content" :class="contentClass">
-			<slot></slot>
+		<div
+			v-if="!editing || isGrid"
+			class="panel-content"
+			:class="contentClass"
+		>
+			<slot />
 		</div>
-		<overlay v-if="settingsOpen" @overlay-click="settingsOpen = false">
+		<overlay
+			v-if="settingsOpen"
+			@overlay-click="settingsOpen = false"
+		>
 			<div class="modal-header">
-				<h2 class="title">Settings</h2>
-				<button class="close" @click="settingsOpen = false"></button>
+				<h2 class="title">
+					Settings
+				</h2>
+				<button
+					class="close"
+					@click="settingsOpen = false"
+				/>
 			</div>
-			<slot name="settings"></slot>
+			<slot name="settings" />
 		</overlay>
 	</div>
 </template>
@@ -34,7 +52,10 @@
 			Overlay
 		},
 		props: {
-			contentClass: null,
+			contentClass: {
+				type: null,
+				default: ''
+			},
 			isGrid: {
 				type: Boolean,
 				default: () => false

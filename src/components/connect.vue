@@ -1,25 +1,53 @@
 <template>
 	<div>
-		<div class="alert error" v-if="error">{{ error.message }}</div>
-		<form @submit.prevent="connect" v-if="!needAuth">
+		<div
+			v-if="error"
+			class="alert error"
+		>
+			{{ error.message }}
+		</div>
+		<form
+			v-if="!needAuth"
+			@submit.prevent="connect"
+		>
 			<h2>Connect</h2>
 			<label>
 				Host
-				<input type="text" placeholder="localhost (Current computer)" v-model="host">
+				<input
+					v-model="host"
+					type="text"
+					placeholder="localhost (Current computer)"
+				>
 			</label>
 			<label>
 				Port
-				<input type="number" placeholder="4444" v-model="port">
+				<input
+					v-model="port"
+					type="number"
+					placeholder="4444"
+				>
 			</label>
-			<button :disabled="connecting" v-text="connecting ? 'Connecting...' : 'Connect'"></button>
+			<button
+				:disabled="connecting"
+				v-text="connecting ? 'Connecting...' : 'Connect'"
+			/>
 		</form>
-		<form @submit.prevent="login" v-if="needAuth">
+		<form
+			v-if="needAuth"
+			@submit.prevent="login"
+		>
 			<h2>Password required</h2>
 			<label>
 				Password
-				<input type="password" v-model="password">
+				<input
+					v-model="password"
+					type="password"
+				>
 			</label>
-			<button :disabled="authenticating" v-text="authenticating ? 'Checking...' : 'Log In'"></button>
+			<button
+				:disabled="authenticating"
+				v-text="authenticating ? 'Checking...' : 'Log In'"
+			/>
 		</form>
 	</div>
 </template>
@@ -85,7 +113,7 @@
 				this.error = null
 				try {
 					await this.$store.dispatch('obs/connect', {
-						host: this.host.length ? this.host : undefined,
+						host: this.host.length > 0 ? this.host : undefined,
 						port: this.port
 					})
 					if (this.host.length > 0) {
@@ -100,8 +128,8 @@
 							value: this.port
 						})
 					}
-				} catch (err) {
-					this.error = err
+				} catch (error) {
+					this.error = error
 				}
 				this.connecting = false
 			},
@@ -116,8 +144,8 @@
 					await this.$store.dispatch('obs/authenticate', {
 						password: this.password
 					})
-				} catch (err) {
-					this.error = err
+				} catch (error) {
+					this.error = error
 				}
 				this.authenticating = false
 			}

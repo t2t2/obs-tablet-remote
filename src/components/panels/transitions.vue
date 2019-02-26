@@ -1,14 +1,20 @@
 <template>
 	<panel-wrapper :content-class="['panel-transitions']">
-		<template slot="name">Transitions</template>
-		<div class="transitions" v-if="allTransitions">
+		<template slot="name">
+			Transitions
+		</template>
+		<div
+			v-if="allTransitions"
+			class="transitions"
+		>
 			<button
-				class="transition"
 				v-for="transition in allTransitions"
 				:key="transition.name"
+				class="transition"
 				:class="[transition.name === currentTransition ? 'is-active' : 'is-inactive']"
 				@click="switchTransitions(transition.name)"
-				v-text="transition.name"></button>
+				v-text="transition.name"
+			/>
 		</div>
 		<div v-else>
 			Transition list is empty! Should minimally have 'Cut' and 'Fade' ... Something is wrong :(

@@ -1,14 +1,24 @@
 <template>
 	<panel-wrapper :content-class="['panel-durations']">
-		<template slot="name">Durations</template>
-		<h3 class="current-duration">{{ currentDuration }}ms</h3>
-		<div class="durations" v-if="allDurations">
+		<template slot="name">
+			Durations
+		</template>
+		<h3 class="current-duration">
+			{{ currentDuration }}ms
+		</h3>
+		<div
+			v-if="allDurations"
+			class="durations"
+		>
 			<button
-				class="duration"
 				v-for="duration in allDurations"
-				:class="[duration === currentDuration ? 'is-active' : 'is-inactive']"
 				:key="duration"
-				@click="changeDuration(duration)">{{ duration }}ms</button>
+				class="duration"
+				:class="[duration === currentDuration ? 'is-active' : 'is-inactive']"
+				@click="changeDuration(duration)"
+			>
+				{{ duration }}ms
+			</button>
 		</div>
 	</panel-wrapper>
 </template>

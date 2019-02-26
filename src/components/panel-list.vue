@@ -1,16 +1,22 @@
 <template>
 	<div>
 		<div class="modal-header">
-			<h2 class="title">Add Panel</h2>
-			<button class="close" @click="$emit('close')"></button>
+			<h2 class="title">
+				Add Panel
+			</h2>
+			<button
+				class="close"
+				@click="$emit('close')"
+			/>
 		</div>
 
 		<a
 			v-for="item in list"
+			:key="item.name"
 			class="media"
 			:class="{'is-disabled': !canBeAdded(item)}"
-			:key="item.name"
-			@click="addPanel(item)">
+			@click="addPanel(item)"
+		>
 			<div class="media-left">
 				<i class="material-icons md-48">{{ item.icon }}</i>
 			</div>

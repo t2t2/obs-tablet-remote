@@ -1,6 +1,8 @@
 <template>
 	<panel-wrapper :content-class="['panel-stream', 'is-scrollable']">
-		<template slot="name">Stream Status</template>
+		<template slot="name">
+			Stream Status
+		</template>
 		<DangerousButton
 			:class="[streaming ? 'is-active' : 'is-inactive']"
 			:vibrate="true"

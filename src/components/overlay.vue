@@ -1,11 +1,14 @@
 <template>
 	<div
-		class="overlay"
 		v-show="show"
+		class="overlay"
 		@click.self="$emit('overlay-click')"
 	>
-		<div class="modal" :class="modalClass">
-			<slot></slot>
+		<div
+			class="modal"
+			:class="modalClass"
+		>
+			<slot />
 		</div>
 	</div>
 </template>
@@ -13,8 +16,12 @@
 <script>
 	export default {
 		props: {
-			modalClass: null,
+			modalClass: {
+				type: null,
+				default: ''
+			},
 			show: {
+				type: Boolean,
 				default: true
 			}
 		}

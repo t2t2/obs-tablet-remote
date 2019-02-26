@@ -1,10 +1,13 @@
 <template>
 	<div class="dashboard">
-		<div class="dashboard-tabs" :class="{'editing-mode': editing}">
+		<div
+			class="dashboard-tabs"
+			:class="{'editing-mode': editing}"
+		>
 			<tab
-				class="dashboard-tab"
 				v-for="tab in tabs"
 				:key="tab.id"
+				class="dashboard-tab"
 				:tab="tab"
 			/>
 		</div>

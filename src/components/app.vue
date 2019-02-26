@@ -3,8 +3,8 @@
 		<top-bar />
 
 		<components
-			class="content"
 			:is="activeView"
+			class="content"
 		/>
 
 		<Settings v-if="showingSettings" />

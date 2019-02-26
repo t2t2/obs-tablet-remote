@@ -1,6 +1,6 @@
 <template>
 	<panel-wrapper
-		:content-class="['panel-grid', this.directionClass]"
+		:content-class="['panel-grid', directionClass]"
 		:is-grid="true"
 		@mouseleave.native="stopResizing"
 		@mousemove.native="handleResize"
@@ -8,25 +8,27 @@
 		@touchend.native="stopResizing"
 		@touchmove.native="handleResize"
 	>
-		<template slot="name">{{ this.settings.direction === 'column' ? 'Vertical' : 'Horizontal' }} Splitter</template>
+		<template slot="name">
+			{{ settings.direction === 'column' ? 'Vertical' : 'Horizontal' }} Splitter
+		</template>
 		<template v-for="(panel, id, index) in childPanels">
 			<div
 				v-if="editing && index > 0"
+				:key="id + '-resize'"
 				class="resize-handler"
 				draggable="true"
 				@mousedown.prevent="startResize($event, index - 1)"
 				@touchstart.prevent="startResize($event, index - 1)"
-				:key="id + '-resize'"
 			>
-				<span class="dot"></span>
-				<span class="dot"></span>
-				<span class="dot"></span>
+				<span class="dot" />
+				<span class="dot" />
+				<span class="dot" />
 			</div>
 			<panel
+				:id="id"
 				ref="panels"
 				:key="id"
 				:panel="panel"
-				:id="id"
 				:depth="depth + 1"
 				:style="{flexBasis: (weights[index] || 1) * 100 / childCount + '%'}"
 				:data-basis="childCount"
@@ -34,23 +36,36 @@
 		</template>
 		<!-- adding in edit mode -->
 		<button
-			ref="addButton"
 			v-if="editing"
+			ref="addButton"
 			class="add-panel"
 			@click="showAddPanel=true"
 		>
 			<i class="material-icons">add_box</i>
 		</button>
-		<overlay v-if="showAddPanel" @overlay-click="showAddPanel=false">
-			<panel-list :parent-id="id" :parent-depth="depth" @close="showAddPanel=false" />
+		<overlay
+			v-if="showAddPanel"
+			@overlay-click="showAddPanel=false"
+		>
+			<panel-list
+				:parent-id="id"
+				:parent-depth="depth"
+				@close="showAddPanel=false"
+			/>
 		</overlay>
 
 		<div slot="settings">
 			<p>Direction:</p>
-			<button :class="{'is-inactive': this.settings.direction !== 'row'}" @click="setSetting('direction', 'row')">
+			<button
+				:class="{'is-inactive': settings.direction !== 'row'}"
+				@click="setSetting('direction', 'row')"
+			>
 				<i class="material-icons md-48">view_column</i>
 			</button>
-			<button :class="{'is-inactive': this.settings.direction !== 'column'}" @click="setSetting('direction', 'column')">
+			<button
+				:class="{'is-inactive': settings.direction !== 'column'}"
+				@click="setSetting('direction', 'column')"
+			>
 				<i class="material-icons md-48">view_stream</i>
 			</button>
 		</div>

@@ -4,7 +4,7 @@
 			Click again to confirm
 			<strong v-if="cooldown">(wait 1 sec)</strong>
 		</span>
-		<slot v-else></slot>
+		<slot v-else />
 	</button>
 </template>
 

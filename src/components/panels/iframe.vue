@@ -1,19 +1,21 @@
 <template>
 	<panel-wrapper :content-class="['panel-iframe']">
-		<template slot="name">Frame</template>
+		<template slot="name">
+			Frame
+		</template>
 		<iframe
 			:src="url"
 			frameborder="0"
 			style="width: 100%; height: 100%;"
-		></iframe>
+		/>
 
 		<div slot="settings">
 			<label>
 				URL
 				<div class="input-group">
 					<input
-						type="text"
 						v-model="url"
+						type="text"
 					>
 				</div>
 			</label>
