@@ -8,77 +8,38 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "poi build",
+    "build": "vue-cli-service build",
     "build:deploy": "poi build --homepage /obs-tablet-remote/",
-    "dev": "poi",
+    "dev": "npm run serve",
     "deploy": "npm-run-all build:deploy deploy:upload",
     "deploy:upload": "gh-pages -d dist",
-    "lint": "xo"
+    "serve": "vue-cli-service serve",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "sanitize.css": "^5.0.0",
-    "sha.js": "^2.4.10",
-    "vue": "^2.5.13",
-    "vuex": "^3.0.1",
-    "vuex-persistedstate": "^2.4.2"
+    "sha.js": "^2.4.11",
+    "vue": "^2.6.7",
+    "vuex": "^3.1.0",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.6.1",
-    "eslint": "^4.16.0",
-    "eslint-import-resolver-webpack": "^0.8.4",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-vue": "^4.2.0",
-    "gh-pages": "^1.1.0",
-    "loader-utils": "^1.1.0",
-    "node-sass": "^4.7.2",
-    "npm-run-all": "^4.1.2",
-    "poi": "^9.6.13",
-    "postcss-flexbugs-fixes": "^3.3.0",
-    "sass-loader": "^6.0.6",
-    "uglify-js": "^3.3.9",
-    "xo": "^0.18.2"
-  },
-  "xo": {
-    "envs": [
-      "browser"
-    ],
-    "semicolon": false,
-    "plugins": [
-      "vue"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2017
-    },
-    "extensions": [
-      "vue"
-    ],
-    "extends": [
-      "plugin:vue/recommended"
-    ],
-    "settings": {
-      "import/resolver": {
-        "webpack": {
-          "config": {
-            "resolve": {
-              "extensions": [
-                "",
-                ".js",
-                ".json",
-                ".vue"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "overrides": [
-      {
-        "files": "src/store/**/{actions,getters,mutations}.js",
-        "rules": {
-          "import/prefer-default-export": 0
-        }
-      }
-    ]
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "autoprefixer": "^9.4.9",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-import-resolver-webpack": "^0.11.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "fibers": "^3.1.1",
+    "gh-pages": "^2.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "sass": "^1.17.2",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.7",
+    "xo": "^0.24.0"
   }
 }
