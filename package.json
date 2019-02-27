@@ -6,7 +6,7 @@
   "author": "t2t2 <taavot@gmail.com>",
   "scripts": {
     "build": "vue-cli-service build",
-    "build:deploy": "vue-cli-service build --homepage /obs-tablet-remote/",
+    "build:deploy": "cross-env BUILD_HOMEPAGE=/obs-tablet-remote/ vue-cli-service build --modern",
     "deploy": "npm-run-all build:deploy deploy:upload",
     "deploy:upload": "gh-pages -d dist",
     "dev": "npm run serve",
@@ -30,6 +30,7 @@
     "@vue/cli-service": "^3.4.0",
     "autoprefixer": "^9.4.9",
     "babel-eslint": "^10.0.1",
+    "cross-env": "^5.2.0",
     "eslint": "^5.8.0",
     "eslint-import-resolver-webpack": "^0.11.0",
     "eslint-plugin-vue": "^5.0.0",
