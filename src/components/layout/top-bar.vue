@@ -13,17 +13,23 @@
 				:class="{'is-highlighted': !hasEdited}"
 				@click="toggleEditing"
 			>
-				<i class="material-icons">{{ editing ? 'done' : 'mode_edit' }}</i>
+				<FontAwesomeIcon
+					:icon="editing ? 'check' : 'pencil-alt'"
+				/>
 			</button>
 		</div>
 		<div class="item">
 			<button @click="showSettings(!showingSettings)">
-				<i class="material-icons">settings</i>
+				<FontAwesomeIcon
+					icon="cog"
+				/>
 			</button>
 		</div>
 		<div class="item">
 			<button @click="toggleFullscreen">
-				<i class="material-icons">fullscreen</i>
+				<FontAwesomeIcon
+					icon="expand"
+				/>
 			</button>
 		</div>
 		<div
@@ -32,7 +38,9 @@
 			class="item"
 		>
 			<button @click="disconnect">
-				<i class="material-icons">power_settings_new</i>
+				<FontAwesomeIcon
+					icon="power-off"
+				/>
 			</button>
 		</div>
 	</div>

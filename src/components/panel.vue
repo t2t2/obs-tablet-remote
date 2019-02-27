@@ -8,13 +8,19 @@
 				v-if="hasSettings"
 				@click="settingsOpen = !settingsOpen"
 			>
-				<i class="material-icons">settings</i>
+				<FontAwesomeIcon
+					icon="cog"
+					fixed-width
+				/>
 			</button>
 			<button
 				v-if="depth > 0"
 				@click="remove"
 			>
-				<i class="material-icons">delete_forever</i>
+				<FontAwesomeIcon
+					icon="trash-alt"
+					fixed-width
+				/>
 			</button>
 		</div>
 		<div

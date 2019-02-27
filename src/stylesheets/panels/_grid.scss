@@ -16,7 +16,7 @@ $resize-handler-size: 0.5rem;
 		& > .add-panel {
 			height: 100%;
 			margin-left: $spacing;
-			width: 24px;
+			width: 2rem;
 		}
 	}
 	&.is-vertical {
@@ -31,7 +31,7 @@ $resize-handler-size: 0.5rem;
 		}
 		& > .add-panel {
 			flex-direction: row;
-			height: 24px;
+			height: 2rem;
 			margin-top: $spacing;
 			width: 100%;
 		}

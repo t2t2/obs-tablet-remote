@@ -41,7 +41,11 @@
 			class="add-panel"
 			@click="showAddPanel=true"
 		>
-			<i class="material-icons">add_box</i>
+			<FontAwesomeIcon
+				icon="plus-square"
+				size="lg"
+				fixed-width
+			/>
 		</button>
 		<overlay
 			v-if="showAddPanel"
@@ -60,13 +64,20 @@
 				:class="{'is-inactive': settings.direction !== 'row'}"
 				@click="setSetting('direction', 'row')"
 			>
-				<i class="material-icons md-48">view_column</i>
+				<FontAwesomeIcon
+					icon="columns"
+					fixed-width
+				/>
 			</button>
 			<button
 				:class="{'is-inactive': settings.direction !== 'column'}"
 				@click="setSetting('direction', 'column')"
 			>
-				<i class="material-icons md-48">view_stream</i>
+				<FontAwesomeIcon
+					icon="columns"
+					:rotation="270"
+					fixed-width
+				/>
 			</button>
 		</div>
 	</panel-wrapper>

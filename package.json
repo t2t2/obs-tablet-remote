@@ -1,22 +1,22 @@
 {
   "name": "obs-tablet-remote",
   "version": "0.0.0",
-  "description": "OBS Remote interface that's pretty okay I suppose",
-  "homepage": "http://t2t2.github.io/obs-tablet-remote/",
-  "repository": "https://github.com/t2t2/obs-tablet-remote",
-  "author": "t2t2 <taavot@gmail.com>",
-  "license": "MIT",
   "private": true,
+  "description": "OBS Remote interface that's pretty okay I suppose",
+  "author": "t2t2 <taavot@gmail.com>",
   "scripts": {
     "build": "vue-cli-service build",
-    "build:deploy": "poi build --homepage /obs-tablet-remote/",
-    "dev": "npm run serve",
+    "build:deploy": "vue-cli-service build --homepage /obs-tablet-remote/",
     "deploy": "npm-run-all build:deploy deploy:upload",
     "deploy:upload": "gh-pages -d dist",
-    "serve": "vue-cli-service serve",
-    "lint": "vue-cli-service lint"
+    "dev": "npm run serve",
+    "lint": "vue-cli-service lint",
+    "serve": "vue-cli-service serve"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/vue-fontawesome": "^0.1.5",
     "lodash": "^4.17.11",
     "sanitize.css": "^5.0.0",
     "sha.js": "^2.4.11",
@@ -41,5 +41,8 @@
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.7",
     "xo": "^0.24.0"
-  }
+  },
+  "homepage": "http://t2t2.github.io/obs-tablet-remote/",
+  "license": "MIT",
+  "repository": "https://github.com/t2t2/obs-tablet-remote"
 }

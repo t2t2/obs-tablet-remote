@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './stylesheets/app.scss' // eslint-disable-line import/no-unassigned-import
+import './icons' // eslint-disable-line import/no-unassigned-import
 
 import store from './store'
 import App from './components/app'
