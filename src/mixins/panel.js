@@ -1,4 +1,4 @@
-import PanelWrapper from '../panel'
+import PanelWrapper from '@/components/panel'
 
 export default {
 	components: {

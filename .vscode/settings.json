@@ -2,5 +2,7 @@
 {
 	"files.exclude": {
 		"**/dist": true
-	}
+	},
+	"css.validate": false,
+	"eslint.autoFixOnSave": true
 }

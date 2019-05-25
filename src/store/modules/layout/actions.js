@@ -8,6 +8,7 @@ export async function removePanel({commit, dispatch, getters}, {id}) {
 	if (childKeys.length > 0) {
 		await Promise.all(childKeys.map(id => dispatch('removePanel', {id})))
 	}
+
 	commit('removePanel', {id})
 }
 

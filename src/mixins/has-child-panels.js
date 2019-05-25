@@ -1,6 +1,6 @@
 export default {
 	beforeCreate() {
-		this.$options.components.Panel = require('../panels').default
+		this.$options.components.Panel = require('@/components/panels').default
 	},
 	computed: {
 		childPanels() {

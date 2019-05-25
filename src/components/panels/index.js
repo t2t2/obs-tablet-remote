@@ -1,5 +1,5 @@
 // Dynamic component resolver
-import panelMixin from '../mixins/panel'
+import panelMixin from '@/mixins/panel'
 
 import Grid from './grid'
 import Iframe from './iframe'

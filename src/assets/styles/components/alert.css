@@ -1,0 +1,7 @@
+.alert {
+	@apply .bg-red-300 .border-l-4 .border-red-500 .text-red-800 .p-4 mb-2;
+
+	&:last-child {
+		@apply .mb-0;
+	}
+}

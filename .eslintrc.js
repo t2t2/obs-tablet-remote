@@ -1,23 +1,15 @@
 const path = require('path')
+const {buildConfig, preprocess} = require('xo/lib/options-manager')
 
-module.exports = {
-	root: true,
-	env: {
-		node: true
-	},
+const xoConfig = buildConfig(preprocess({
+	semicolon: false,
 	extends: [
-		'plugin:vue/recommended',
-		'./node_modules/xo/config/plugins.js'
+		'plugin:vue/recommended'
 	],
 	rules: {
-		/*
-		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-		*/
-		"vue/html-indent": ['error', 'tab'],
-	},
-	parserOptions: {
-		parser: 'babel-eslint'
+		// 'object-curly-spacing': ['error', 'always'],
+		'valid-jsdoc': 0,
+		'vue/html-indent': ['error', 'tab'],
 	},
 	settings: {
 		'import/resolver': {
@@ -26,4 +18,10 @@ module.exports = {
 			}
 		}
 	}
+}))
+
+module.exports = {
+	root: true,
+	...xoConfig.baseConfig,
+	rules: xoConfig.rules
 }

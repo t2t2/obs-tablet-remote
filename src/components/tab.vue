@@ -1,6 +1,6 @@
 <template>
-	<div class="tab">
-		<panel
+	<div class="h-full w-full overflow-hidden">
+		<Panel
 			v-if="rootPanel"
 			:id="tab.root"
 			:panel="rootPanel"
@@ -10,26 +10,26 @@
 </template>
 
 <script>
-	import {mapState} from 'vuex'
+import {mapState} from 'vuex'
 
-	import Panel from './panels'
+import Panel from './panels'
 
-	export default {
-		components: {
-			Panel
-		},
-		props: {
-			tab: {
-				type: Object,
-				required: true
-			}
-		},
-		computed: {
-			...mapState('layout', {
-				rootPanel(state) {
-					return state.panels[this.tab.root]
-				}
-			})
+export default {
+	components: {
+		Panel
+	},
+	props: {
+		tab: {
+			type: Object,
+			required: true
 		}
+	},
+	computed: {
+		...mapState('layout', {
+			rootPanel(state) {
+				return state.panels[this.tab.root]
+			}
+		})
 	}
+}
 </script>

@@ -6,6 +6,7 @@ export function parseHashBang() {
 		const hash = hashes[i].split('=')
 		vars[hash[0]] = hash.length > 1 ? hash[1] : null
 	}
+
 	return vars
 }
 

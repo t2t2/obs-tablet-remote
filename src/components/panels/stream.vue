@@ -1,5 +1,5 @@
 <template>
-	<panel-wrapper :content-class="['panel-stream', 'is-scrollable']">
+	<panel-wrapper :content-class="['button-grid', 'has-per-row-1', 'overflow-y-auto']">
 		<template slot="name">
 			Stream Status
 		</template>
@@ -21,30 +21,30 @@
 </template>
 
 <script>
-	import {mapActions, mapGetters, mapState} from 'vuex'
+import {mapActions, mapGetters, mapState} from 'vuex'
 
-	import panelMixin from '../mixins/panel'
-	import DangerousButton from '../dangerous-button'
+import panelMixin from '@/mixins/panel'
+import DangerousButton from '../dangerous-button'
 
-	export default {
-		components: {
-			DangerousButton
-		},
-		mixins: [panelMixin],
-		computed: {
-			...mapState('obs', {
-				recording: state => state.stream.recording,
-				recTimecode: state => state.stream.recTimecode,
-				streaming: state => state.stream.streaming,
-				streamTimecode: state => state.stream.streamTimecode
-			}),
-			...mapGetters('obs', ['recordingText', 'streamingText'])
-		},
-		methods: {
-			...mapActions('obs', {
-				setRecording: 'stream/recording',
-				setStreaming: 'stream/streaming'
-			})
-		}
+export default {
+	components: {
+		DangerousButton
+	},
+	mixins: [panelMixin],
+	computed: {
+		...mapState('obs', {
+			recording: state => state.stream.recording,
+			recTimecode: state => state.stream.recTimecode,
+			streaming: state => state.stream.streaming,
+			streamTimecode: state => state.stream.streamTimecode
+		}),
+		...mapGetters('obs', ['recordingText', 'streamingText'])
+	},
+	methods: {
+		...mapActions('obs', {
+			setRecording: 'stream/recording',
+			setStreaming: 'stream/streaming'
+		})
 	}
+}
 </script>

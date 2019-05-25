@@ -1,0 +1,21 @@
+.card {
+	@apply .max-w-md .mb-4 .mx-auto .border .rounded .overflow-hidden .shadow-lg;
+
+	&:last-child {
+		@apply .mb-0;
+	}
+
+	& .card-title {
+		@apply .text-gray-700 .px-4 .py-2 text-2xl;
+	}
+	& .alert {
+		@apply .border-l-0 .border-t .border-b;
+	}
+	& .card-content {
+		@apply .px-4 .py-4;
+	}
+	& .card-title + .card-content {
+		@apply .pt-0;
+	}
+
+}

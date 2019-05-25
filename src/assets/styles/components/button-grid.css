@@ -1,0 +1,63 @@
+.button-grid {
+	@apply flex flex-wrap;
+}
+.button-grid .button {
+	@apply flex-grow-0 flex-shrink-0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	&:focus {
+		@apply .shadow-none;
+	}
+}
+
+/* purgecss start ignore */
+.button-grid.has-per-row-1 .button {
+	width: calc(100% / 1);
+	flex-basis: calc(100% / 1);
+}
+.button-grid.has-per-row-2 .button {
+	width: calc(100% / 2);
+	flex-basis: calc(100% / 2);
+}
+.button-grid.has-per-row-3 .button {
+	width: calc(100% / 3);
+	flex-basis: calc(100% / 3);
+}
+.button-grid.has-per-row-4 .button {
+	width: calc(100% / 4);
+	flex-basis: calc(100% / 4);
+}
+.button-grid.has-per-row-5 .button {
+	width: calc(100% / 5);
+	flex-basis: calc(100% / 5);
+}
+.button-grid.has-per-row-6 .button {
+	width: calc(100% / 6);
+	flex-basis: calc(100% / 6);
+}
+.button-grid.has-per-row-7 .button {
+	width: calc(100% / 7);
+	flex-basis: calc(100% / 7);
+}
+.button-grid.has-per-row-8 .button {
+	width: calc(100% / 8);
+	flex-basis: calc(100% / 8);
+}
+.button-grid.has-per-row-9 .button {
+	width: calc(100% / 9);
+	flex-basis: calc(100% / 9);
+}
+.button-grid.has-per-row-10 .button {
+	width: calc(100% / 10);
+	flex-basis: calc(100% / 10);
+}
+.button-grid.has-per-row-11 .button {
+	width: calc(100% / 11);
+	flex-basis: calc(100% / 11);
+}
+.button-grid.has-per-row-12 .button {
+	width: calc(100% / 12);
+	flex-basis: calc(100% / 12);
+}
+/* purgecss end ignore */

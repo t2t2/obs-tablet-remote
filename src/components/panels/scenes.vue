@@ -1,118 +1,138 @@
 <template>
-	<panel-wrapper :content-class="['is-scrollable', 'panel-scenes', 'per-row-' + perRow]">
-		<template slot="name">
+	<panel-wrapper :content-class="['button-grid', 'has-per-row-' + perRow, 'overflow-y-auto', 'flex-wrap', 'text-3xl']">
+		<template #name>
 			Scenes
 		</template>
+
 		<button
 			v-for="scene in scenes"
 			:key="scene.name"
-			class="scene"
+			class="button"
 			:class="[scene.name === currentScene ? 'is-active' : 'is-inactive']"
 			@click="switchScenes(scene.name)"
 		>
 			{{ scene.name }}
 		</button>
 
-		<div slot="settings">
-			<label>
-				Scenes per row
-				<div class="input-group">
+		<template #settings>
+			<div class="field">
+				<label
+					:for="`settings-${id}-per-row`"
+					class="label"
+				>Scenes per row</label>
+				<div class="flex">
 					<input
 						v-model.number="perRow"
 						type="range"
+						class="flex-grow"
 						min="1"
-						max="10"
+						max="12"
 					>
 					<span
-						style="width: 2.5em"
+						class="w-10 p-2"
 						v-text="perRow"
 					/>
 				</div>
-			</label>
-			<h3>Transition Scene</h3>
-			<label>
-				Transition scene
-				<div class="input-group">
-					<select v-model="transitionScene">
-						<option :value="undefined">None</option>
-						<option
-							v-for="scene in scenes"
-							:key="scene.name"
-							:value="scene.name"
-						>
-							{{ scene.name }}
-						</option>
-					</select>
-				</div>
-			</label>
-			<label>
-				Transition time
-				<div class="input-group">
-					<input
-						v-model.number="transitionSeconds"
-						type="number"
-						min="0"
-						step="0.1"
+			</div>
+
+			<h3 class="text-xl mb-2">
+				Transition Scene
+			</h3>
+			<div class="field">
+				<label
+					:for="`settings-${id}-transition-scene`"
+					class="label"
+				>Transition Scene</label>
+				<select
+					:id="`settings-${id}-transition-scene`"
+					v-model="transitionScene"
+					class="select"
+				>
+					<option :value="undefined">
+						None
+					</option>
+					<option
+						v-for="scene in scenes"
+						:key="scene.name"
+						:value="scene.name"
 					>
-				</div>
-			</label>
-		</div>
+						{{ scene.name }}
+					</option>
+				</select>
+			</div>
+			<div class="field">
+				<label
+					:for="`settings-${id}-transition-time`"
+					class="label"
+				>Transition Time</label>
+				<input
+					:id="`settings-${id}-transition-time`"
+					v-model.number="transitionSeconds"
+					class="input"
+					type="number"
+					min="0"
+					step="0.1"
+				>
+			</div>
+		</template>
 	</panel-wrapper>
 </template>
 
 <script>
-	import {mapState, mapActions} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 
-	import {timeoutPromise} from '../../util'
+import {timeoutPromise} from '../../util'
 
-	import panelMixin from '../mixins/panel'
+import panelMixin from '@/mixins/panel'
 
-	export default {
-		mixins: [panelMixin],
-		computed: {
-			perRow: {
-				get() {
-					if (this.settings.perRow) {
-						return this.settings.perRow
-					}
-					return 4
-				},
-				set(value) {
-					this.setSetting('perRow', value)
+export default {
+	mixins: [panelMixin],
+	computed: {
+		perRow: {
+			get() {
+				if (this.settings.perRow) {
+					return this.settings.perRow
 				}
+
+				return 4
 			},
-			transitionScene: {
-				get() {
-					return this.settings.transitionScene
-				},
-				set(value) {
-					this.setSetting('transitionScene', value)
-				}
-			},
-			transitionSeconds: {
-				get() {
-					return this.settings.transitionSeconds || 0
-				},
-				set(value) {
-					this.setSetting('transitionSeconds', value)
-				}
-			},
-			...mapState('obs', {
-				currentScene: state => state.scenes.current,
-				scenes: state => state.scenes.list
-			})
+			set(value) {
+				this.setSetting('perRow', value)
+			}
 		},
-		methods: {
-			async switchScenes(name) {
-				if (this.transitionScene && this.transitionSeconds > 0) {
-					this.setScene({name: this.transitionScene})
-					await timeoutPromise(this.transitionSeconds * 1000)
-				}
-				await this.setScene({name})
+		transitionScene: {
+			get() {
+				return this.settings.transitionScene
 			},
-			...mapActions('obs', {
-				setScene: 'scenes/current'
-			})
-		}
+			set(value) {
+				this.setSetting('transitionScene', value)
+			}
+		},
+		transitionSeconds: {
+			get() {
+				return this.settings.transitionSeconds || 0
+			},
+			set(value) {
+				this.setSetting('transitionSeconds', value)
+			}
+		},
+		...mapState('obs', {
+			currentScene: state => state.scenes.current,
+			scenes: state => state.scenes.list
+		})
+	},
+	methods: {
+		async switchScenes(name) {
+			if (this.transitionScene && this.transitionSeconds > 0) {
+				this.setScene({name: this.transitionScene})
+				await timeoutPromise(this.transitionSeconds * 1000)
+			}
+
+			await this.setScene({name})
+		},
+		...mapActions('obs', {
+			setScene: 'scenes/current'
+		})
 	}
+}
 </script>

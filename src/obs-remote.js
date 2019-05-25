@@ -82,8 +82,10 @@ export default class OBSRemote extends EventEmitter {
 		const {authRequired, salt, challenge} = await this.send({'request-type': 'GetAuthRequired'})
 
 		if (!authRequired) {
+			this.emit('socket.ready')
 			return true
 		}
+
 		if (!password) {
 			throw new Error('Password Required')
 		}
@@ -135,6 +137,7 @@ function socketOnOpen() {
 
 		this._connecting = null
 	}
+
 	this.emit('socket.open')
 }
 
@@ -216,6 +219,7 @@ function handleCallback(id, message) {
 		} else {
 			promise.resolve(message)
 		}
+
 		delete this._promises[id]
 	} else if (message.status === 'error') {
 		this.emit('error', message.error, message)

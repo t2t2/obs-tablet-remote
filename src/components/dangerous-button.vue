@@ -1,5 +1,8 @@
 <template>
-	<button @click="buttonClick">
+	<button
+		class="button"
+		@click="buttonClick"
+	>
 		<span v-if="isPrimed">
 			Click again to confirm
 			<strong v-if="cooldown">(wait 1 sec)</strong>
@@ -24,12 +27,14 @@ export default {
 			if (this.cooldown) {
 				return
 			}
+
 			if (this.isPrimed) {
 				this.isPrimed = false
 				this.$emit('click')
 				clearTimeout(this._timeout)
 				return
 			}
+
 			this.isPrimed = true
 			this.cooldown = true
 			this._timeout = setTimeout(() => {

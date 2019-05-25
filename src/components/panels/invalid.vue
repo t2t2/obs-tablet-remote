@@ -11,9 +11,9 @@
 </template>
 
 <script>
-	import panelMixin from '../mixins/panel'
+import panelMixin from '@/mixins/panel'
 
-	export default {
-		mixins: [panelMixin]
-	}
+export default {
+	mixins: [panelMixin]
+}
 </script>

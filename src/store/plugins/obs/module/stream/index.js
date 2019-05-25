@@ -21,18 +21,22 @@ export default {
 			if (state.recording === true) {
 				return state.recTimecode
 			}
+
 			if (state.recording === false) {
-				return 'Offline'
+				return 'Disabled'
 			}
+
 			return state.recording
 		},
 		streamingText(state) {
 			if (state.streaming === true) {
 				return state.streamTimecode
 			}
+
 			if (state.streaming === false) {
 				return 'Offline'
 			}
+
 			return state.streaming
 		}
 	},

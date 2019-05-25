@@ -1,0 +1,60 @@
+.theme-default {
+	& .color-editing {
+		@apply text-white bg-blue-600;
+	}
+	& .color-editing-panel {
+		border-color: rgba(255, 255, 255, 0.1);
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+	& .bg-editing-dot {
+		background-color: rgba(255, 255, 255, 0.5);
+	}
+	& .color-ui {
+		@apply text-white bg-blue-800;
+	}
+	& .button.is-primary {
+		@apply text-white bg-blue-500;
+
+		&:hover, &:focus {
+			@apply bg-blue-700;
+		}
+	}
+	& .button.is-active {
+		@apply text-gray-800 bg-teal-400;
+
+		&:hover, &:focus {
+			@apply bg-teal-500;
+		}
+	}
+	& .button.is-inactive {
+		@apply text-gray-800 bg-gray-300;
+
+		&:hover, &:focus {
+			@apply bg-gray-400;
+		}
+	}
+	& .button.is-panel {
+		@apply text-white bg-blue-500 border-blue-600;
+
+		&:hover, &:focus {
+			@apply bg-blue-600;
+		}
+	}
+	& .button.is-add-panel {
+		background-color: rgba(255, 255, 255, 0.1);
+		&:hover, &:focus {
+			background-color: rgba(255, 255, 255, 0.2);
+		}
+	}
+
+	& a {
+		@apply .text-blue-600;
+
+		&:hover, &:focus {
+			@apply .text-blue-800;
+		}
+		&:focus {
+			@apply .shadow-outline;
+		}
+	}
+}

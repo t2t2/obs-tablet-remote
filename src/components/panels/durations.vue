@@ -1,31 +1,29 @@
 <template>
-	<panel-wrapper :content-class="['panel-durations']">
+	<panel-wrapper :content-class="['button-grid', 'has-per-row-1', 'overflow-y-auto']">
 		<template slot="name">
 			Durations
 		</template>
-		<h3 class="current-duration">
-			{{ currentDuration }}ms
-		</h3>
-		<div
+
+		<template
 			v-if="allDurations"
 			class="durations"
 		>
 			<button
 				v-for="duration in allDurations"
 				:key="duration"
-				class="duration"
+				class="button"
 				:class="[duration === currentDuration ? 'is-active' : 'is-inactive']"
 				@click="changeDuration(duration)"
 			>
 				{{ duration }}ms
 			</button>
-		</div>
+		</template>
 	</panel-wrapper>
 </template>
 
 <script>
 import {mapState, mapActions} from 'vuex'
-import panelMixin from '../mixins/panel'
+import panelMixin from '@/mixins/panel'
 
 export default {
 	mixins: [panelMixin],

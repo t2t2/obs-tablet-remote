@@ -38,9 +38,19 @@ function streamStatus(state, status) {
 	setRecTimecode(state, status['rec-timecode'])
 }
 
+function heartbeat(state, status) {
+	const {stats} = status
+	setStreaming(state, status.streaming)
+	setRecording(state, status.recording)
+	setFps(state, stats.fps)
+	setRecTimecode(state, status['rec-timecode'])
+	setStreamTimecode(state, status['stream-timecode'])
+}
+
 export default {
 	'stream/reset': streamReset,
 	'stream/status': streamStatus,
+	'stream/heartbeat': heartbeat,
 	'stream/set/recording': setRecording,
 	'stream/set/recTimecode': setRecTimecode,
 	'stream/set/streaming': setStreaming,

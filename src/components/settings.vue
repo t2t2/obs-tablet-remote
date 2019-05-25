@@ -1,22 +1,20 @@
 <template>
 	<overlay
-		modal-class="wide"
-		@overlay-click="showSettings(false)"
+		wide
+		@close="showSettings(false)"
 	>
-		<div class="modal-header">
-			<h2 class="title">
-				Global Settings
-			</h2>
-			<button
-				class="close"
-				@click="showSettings(false)"
-			/>
-		</div>
-
+		<template v-slot:title>
+			Global Settings
+		</template>
 		<div class="settings-container">
 			<div class="settings-group">
-				<h3>Danger Zone</h3>
-				<button @click="askForReset">
+				<h3 class="text-xl mb-2">
+					Danger Zone
+				</h3>
+				<button
+					class="button is-primary"
+					@click="askForReset"
+				>
 					Reset Layout
 				</button>
 			</div>
@@ -25,22 +23,23 @@
 </template>
 
 <script>
-	import {mapMutations} from 'vuex'
+import {mapMutations} from 'vuex'
 
-	import Overlay from './overlay'
+import Overlay from '@/components/overlay'
 
-	export default {
-		components: {
-			Overlay
+export default {
+	components: {
+		Overlay
+	},
+	methods: {
+		askForReset() {
+			// eslint-disable-next-line no-alert
+			if (confirm('Are you sure you want to reset the layout?')) {
+				this.resetLayout()
+			}
 		},
-		methods: {
-			askForReset() {
-				if (confirm('Are you sure you want to reset the layout?')) {
-					this.resetLayout()
-				}
-			},
-			...mapMutations(['showSettings']),
-			...mapMutations('layout', ['resetLayout'])
-		}
+		...mapMutations(['showSettings']),
+		...mapMutations('layout', ['resetLayout'])
 	}
+}
 </script>

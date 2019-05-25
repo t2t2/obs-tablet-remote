@@ -1,4 +1,4 @@
-export async function authenticate({getters: {client}, commit}, {password}) {
+export async function authenticate({getters: {client}}, {password}) {
 	const result = await client.login(password)
 
 	return result

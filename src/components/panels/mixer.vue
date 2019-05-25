@@ -1,9 +1,10 @@
 <template>
-	<panel-wrapper :content-class="['panel-mixer']">
+	<panel-wrapper :content-class="['button-grid', 'has-per-row-1', 'overflow-y-auto']">
 		<template slot="name">
 			Mixer
 		</template>
-		<div
+
+		<template
 			v-if="audioDevices"
 			class="audio-devices"
 		>
@@ -12,20 +13,20 @@
 				:id="audioDevice.name.replace(/\W/g,'-')"
 				:key="audioDevice.name"
 				:runme="getMuteStatus(audioDevice.name)"
-				class="audio-device"
+				class="button"
 				@click="toggleMuteForAudioDevice(audioDevice.name)"
 				v-text="audioDevice.name"
 			/>
-		</div>
-		<div v-else>
+		</template>
+		<template v-else>
 			Audio Device list is empty? ¯\_(ツ)_/¯
-		</div>
+		</template>
 	</panel-wrapper>
 </template>
 
 <script>
 import {mapState, mapActions} from 'vuex'
-import panelMixin from '../mixins/panel'
+import panelMixin from '@/mixins/panel'
 
 export default {
 

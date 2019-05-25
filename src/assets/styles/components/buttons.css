@@ -1,0 +1,18 @@
+.button {
+	@apply p-3 leading-none;
+	transition: background-color 0.25s;
+	&:focus {
+		@apply .shadow-outline;
+	}
+	&.is-panel {
+		@apply w-8 h-8 -m-1 ml-2 p-1 text-base border;
+	}
+	&.has-icon {
+		@apply p-2 text-2xl;
+	}
+}
+@screen md {
+	.button-ui {
+		@apply p-3 text-2xl leading-none;
+	}
+}
