@@ -14,7 +14,14 @@ export default function (store) {
 	store._obs = client
 
 	if (process.env.NODE_ENV === 'development') {
-		client.debug = console.log.bind(console, 'obs')
+		client.debug = (...args) => {
+			// Filter out heartbeats due to it being just spammy
+			if (args[0] === 'receive' && args[1]['update-type'] === 'Heartbeat') {
+				return
+			}
+
+			console.log('obs', ...args)
+		}
 	}
 
 	store.registerModule('obs', {

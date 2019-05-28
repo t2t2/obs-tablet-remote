@@ -5,17 +5,17 @@
 		</template>
 
 		<template
-			v-if="audioDevices"
+			v-if="audioSources"
 			class="audio-devices"
 		>
 			<button
-				v-for="audioDevice in audioDevices"
-				:id="audioDevice.name.replace(/\W/g,'-')"
-				:key="audioDevice.name"
-				:runme="getMuteStatus(audioDevice.name)"
+				v-for="source in audioSources"
+				:id="source.name.replace(/\W/g,'-')"
+				:key="source.name"
+				:class="[source.muted ? 'is-inactive' : 'is-active']"
 				class="button"
-				@click="toggleMuteForAudioDevice(audioDevice.name)"
-				v-text="audioDevice.name"
+				@click="toggleMute({source: source.name, mute: !source.muted})"
+				v-text="source.name"
 			/>
 		</template>
 		<template v-else>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 import panelMixin from '@/mixins/panel'
 
 export default {
@@ -33,21 +33,14 @@ export default {
 	mixins: [panelMixin],
 
 	computed: {
-		...mapState('obs', {
-			audioDevices: state => state.mixer.list
+		...mapGetters('obs', {
+			audioSources: 'sources/audioSources'
 		})
 	},
 
 	methods: {
-		getMuteStatus(name) {
-			this.muteStatus({name})
-		},
-		async toggleMuteForAudioDevice(name) {
-			await this.toggleMute({name})
-		},
 		...mapActions('obs', {
-			toggleMute: 'mixer/toggle-mute',
-			muteStatus: 'mixer/mute-status'
+			toggleMute: 'sources/mute'
 		})
 	}
 }
