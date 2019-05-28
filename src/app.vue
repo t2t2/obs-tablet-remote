@@ -1,5 +1,8 @@
 <template>
-	<div class="w-full h-full m-0 font-sans flex flex-col theme-default">
+	<div
+		:class="`theme-${theme}`"
+		class="w-full h-full m-0 font-sans flex flex-col"
+	>
 		<TopBar />
 
 		<component
@@ -30,7 +33,8 @@ export default {
 	},
 	computed: {
 		...mapGetters(['activeView']),
-		...mapState(['showingSettings'])
+		...mapState(['showingSettings']),
+		...mapState('settings', ['theme'])
 	},
 	mounted() {
 		// Check if autoconnect is ready

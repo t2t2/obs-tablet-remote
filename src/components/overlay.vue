@@ -5,7 +5,7 @@
 		@click.self="$emit('close')"
 	>
 		<div
-			class="w-full md:w-2/5 bg-white text-gray-800 max-h-full overflow-y-auto"
+			class="w-full md:w-2/5 bg-white text-gray-800 color-modal max-h-full overflow-y-auto"
 			:class="modalClass"
 		>
 			<div class="p-4">
@@ -14,7 +14,7 @@
 						<slot name="title" />
 					</h2>
 					<button
-						class="bg-gray-400 hover:bg-gray-500 leading-none text-center w-8 h-8 rounded-full"
+						class="bg-gray-400 hover:bg-gray-500 text-gray-800 leading-none text-center w-8 h-8 rounded-full"
 						title="Close"
 						@click="$emit('close')"
 					>

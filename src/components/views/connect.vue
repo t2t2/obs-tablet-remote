@@ -15,8 +15,12 @@
 				@submit.prevent="connect"
 			>
 				<div class="field">
-					<label class="label">Host</label>
+					<label
+						class="label"
+						for="connect-host"
+					>Host</label>
 					<input
+						id="connect-host"
 						v-model="host"
 						class="input"
 						type="text"
@@ -24,10 +28,14 @@
 					>
 				</div>
 				<div class="field">
-					<label class="label">
+					<label
+						class="label"
+						for="connect-port"
+					>
 						Port
 					</label>
 					<input
+						id="connect-port"
 						v-model="port"
 						class="input"
 						type="number"
@@ -47,8 +55,12 @@
 				@submit.prevent="login"
 			>
 				<div class="field">
-					<label class="label">Password</label>
+					<label
+						class="label"
+						for="connect-password"
+					>Password</label>
 					<input
+						id="connect-password"
 						v-model="password"
 						class="input"
 						type="password"

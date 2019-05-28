@@ -2,7 +2,9 @@ export default {
 	state: {
 		defaultHost: '',
 		defaultPort: 4444,
-		hasEdited: false
+		hasEdited: false,
+		theme: 'default',
+		version: 1
 	},
 	mutations: {
 		set(state, {key, value}) {

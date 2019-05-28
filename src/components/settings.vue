@@ -6,8 +6,29 @@
 		<template v-slot:title>
 			Global Settings
 		</template>
-		<div class="settings-container">
-			<div class="settings-group">
+
+		<div class="flex -mx-2">
+			<div class="w-1/2 px-2">
+				<div class="field">
+					<label
+						:for="`settings-theme`"
+						class="label"
+					>Theme</label>
+					<select
+						:id="`settings-theme`"
+						v-model="theme"
+						class="select"
+					>
+						<option value="default">
+							Default
+						</option>
+						<option value="dark-blue">
+							Dark & Blue
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="w-1/2 px-2">
 				<h3 class="text-xl mb-2">
 					Danger Zone
 				</h3>
@@ -23,13 +44,24 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
 import Overlay from '@/components/overlay'
 
 export default {
 	components: {
 		Overlay
+	},
+	computed: {
+		...mapState(['settings']),
+		theme: {
+			get({settings}) {
+				return settings.theme
+			},
+			set(value) {
+				this.setSetting({key: 'theme', value})
+			}
+		}
 	},
 	methods: {
 		askForReset() {
@@ -39,6 +71,9 @@ export default {
 			}
 		},
 		...mapMutations(['showSettings']),
+		...mapMutations('settings', {
+			setSetting: 'set'
+		}),
 		...mapMutations('layout', ['resetLayout'])
 	}
 }

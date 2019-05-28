@@ -6,6 +6,8 @@ import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
 
+import migrate from './migrations/manager'
+
 import layout from './modules/layout'
 import settings from './modules/settings'
 
@@ -27,10 +29,17 @@ const store = new Store({
 		layout,
 		settings
 	},
-	plugins: [obs, createPersistedState({
-		key: 'obs-remote-tablet-vuex',
-		paths: ['layout', 'settings']
-	})]
+	plugins: [
+		obs,
+		createPersistedState({
+			key: 'obs-remote-tablet-vuex',
+			filter({type}) {
+				return type.startsWith('layout') || type.startsWith('settings')
+			},
+			paths: ['layout', 'settings']
+		}),
+		migrate
+	]
 })
 
 // Clean slate if fresh user

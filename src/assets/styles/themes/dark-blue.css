@@ -1,0 +1,81 @@
+.theme-dark-blue {
+	&, & .color-modal {
+		@apply text-gray-300 bg-gray-900;
+	}
+	& .bg-overlay {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	& .color-editing {
+		@apply text-gray-100 bg-blue-600;
+	}
+	& .color-editing-panel {
+		border-color: rgba(0, 0, 0, 0.1);
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+	& .bg-editing-dot {
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	& .color-ui {
+		@apply text-gray-300 bg-blue-900;
+	}
+	& .button.is-primary {
+		@apply text-gray-300 bg-blue-800;
+
+		&:hover, &:focus {
+			@apply bg-blue-700;
+		}
+	}
+	& .button.is-active {
+		@apply text-gray-300 bg-blue-800;
+
+		&:hover, &:focus {
+			@apply bg-blue-700;
+		}
+	}
+	& .button.is-inactive {
+		@apply text-gray-300 bg-gray-800;
+
+		&:hover, &:focus {
+			@apply bg-gray-700;
+		}
+	}
+	& .button.is-panel {
+		@apply text-white bg-blue-500 border-blue-600;
+
+		&:hover, &:focus {
+			@apply bg-blue-600;
+		}
+	}
+	& .button.is-add-panel {
+		background-color: rgba(255, 255, 255, 0.1);
+		&:hover, &:focus {
+			background-color: rgba(255, 255, 255, 0.2);
+		}
+	}
+
+	& a {
+		@apply .text-blue-500;
+
+		&:hover, &:focus {
+			@apply .text-blue-300;
+		}
+		&:focus {
+			@apply .shadow-outline;
+		}
+	}
+
+	& .label {
+		@apply .text-gray-400;
+	}
+	& .input, & .select {
+		@apply .bg-gray-900 .text-gray-300 .border-gray-700;
+	}
+	& .card {
+		@apply .border-gray-800 .shadow-md-light;
+
+		& .card-title {
+			@apply .text-gray-400;
+		}
+	}
+}
