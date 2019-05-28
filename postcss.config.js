@@ -24,7 +24,12 @@ module.exports = {
 				}
 			],
 			whitelist: [],
-			whitelistPatterns: [/-(leave|enter|appear)(|-(to|from|active))$/, /^(?!(|.*?:)cursor-move).+-move$/, /^router-link(|-exact)-active$/]
+			whitelistPatterns: [
+				/-(leave|enter|appear)(|-(to|from|active))$/,
+				/^(?!(|.*?:)cursor-move).+-move$/,
+				/^router-link(|-exact)-active$/,
+				/^theme-.+$/
+			]
 		}),
 		require('autoprefixer')(),
 		require('postcss-flexbugs-fixes')
