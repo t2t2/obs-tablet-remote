@@ -9,7 +9,7 @@ const xoConfig = buildConfig(preprocess({
 	rules: {
 		// 'object-curly-spacing': ['error', 'always'],
 		'valid-jsdoc': 0,
-		'vue/html-indent': ['error', 'tab'],
+		'vue/html-indent': ['error', 'tab']
 	},
 	settings: {
 		'import/resolver': {
