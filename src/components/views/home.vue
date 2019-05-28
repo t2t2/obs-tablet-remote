@@ -51,7 +51,7 @@
 					To use OBS Tablet Remote make sure you have installed the <a
 						href="https://obsproject.com/forum/resources/websocket-plugin.466/"
 						target="_blank"
-					>Websocket Plugin for OBS Studio</a>
+					>Websocket Plugin for OBS Studio</a>. This version has been optimised for version <strong>4.6.0</strong> or newer
 				</p>
 
 				<h2 class="text-2xl mb-2">
