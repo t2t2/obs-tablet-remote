@@ -1,7 +1,7 @@
 <template>
 	<div
 		:class="{'color-editing-panel border p-2': editing}"
-		class="flex flex-col w-full h-full overflow-hidden"
+		class="flex flex-grow flex-col overflow-hidden"
 	>
 		<div
 			v-if="editing"
@@ -33,7 +33,7 @@
 		</div>
 		<div
 			v-if="!editing || isGrid"
-			class="h-full w-full overflow-hidden"
+			class="flex-grow overflow-hidden"
 			:class="contentClass"
 		>
 			<slot />

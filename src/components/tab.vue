@@ -1,5 +1,5 @@
 <template>
-	<div class="h-full w-full overflow-hidden">
+	<div class="flex flex-grow overflow-hidden">
 		<Panel
 			v-if="rootPanel"
 			:id="tab.root"

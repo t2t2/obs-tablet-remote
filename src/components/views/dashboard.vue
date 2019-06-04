@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col">
 		<div
-			class="h-full w-full flex"
+			class="flex flex-grow"
 			:class="{'color-editing': editing}"
 		>
 			<tab
