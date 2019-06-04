@@ -16,7 +16,7 @@
 			<div
 				v-if="editing && index > 0"
 				:key="id + '-resize'"
-				:class="[isHorizontal ? 'flex-row' : 'flex-col']"
+				:class="[isHorizontal ? 'flex-col' : 'flex-row']"
 				class="flex justify-center cursor-move p-2"
 				draggable="true"
 				@mousedown.prevent="startResize($event, index - 1)"
@@ -26,7 +26,7 @@
 					v-for="i in 3"
 					:key="i"
 					class="block w-2 h-2 bg-editing-dot rounded-full"
-					:class="[isHorizontal ? 'ml-2' : 'mb-2']"
+					:class="[isHorizontal ? 'mb-2' : 'ml-2']"
 				/>
 			</div>
 			<panel
@@ -45,7 +45,7 @@
 			v-if="editing"
 			ref="addButton"
 			class="button is-add-panel p-2"
-			:class="[isHorizontal ? 'mt-2' : 'ml-2']"
+			:class="[isHorizontal ? 'ml-2' : 'mt-2']"
 			@click="showAddPanel=true"
 		>
 			<FontAwesomeIcon
@@ -65,6 +65,7 @@
 			<panel-list
 				:parent-id="id"
 				:parent-depth="depth"
+				@close="showAddPanel=false"
 			/>
 		</overlay>
 
@@ -133,10 +134,10 @@ export default {
 			return Object.keys(this.childPanels).length
 		},
 		isHorizontal() {
-			return this.settings.direction === 'column'
+			return this.settings.direction === 'row'
 		},
 		directionClass({isHorizontal}) {
-			return isHorizontal ? 'flex-col' : 'flex-row'
+			return isHorizontal ? 'flex-row' : 'flex-col'
 		},
 		shouldClosePanel() {
 			return this.showAddPanel && !this.editing
