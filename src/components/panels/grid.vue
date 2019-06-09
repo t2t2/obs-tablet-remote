@@ -1,6 +1,6 @@
 <template>
 	<panel-wrapper
-		:content-class="['flex items-stretch', directionClass]"
+		:content-class="['flex items-stretch w-full h-full', directionClass]"
 		:is-grid="true"
 		@mouseleave.native="stopResizing"
 		@mousemove.native="handleResize"

@@ -1,7 +1,7 @@
 <template>
 	<div
 		:class="{'color-editing-panel border p-2': editing}"
-		class="flex flex-grow flex-col overflow-hidden"
+		class="flex flex-auto flex-col overflow-hidden h-full"
 	>
 		<div
 			v-if="editing"
