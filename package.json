@@ -18,7 +18,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "@fullhuman/postcss-purgecss": "^1.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "sha.js": "^2.4.11",
     "vue": "^2.6.10",
     "vuex": "^3.1.1",
