@@ -107,11 +107,10 @@ import throttle from 'lodash/throttle'
 import sum from 'lodash/sum'
 import {mapState} from 'vuex'
 
-import hasChildPanels from '@/mixins/has-child-panels'
-import panelMixin from '@/mixins/panel'
-
 import PanelList from '../panel-list'
 import Overlay from '../overlay'
+import hasChildPanels from '@/mixins/has-child-panels'
+import panelMixin from '@/mixins/panel'
 
 const MIN_PANEL_SIZE_MULTI = 0.05
 

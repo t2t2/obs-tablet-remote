@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path') // eslint-disable-line import/no-extraneous-dependencies
 const {buildConfig, preprocess} = require('xo/lib/options-manager')
 
 const xoConfig = buildConfig(preprocess({

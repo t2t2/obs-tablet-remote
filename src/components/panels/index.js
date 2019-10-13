@@ -1,5 +1,4 @@
 // Dynamic component resolver
-import panelMixin from '@/mixins/panel'
 
 import Grid from './grid'
 import Iframe from './iframe'
@@ -10,6 +9,7 @@ import Mixer from './mixer'
 import Stream from './stream'
 import Transitions from './transitions'
 import Durations from './durations'
+import panelMixin from '@/mixins/panel'
 
 const components = {
 	Grid,

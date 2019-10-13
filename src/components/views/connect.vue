@@ -81,8 +81,8 @@
 <script>
 import {mapState} from 'vuex'
 
-import uuidMixin from '@/mixins/uuid'
 import {parseHashBang} from '../../util'
+import uuidMixin from '@/mixins/uuid'
 
 export default {
 	mixins: [uuidMixin],

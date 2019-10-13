@@ -4,5 +4,6 @@
 		"**/dist": true
 	},
 	"css.validate": false,
-	"eslint.autoFixOnSave": true
+	"eslint.autoFixOnSave": true,
+	"eslint.enable": true
 }

@@ -1,4 +1,4 @@
-import EventEmitter from 'events'
+import EventEmitter from 'eventemitter3'
 import Sha256Hash from 'sha.js/sha256'
 
 export default class OBSRemote extends EventEmitter {

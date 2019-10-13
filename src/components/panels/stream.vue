@@ -23,8 +23,8 @@
 <script>
 import {mapActions, mapGetters, mapState} from 'vuex'
 
-import panelMixin from '@/mixins/panel'
 import DangerousButton from '../dangerous-button'
+import panelMixin from '@/mixins/panel'
 
 export default {
 	components: {
