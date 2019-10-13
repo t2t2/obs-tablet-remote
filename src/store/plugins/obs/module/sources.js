@@ -32,8 +32,11 @@ export const actions = {
 	async 'sources/mute'({getters: {client}}, {source, mute}) {
 		await client.send({'request-type': 'ToggleMute', source, mute})
 	},
+	async 'sources/volume'({getters: {client}}, {source, volume}) {
+		await client.send({'request-type': 'SetVolume', source, volume})
+	},
 	async 'sources/updateSourceVolume'({commit, getters: {client}}, name) {
-		const res = await client.send({'request-type': 'GetMute', source: name})
+		const res = await client.send({'request-type': 'GetVolume', source: name})
 		commit('sources/updateAudio', res)
 	},
 	async 'event/SourceMuteStateChanged'({commit}, {sourceName, muted}) {

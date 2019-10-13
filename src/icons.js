@@ -15,6 +15,7 @@ import {
 	faTrashAlt,
 	faTv,
 	faVideo,
+	faVolumeMute,
 	faVolumeUp,
 	faWindowMaximize
 } from '@fortawesome/free-solid-svg-icons'
@@ -35,6 +36,7 @@ library.add(
 	faTrashAlt,
 	faTv,
 	faVideo,
+	faVolumeMute,
 	faVolumeUp,
 	faWindowMaximize
 )

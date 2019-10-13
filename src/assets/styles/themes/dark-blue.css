@@ -40,6 +40,13 @@
 			@apply bg-gray-700;
 		}
 	}
+	& .button.is-off {
+		@apply text-gray-300 bg-red-800;
+
+		&:hover, &:focus {
+			@apply bg-red-700;
+		}
+	}
 	& .button.is-panel {
 		@apply text-white bg-blue-500 border-blue-600;
 
@@ -70,6 +77,17 @@
 	}
 	& .input, & .select {
 		@apply .bg-gray-900 .text-gray-300 .border-gray-700;
+	}
+	& .slider {
+		&::range-track {
+			@apply .bg-gray-800 .border-gray-700;
+		}
+		&::range-thumb {
+			@apply .bg-blue-600;
+			&:hover, &:foucs {
+				@apply .bg-blue-500;
+			}
+		}
 	}
 	& .card {
 		@apply .border-gray-800 .shadow-md-light;

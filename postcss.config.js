@@ -32,6 +32,8 @@ module.exports = {
 			]
 		}),
 		require('autoprefixer')(),
-		require('postcss-flexbugs-fixes')
+		require('postcss-flexbugs-fixes'),
+		require('postcss-calc'),
+		require('postcss-input-range')
 	]
 }

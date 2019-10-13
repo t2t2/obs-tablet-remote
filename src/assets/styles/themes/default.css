@@ -33,6 +33,13 @@
 			@apply bg-gray-400;
 		}
 	}
+	& .button.is-off {
+		@apply text-gray-800 bg-red-300;
+
+		&:hover, &:focus {
+			@apply bg-red-400;
+		}
+	}
 	& .button.is-panel {
 		@apply text-white bg-blue-500 border-blue-600;
 
@@ -55,6 +62,18 @@
 		}
 		&:focus {
 			@apply .shadow-outline;
+		}
+	}
+
+	& .slider {
+		&::range-track, &::range-lower, &::range-upper {
+			@apply .bg-gray-200 .border-gray-300;
+		}
+		&::range-thumb {
+			@apply .bg-teal-500;
+			&:hover, &:foucs {
+				@apply .bg-teal-600;
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <template>
-	<div class="flex flex-col flex-1 items-stretch h-full">
+	<div class="flex flex-col flex-1 items-stretch h-full overflow-hidden">
 		<div
-			class="flex flex-col items-stretch flex-1 flex-grow h-full"
+			class="flex flex-col items-stretch flex-1 flex-grow h-full overflow-hidden"
 			:class="{'color-editing': editing}"
 		>
 			<tab

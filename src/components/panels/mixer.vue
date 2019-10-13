@@ -1,21 +1,16 @@
 <template>
-	<panel-wrapper :content-class="['button-grid', 'has-per-row-1', 'overflow-y-auto']">
+	<panel-wrapper :content-class="['overflow-y-auto', 'flex', 'flex-col']">
 		<template slot="name">
 			Mixer
 		</template>
 
 		<template
 			v-if="audioSources"
-			class="audio-devices"
 		>
-			<button
+			<AudioSource
 				v-for="source in audioSources"
-				:id="source.name.replace(/\W/g,'-')"
 				:key="source.name"
-				:class="[source.muted ? 'is-inactive' : 'is-active']"
-				class="button"
-				@click="toggleMute({source: source.name, mute: !source.muted})"
-				v-text="source.name"
+				:source="source"
 			/>
 		</template>
 		<template v-else>
@@ -25,22 +20,21 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
+import AudioSource from './mixer/source'
 import panelMixin from '@/mixins/panel'
 
 export default {
+
+	components: {
+		AudioSource
+	},
 
 	mixins: [panelMixin],
 
 	computed: {
 		...mapGetters('obs', {
 			audioSources: 'sources/audioSources'
-		})
-	},
-
-	methods: {
-		...mapActions('obs', {
-			toggleMute: 'sources/mute'
 		})
 	}
 }

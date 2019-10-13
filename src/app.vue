@@ -1,7 +1,7 @@
 <template>
 	<div
 		:class="`theme-${theme}`"
-		class="w-full h-full m-0 font-sans flex flex-col"
+		class="w-full h-full overflow-hidden m-0 font-sans flex flex-col"
 	>
 		<TopBar />
 
