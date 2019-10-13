@@ -12,7 +12,7 @@
     "deploy": "npm-run-all build:deploy deploy:upload",
     "deploy:upload": "gh-pages -d dist",
     "deploy:ci": "npm-run-all build:deploy deploy:upload:ci",
-    "deploy:upload:ci": "gh-pages -d dist --repo \"https://x-access-token:${GITHUB_TOKEN}/${GITHUB_REPOSITORY}.git\"",
+    "deploy:upload:ci": "gh-pages -d dist --repo \"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git\"",
     "dev": "npm run serve"
   },
   "dependencies": {
