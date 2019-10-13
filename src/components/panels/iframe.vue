@@ -1,11 +1,12 @@
 <template>
-	<panel-wrapper :content-class="['panel-iframe']">
+	<panel-wrapper :content-class="['flex flex-col']">
 		<template slot="name">
 			Frame
 		</template>
 		<iframe
 			:src="url"
 			frameborder="0"
+			class="flex-grow"
 			style="width: 100%; height: 100%;"
 		/>
 
