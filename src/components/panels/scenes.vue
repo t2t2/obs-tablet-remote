@@ -6,6 +6,7 @@
 
 		<button
 			v-for="scene in scenes"
+			v-if="!scene.name.startsWith(hidePrefix)"
 			:key="scene.name"
 			class="button"
 			:class="[scene.name === currentScene ? 'is-active' : 'is-inactive']"
@@ -74,6 +75,20 @@
 					step="0.1"
 				>
 			</div>
+			<h3 class="text-xl mb-2">
+				Hide Scenes
+			</h3>
+			<div class="field">
+				<label
+					:for="`settings-${id}-hide-prefix`"
+					class="label"
+				>Hide scenes with this prefix in name</label>
+				<input
+					:id="`settings-${id}-hide-prefix`"
+					v-model="hidePrefix"
+					class="input"
+				>
+			</div>
 		</template>
 	</panel-wrapper>
 </template>
@@ -114,6 +129,14 @@ export default {
 			},
 			set(value) {
 				this.setSetting('transitionSeconds', value)
+			}
+		},
+		hidePrefix: {
+			get() {
+				return this.settings.hidePrefix
+			},
+			set(value) {
+				this.setSetting('hidePrefix', value)
 			}
 		},
 		...mapState('obs', {
