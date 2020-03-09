@@ -30,7 +30,8 @@ export default class OBSRemote extends EventEmitter {
 		return new Promise((resolve, reject) => {
 			this._connecting = {resolve, reject}
 
-			const url = 'ws://' + host + (port ? ':' + port : '')
+			const protocol = (host.startsWith('ws://') || host.startsWith('wss://')) ? '' : 'ws://';
+			const url = protocol + host + (port ? ':' + port : '')
 			this._socket = new WebSocket(url)
 
 			this._socket.addEventListener('open', socketOnOpen.bind(this))
