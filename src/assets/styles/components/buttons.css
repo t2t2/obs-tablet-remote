@@ -1,6 +1,8 @@
 .button {
 	@apply p-3 leading-none;
 	transition: background-color 0.25s;
+	user-select: none;
+	-webkit-touch-callout: behavior;
 	&:focus {
 		@apply .shadow-outline;
 	}
