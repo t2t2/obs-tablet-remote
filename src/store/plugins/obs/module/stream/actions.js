@@ -49,15 +49,15 @@ function eventStreamStopped({commit}) {
 }
 
 async function setStreaming({getters: {client}}, {status}) {
-	const req = status ? 'StartStreaming' : 'StopStreaming'
+	const request = status ? 'StartStreaming' : 'StopStreaming'
 
-	await client.send({'request-type': req})
+	await client.send({'request-type': request})
 }
 
 async function setRecording({getters: {client}}, {status}) {
-	const req = status ? 'StartRecording' : 'StopRecording'
+	const request = status ? 'StartRecording' : 'StopRecording'
 
-	await client.send({'request-type': req})
+	await client.send({'request-type': request})
 }
 
 async function streamReload({commit, getters: {client}}) {

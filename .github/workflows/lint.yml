@@ -1,12 +1,13 @@
-name: Deploy
+name: Lint
 
 on:
+  pull_request:
   push:
-    branches:
-      - master
+    branches-ignore:
+      - gh-pages
 
 jobs:
-  deploy:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +32,4 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run deploy:ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run lint

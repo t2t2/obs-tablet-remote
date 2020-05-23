@@ -3,7 +3,7 @@
 		wide
 		@close="showSettings(false)"
 	>
-		<template v-slot:title>
+		<template #title>
 			Global Settings
 		</template>
 

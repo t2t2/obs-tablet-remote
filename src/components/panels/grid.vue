@@ -161,7 +161,7 @@ export default {
 		}
 	},
 	methods: {
-		startResize(e, i) {
+		startResize(event, i) {
 			// Get current sizes and set as current value
 			const sizeAttr = this.settings.direction === 'row' ? 'width' : 'height'
 			const sizes = this.$refs.panels.map(panel => panel.$el.getBoundingClientRect()[sizeAttr])
@@ -171,19 +171,19 @@ export default {
 			this.dragging = i
 			this.draggingWeights = sizes.map(size => size / total * count)
 		},
-		handleResize(e) {
+		handleResize(event) {
 			if (!this._resizeThrottle) {
 				this._resizeThrottle = throttle(this.doResize.bind(this), 33)
 			}
 
 			if (this.dragging !== false) {
-				e.preventDefault()
-				this._resizeThrottle(e)
+				event.preventDefault()
+				this._resizeThrottle(event)
 			}
 		},
-		stopResizing(e) {
+		stopResizing(event) {
 			if (this.dragging !== false) {
-				e.preventDefault()
+				event.preventDefault()
 
 				this.setSetting('weights', this.draggingWeights)
 
@@ -191,13 +191,13 @@ export default {
 				this.draggingWeights = null
 			}
 		},
-		doResize(e) {
+		doResize(event) {
 			if (this.dragging !== false) {
 				const i = this.dragging
 
-				let positionOwner = e
-				if (e.targetTouches && e.targetTouches.length > 0) {
-					positionOwner = e.targetTouches[0]
+				let positionOwner = event
+				if (event.targetTouches && event.targetTouches.length > 0) {
+					positionOwner = event.targetTouches[0]
 				}
 
 				let keys

@@ -104,7 +104,7 @@ export default {
 		}
 
 		if (vars.port) {
-			data.port = parseInt(vars.port, 10)
+			data.port = Number.parseInt(vars.port, 10)
 		} else {
 			data.port = this.$store.state.settings.defaultPort
 		}

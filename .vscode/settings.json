@@ -1,9 +1,38 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+	// ===
+	// Spacing
+	// ===
+	"editor.insertSpaces": false,
+	"editor.trimAutoWhitespace": true,
+	"files.trimTrailingWhitespace": true,
+	"files.eol": "\n",
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	// ===
+	// Files
+	// ===
 	"files.exclude": {
-		"**/dist": true
+		"**/*.log": true,
+		"**/*.log*": true,
+		"**/dist": true,
 	},
+	// ===
+	// Event Triggers
+	// ===
+	"editor.formatOnSave": true,
+	"vetur.format.enable": false,
+	// ===
+	// JS(ON)
+	// ===
+	"javascript.format.enable": false,
+	"json.format.enable": false,
+	// ===
+	// CSS
+	// ===
 	"css.validate": false,
-	"eslint.autoFixOnSave": true,
+	"[vue]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
 	"eslint.enable": true
 }

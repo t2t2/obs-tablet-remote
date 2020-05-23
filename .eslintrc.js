@@ -1,7 +1,7 @@
 const path = require('path') // eslint-disable-line import/no-extraneous-dependencies
-const {buildConfig, preprocess} = require('xo/lib/options-manager')
+const {buildConfig} = require('xo/lib/options-manager')
 
-const xoConfig = buildConfig(preprocess({
+const xoConfig = buildConfig({
 	semicolon: false,
 	extends: [
 		'plugin:vue/recommended'
@@ -18,7 +18,7 @@ const xoConfig = buildConfig(preprocess({
 			}
 		}
 	}
-}))
+})
 
 module.exports = {
 	root: true,

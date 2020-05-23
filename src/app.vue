@@ -45,12 +45,12 @@ export default {
 	},
 	methods: {
 		async doAutoconnect(vars) {
-			const res = await this.$store.dispatch('obs/connect', {
+			const response = await this.$store.dispatch('obs/connect', {
 				host: vars.host,
 				port: vars.port
 			})
 
-			if (res.authRequired && vars.password) {
+			if (response.authRequired && vars.password) {
 				await this.$store.dispatch('obs/authenticate', {
 					password: vars.password
 				})

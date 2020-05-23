@@ -134,7 +134,7 @@ function socketOnOpen() {
 			} else {
 				this.emit('socket.ready')
 			}
-		}, err => reject(err))
+		}, error => reject(error))
 
 		this._connecting = null
 	}

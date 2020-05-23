@@ -42,7 +42,7 @@
 			v-if="settingsOpen"
 			@close="settingsOpen = false"
 		>
-			<template v-slot:title>
+			<template #title>
 				Settings
 			</template>
 			<slot name="settings" />
