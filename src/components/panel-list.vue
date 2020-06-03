@@ -97,6 +97,13 @@ const PANELS_INFO = [
 		type: 'Durations'
 	},
 	{
+		name: 'Studio Controls',
+		description: 'Transition controls for studio mode',
+		icon: 'sliders-h',
+		iconSettings: {},
+		type: 'Studio'
+	},
+	{
 		name: 'Stream Status',
 		description: 'Manage stream & recording status',
 		icon: 'dot-circle',
