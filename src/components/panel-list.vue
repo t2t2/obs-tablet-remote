@@ -62,6 +62,13 @@ const PANELS_INFO = [
 		type: 'Scenes'
 	},
 	{
+		name: 'Preview Switcher',
+		description: 'Switch the preview scene',
+		icon: 'tv',
+		iconSettings: {},
+		type: 'PreviewScenes'
+	},
+	{
 		name: 'Sources List',
 		description: 'Toggle sources on and off',
 		icon: 'video',
