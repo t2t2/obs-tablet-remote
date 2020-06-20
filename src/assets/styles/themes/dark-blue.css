@@ -60,6 +60,19 @@
 			background-color: rgba(255, 255, 255, 0.2);
 		}
 	}
+	& .button.is-list-item {
+		&:hover, &:focus {
+			@apply bg-gray-700;
+		}
+
+		&[disabled] {
+			@apply cursor-default text-gray-600;
+
+			&:hover, &:focus {
+				@apply bg-transparent;
+			}
+		}
+	}
 
 	& a {
 		@apply .text-blue-500;

@@ -3,8 +3,8 @@
 		<button
 			v-for="item in list"
 			:key="item.name"
-			class="button flex w-full px-1 py-2 hover:bg-gray-200"
-			:class="{'is-disabled': !canBeAdded(item)}"
+			class="button is-list-item flex w-full px-1 py-2"
+			:disabled="!canBeAdded(item)"
 			@click="addPanel(item)"
 		>
 			<div class="w-16 text-5xl mr-2">
