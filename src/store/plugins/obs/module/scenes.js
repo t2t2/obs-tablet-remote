@@ -57,7 +57,7 @@ export default {
 		previewScene(state) {
 			return state.list.find(scene => scene.name === state.preview)
 		},
-		viewScene(state) {
+		previewOrCurrentScene(state) {
 			const name = state.preview || state.current
 			return state.list.find(scene => scene.name === name)
 		}

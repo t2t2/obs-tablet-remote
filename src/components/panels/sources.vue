@@ -3,7 +3,6 @@
 		<template slot="name">
 			Sources
 		</template>
-
 		<h3 class="p-2 text-center font-bold">
 			{{ viewScene ? viewScene.name : 'Unknown Scene' }}
 		</h3>
@@ -24,6 +23,28 @@
 		<div v-else>
 			Unknown scene, this should not happen :(
 		</div>
+
+		<template #settings>
+			<div class="field">
+				<p class="label">
+					View:
+				</p>
+				<button
+					:class="settings.view === 'preview' ? 'is-active' : 'is-inactive'"
+					class="button"
+					@click="setSetting('view', 'preview')"
+				>
+					<span>Preview</span>
+				</button>
+				<button
+					:class="settings.view === 'current' ? 'is-active' : 'is-inactive'"
+					class="button"
+					@click="setSetting('view', 'current')"
+				>
+					<span>Current</span>
+				</button>
+			</div>
+		</template>
 	</panel-wrapper>
 </template>
 
@@ -35,7 +56,15 @@ import panelMixin from '@/mixins/panel'
 export default {
 	mixins: [panelMixin],
 	computed: {
-		...mapGetters('obs', ['viewScene'])
+		...mapGetters('obs', ['previewOrCurrentScene']),
+		...mapGetters('obs', ['currentScene']),
+		viewScene() {
+			if (this.settings.view === 'preview') {
+				return this.previewOrCurrentScene
+			}
+
+			return this.currentScene
+		}
 	},
 	methods: {
 		...mapActions({

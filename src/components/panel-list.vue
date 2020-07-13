@@ -66,7 +66,12 @@ const PANELS_INFO = [
 		description: 'Toggle sources on and off',
 		icon: 'video',
 		iconSettings: {},
-		type: 'Sources'
+		type: 'Sources',
+		defaults() {
+			return {
+				view: 'preview'
+			}
+		}
 	},
 	{
 		name: 'Audio Devices',
