@@ -173,7 +173,7 @@ export default {
 		},
 		handleResize(event) {
 			if (!this._resizeThrottle) {
-				this._resizeThrottle = throttle(this.doResize.bind(this), 60)
+				this._resizeThrottle = throttle(this.doResize.bind(this), 15)
 			}
 
 			if (this.dragging !== false) {

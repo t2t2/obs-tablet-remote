@@ -124,13 +124,9 @@ export default {
 	},
 	methods: {
 		async switchScenes(name) {
-			console.log('hi')
 			// eslint-disable-next-line no-negated-condition
 			if (name !== this.previewScene) {
-				console.log('hi again')
 				this.setPreview({name})
-				console.log(name)
-				console.log('bye')
 			} else {
 				if (this.transitionScene && this.transitionSeconds > 0) {
 					this.setScene({name: this.transitionScene})
