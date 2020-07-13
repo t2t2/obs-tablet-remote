@@ -1,6 +1,7 @@
 export default {
 	state: {
 		current: null,
+		preview: null,
 		list: []
 	},
 	actions: {
@@ -18,8 +19,11 @@ export default {
 				'scene-name': current
 			})
 		},
-		'scenes/current'({getters: {client}}, {name}) {
+		async 'scenes/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentScene', 'scene-name': name})
+		},
+		'scenes/preview'({commit}, {name}) {
+			commit('scenes/preview', name)
 		},
 		async 'sources/render'({getters: {client}}, {scene, source, render}) {
 			return client.send({
@@ -49,11 +53,21 @@ export default {
 	getters: {
 		currentScene(state) {
 			return state.list.find(scene => scene.name === state.current)
+		},
+		previewScene(state) {
+			return state.list.find(scene => scene.name === state.preview)
+		},
+		viewScene(state) {
+			const name = state.preview || state.current
+			return state.list.find(scene => scene.name === name)
 		}
 	},
 	mutations: {
 		'scenes/current'(state, {'scene-name': name}) {
 			state.current = name
+		},
+		'scenes/preview'(state, preview) {
+			state.preview = preview
 		},
 		'scenes/list'(state, {scenes}) {
 			state.list = scenes

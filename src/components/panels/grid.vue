@@ -11,7 +11,6 @@
 		<template #name>
 			{{ isHorizontal ? 'Horizontal' : 'Vertical' }} Splitter
 		</template>
-
 		<template v-for="(panel, id, index) in childPanels">
 			<div
 				v-if="editing && index > 0"
@@ -40,6 +39,7 @@
 				}"
 			/>
 		</template>
+
 		<!-- adding in edit mode -->
 		<button
 			v-if="editing"
@@ -173,7 +173,7 @@ export default {
 		},
 		handleResize(event) {
 			if (!this._resizeThrottle) {
-				this._resizeThrottle = throttle(this.doResize.bind(this), 33)
+				this._resizeThrottle = throttle(this.doResize.bind(this), 60)
 			}
 
 			if (this.dragging !== false) {
