@@ -33,6 +33,13 @@
 			@apply bg-blue-700;
 		}
 	}
+	& .button.is-preview-scene {
+		@apply text-gray-800 bg-yellow-600;
+
+		&:hover, &:focus {
+			@apply bg-yellow-500;
+		}
+	}
 	& .button.is-inactive {
 		@apply text-gray-300 bg-gray-800;
 

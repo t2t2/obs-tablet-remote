@@ -8,7 +8,9 @@
 			v-for="scene in scenes"
 			:key="scene.name"
 			class="button"
-			:class="[scene.name === currentScene ? 'is-active' : 'is-inactive']"
+			:class="[scene.name === currentScene ? 'is-active' :
+				scene.name === previewScene ? 'is-preview-scene' :
+				'is-inactive']"
 			@click="switchScenes(scene.name)"
 		>
 			{{ scene.name }}
