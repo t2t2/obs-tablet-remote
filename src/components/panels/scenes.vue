@@ -35,45 +35,45 @@
 				</div>
 			</div>
 
-			<h3 class="text-xl mb-2">
-				Transition Scene
-			</h3>
-			<div class="field">
-				<label
-					:for="`settings-${id}-transition-scene`"
-					class="label"
-				>Transition Scene</label>
-				<select
-					:id="`settings-${id}-transition-scene`"
-					v-model="transitionScene"
-					class="select"
-				>
-					<option :value="undefined">
-						None
-					</option>
-					<option
-						v-for="scene in scenes"
-						:key="scene.name"
-						:value="scene.name"
-					>
-						{{ scene.name }}
-					</option>
-				</select>
-			</div>
-			<div class="field">
-				<label
-					:for="`settings-${id}-transition-time`"
-					class="label"
-				>Transition Time</label>
-				<input
-					:id="`settings-${id}-transition-time`"
-					v-model.number="transitionSeconds"
-					class="input"
-					type="number"
-					min="0"
-					step="0.1"
-				>
-			</div>
+			<!--			<h3 class="text-xl mb-2">-->
+			<!--				Transition Scene-->
+			<!--			</h3>-->
+			<!--			<div class="field">-->
+			<!--				<label-->
+			<!--					:for="`settings-${id}-transition-scene`"-->
+			<!--					class="label"-->
+			<!--				>Transition Scene</label>-->
+			<!--				<select-->
+			<!--					:id="`settings-${id}-transition-scene`"-->
+			<!--					v-model="transitionScene"-->
+			<!--					class="select"-->
+			<!--				>-->
+			<!--					<option :value="undefined">-->
+			<!--						None-->
+			<!--					</option>-->
+			<!--					<option-->
+			<!--						v-for="scene in scenes"-->
+			<!--						:key="scene.name"-->
+			<!--						:value="scene.name"-->
+			<!--					>-->
+			<!--						{{ scene.name }}-->
+			<!--					</option>-->
+			<!--				</select>-->
+			<!--			</div>-->
+			<!--			<div class="field">-->
+			<!--				<label-->
+			<!--					:for="`settings-${id}-transition-time`"-->
+			<!--					class="label"-->
+			<!--				>Transition Time</label>-->
+			<!--				<input-->
+			<!--					:id="`settings-${id}-transition-time`"-->
+			<!--					v-model.number="transitionSeconds"-->
+			<!--					class="input"-->
+			<!--					type="number"-->
+			<!--					min="0"-->
+			<!--					step="0.1"-->
+			<!--				>-->
+			<!--			</div>-->
 		</template>
 	</panel-wrapper>
 </template>
@@ -118,20 +118,27 @@ export default {
 		},
 		...mapState('obs', {
 			currentScene: state => state.scenes.current,
+			previewScene: state => state.scenes.preview,
 			scenes: state => state.scenes.list
 		})
 	},
 	methods: {
 		async switchScenes(name) {
-			if (this.transitionScene && this.transitionSeconds > 0) {
-				this.setScene({name: this.transitionScene})
-				await timeoutPromise(this.transitionSeconds * 1000)
-			}
+			// eslint-disable-next-line no-negated-condition
+			if (name !== this.previewScene) {
+				this.setPreview({name})
+			} else {
+				if (this.transitionScene && this.transitionSeconds > 0) {
+					this.setScene({name: this.transitionScene})
+					await timeoutPromise(this.transitionSeconds * 1000)
+				}
 
-			await this.setScene({name})
+				await this.setScene({name})
+			}
 		},
 		...mapActions('obs', {
-			setScene: 'scenes/current'
+			setScene: 'scenes/current',
+			setPreview: 'scenes/preview'
 		})
 	}
 }

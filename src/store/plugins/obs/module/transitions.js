@@ -29,6 +29,12 @@ export default {
 		},
 		'event/TransitionBegin'() {
 			// Do I do anything or simple discard for now?!
+		},
+		'event/TransitionEnd'() {
+			// Let it be
+		},
+		'event/TransitionVideoEnd'() {
+			// Mb will need later
 		}
 	},
 	mutations: {
