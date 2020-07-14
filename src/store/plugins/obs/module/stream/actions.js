@@ -74,6 +74,10 @@ async function streamReload({commit, getters: {client}}) {
 	commit('stream/set/recTimecode', recTimecode)
 }
 
+async function eventStudioModeSwitched() {
+
+}
+
 export default {
 	'connection/closed': connectionClosed,
 	'connection/ready': connectionReady,
@@ -87,6 +91,7 @@ export default {
 	'event/StreamStopped': eventStreamStopped,
 	'event/StreamStopping': eventStreamStopping,
 	'event/StreamStatus': eventStreamStatus,
+	'event/StudioModeSwitched': eventStudioModeSwitched,
 	'stream/streaming': setStreaming,
 	'stream/recording': setRecording,
 	'stream/reload': streamReload

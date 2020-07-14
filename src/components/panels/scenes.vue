@@ -24,6 +24,7 @@
 				>Scenes per row</label>
 				<div class="flex">
 					<input
+						:id="`settings-${id}-per-row`"
 						v-model.number="perRow"
 						type="range"
 						class="flex-grow"
@@ -35,6 +36,20 @@
 						v-text="perRow"
 					/>
 				</div>
+			</div>
+			<div class="field">
+				<label
+					:for="`settings-${id}-only-current`"
+					class="label inline"
+				>
+					Only current
+				</label>
+				<input
+					:id="`settings-${id}-only-current`"
+					v-model="onlyCurrent"
+					class="inline ml-2"
+					type="checkbox"
+				>
 			</div>
 
 			<!--			<h3 class="text-xl mb-2">-->
@@ -92,11 +107,7 @@ export default {
 	computed: {
 		perRow: {
 			get() {
-				if (this.settings.perRow) {
-					return this.settings.perRow
-				}
-
-				return 4
+				return this.settings.perRow
 			},
 			set(value) {
 				this.setSetting('perRow', value)
@@ -118,6 +129,14 @@ export default {
 				this.setSetting('transitionSeconds', value)
 			}
 		},
+		onlyCurrent: {
+			get() {
+				return this.settings.onlyCurrent
+			},
+			set(value) {
+				this.setSetting('onlyCurrent', value)
+			}
+		},
 		...mapState('obs', {
 			currentScene: state => state.scenes.current,
 			previewScene: state => state.scenes.preview,
@@ -126,8 +145,7 @@ export default {
 	},
 	methods: {
 		async switchScenes(name) {
-			// eslint-disable-next-line no-negated-condition
-			if (name !== this.previewScene) {
+			if (name !== this.previewScene && !this.onlyCurrent) {
 				this.setPreview({name})
 			} else {
 				if (this.transitionScene && this.transitionSeconds > 0) {

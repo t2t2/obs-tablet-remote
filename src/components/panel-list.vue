@@ -59,7 +59,13 @@ const PANELS_INFO = [
 		description: 'Switch the current scene',
 		icon: 'tv',
 		iconSettings: {},
-		type: 'Scenes'
+		type: 'Scenes',
+		defaults() {
+			return {
+				perRow: 4,
+				onlyCurrent: false
+			}
+		}
 	},
 	{
 		name: 'Sources List',

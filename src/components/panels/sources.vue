@@ -3,9 +3,21 @@
 		<template slot="name">
 			Sources
 		</template>
-		<h3 class="p-2 text-center font-bold">
-			{{ viewScene ? viewScene.name : 'Unknown Scene' }}
-		</h3>
+		<div class="p-2 relative">
+			<h3 class="text-center font-bold">
+				{{ viewScene ? viewScene.name : 'Unknown Scene' }}
+			</h3>
+			<button
+				title="Refresh scene browser"
+				class="button absolute top-0 right-0"
+				@click="viewScene ? refreshSceneBrowsers(viewScene.name) : {}"
+			>
+				<FontAwesomeIcon
+					icon="redo"
+					fixed-width
+				/>
+			</button>
+		</div>
 		<div
 			v-if="viewScene"
 			class="flex-grow button-grid has-per-row-1 overflow-y-auto"
@@ -69,6 +81,10 @@ export default {
 	methods: {
 		...mapActions({
 			setRender: 'obs/sources/render'
+		}),
+		...mapActions('obs', {
+			refreshSceneBrowsers: 'sources/refreshSceneBrowsers',
+			refreshBrowser: 'sources/refreshBrowser'
 		})
 	}
 }
