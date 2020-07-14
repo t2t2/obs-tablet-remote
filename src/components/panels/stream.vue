@@ -17,6 +17,13 @@
 		>
 			Recording: {{ recordingText }}
 		</DangerousButton>
+		<DangerousButton
+			:class="[studioMode ? 'is-active' : 'is-inactive']"
+			:vibrate="true"
+			@click="setStudioMode({status: !studioMode})"
+		>
+			Studio Mode: {{ studioModeText }}
+		</DangerousButton>
 	</panel-wrapper>
 </template>
 
@@ -36,14 +43,17 @@ export default {
 			recording: state => state.stream.recording,
 			recTimecode: state => state.stream.recTimecode,
 			streaming: state => state.stream.streaming,
-			streamTimecode: state => state.stream.streamTimecode
+			streamTimecode: state => state.stream.streamTimecode,
+			studioMode: state => state.stream.studioMode
 		}),
-		...mapGetters('obs', ['recordingText', 'streamingText'])
+		...mapGetters('obs',
+			['recordingText', 'streamingText', 'studioModeText'])
 	},
 	methods: {
 		...mapActions('obs', {
 			setRecording: 'stream/recording',
-			setStreaming: 'stream/streaming'
+			setStreaming: 'stream/streaming',
+			setStudioMode: 'stream/studioMode'
 		})
 	}
 }

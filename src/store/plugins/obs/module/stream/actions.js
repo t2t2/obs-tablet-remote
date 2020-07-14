@@ -48,6 +48,10 @@ function eventStreamStopped({commit}) {
 	commit('stream/set/streaming', false)
 }
 
+function eventStudioModeSwitched({commit}, {'new-state': status}) {
+	commit('stream/studioMode', status)
+}
+
 async function setStreaming({getters: {client}}, {status}) {
 	const request = status ? 'StartStreaming' : 'StopStreaming'
 
@@ -60,6 +64,12 @@ async function setRecording({getters: {client}}, {status}) {
 	await client.send({'request-type': request})
 }
 
+async function setStudioMode({getters: {client}}, {status}) {
+	const request = status ? 'EnableStudioMode' : 'DisableStudioMode'
+
+	await client.send({'request-type': request})
+}
+
 async function streamReload({commit, getters: {client}}) {
 	const {
 		streaming,
@@ -68,14 +78,14 @@ async function streamReload({commit, getters: {client}}) {
 		'rec-timecode': recTimecode
 	} = await client.send({'request-type': 'GetStreamingStatus'})
 
+	const {'studio-mode': studioMode} = await client.send({'request-type': 'GetStudioModeStatus'})
+
 	commit('stream/set/streaming', streaming)
 	commit('stream/set/recording', recording)
 	commit('stream/set/streamTimecode', streamTimecode)
 	commit('stream/set/recTimecode', recTimecode)
-}
 
-async function eventStudioModeSwitched() {
-
+	commit('stream/studioMode', studioMode)
 }
 
 export default {
@@ -94,5 +104,6 @@ export default {
 	'event/StudioModeSwitched': eventStudioModeSwitched,
 	'stream/streaming': setStreaming,
 	'stream/recording': setRecording,
+	'stream/studioMode': setStudioMode,
 	'stream/reload': streamReload
 }

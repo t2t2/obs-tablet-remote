@@ -11,13 +11,16 @@ export default {
 		async 'connection/ready'({dispatch}) {
 			return dispatch('scenes/reload')
 		},
-		async 'scenes/reload'({commit, getters: {client}}) {
+		async 'scenes/reload'({commit, getters: {client}, state}) {
 			const {'current-scene': current, scenes} = await client.send({'request-type': 'GetSceneList'})
-			const {name: preview} = await client.send({'request-type': 'GetPreviewScene'})
 
 			commit('scenes/list', {scenes})
 			commit('scenes/current', current)
-			commit('scenes/preview', preview)
+
+			if (state.stream.studioMode === true) {
+				const {name: preview} = await client.send({'request-type': 'GetPreviewScene'})
+				commit('scenes/preview', preview)
+			}
 		},
 		async 'scenes/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentScene', 'scene-name': name})
@@ -56,6 +59,15 @@ export default {
 		},
 		'event/SceneItemTransformChanged'() {
 			// Later mb
+		},
+		'event/StudioModeSwitched'({commit, state}, {'new-state': status}) {
+			if (status === true) {
+				commit('scenes/preview', state.current)
+			}
+
+			if (status === false) {
+				commit('scenes/clearPreview')
+			}
 		}
 	},
 	getters: {
@@ -79,6 +91,9 @@ export default {
 		},
 		'scenes/preview'(state, name) {
 			state.preview = name
+		},
+		'scenes/clearPreview'(state) {
+			state.preview = null
 		},
 		'scenes/list'(state, {scenes}) {
 			state.list = scenes

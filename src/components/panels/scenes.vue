@@ -140,12 +140,13 @@ export default {
 		...mapState('obs', {
 			currentScene: state => state.scenes.current,
 			previewScene: state => state.scenes.preview,
-			scenes: state => state.scenes.list
+			scenes: state => state.scenes.list,
+			studioMode: state => state.stream.studioMode
 		})
 	},
 	methods: {
 		async switchScenes(name) {
-			if (name !== this.previewScene && !this.onlyCurrent) {
+			if (name !== this.previewScene && !this.onlyCurrent && this.studioMode) {
 				this.setPreview({name})
 			} else {
 				if (this.transitionScene && this.transitionSeconds > 0) {
