@@ -68,6 +68,10 @@ export default {
 			if (status === false) {
 				commit('scenes/clearPreview')
 			}
+		},
+		'event/TransitionEnd'({commit}, data) {
+			const {'to-scene': current} = data
+			commit('scenes/current', current)
 		}
 	},
 	getters: {
