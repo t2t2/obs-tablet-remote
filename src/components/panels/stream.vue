@@ -4,6 +4,7 @@
 			Stream Status
 		</template>
 		<DangerousButton
+			v-if="showStreaming"
 			:class="[streaming ? 'is-active' : 'is-inactive']"
 			:vibrate="true"
 			@click="setStreaming({status: !streaming})"
@@ -11,6 +12,7 @@
 			Streaming: {{ streamingText }}
 		</DangerousButton>
 		<DangerousButton
+			v-if="showRecording"
 			:class="[recording ? 'is-active' : 'is-inactive']"
 			:vibrate="true"
 			@click="setRecording({status: !recording})"
@@ -18,6 +20,7 @@
 			Recording: {{ recordingText }}
 		</DangerousButton>
 		<DangerousButton
+			v-if="showStudioMode"
 			:class="[studioMode ? 'is-active' : 'is-inactive']"
 			:vibrate="true"
 			:time="false"
@@ -25,6 +28,50 @@
 		>
 			Studio Mode: {{ studioModeText }}
 		</DangerousButton>
+		<template slot="settings">
+			<div class="field">
+				<label
+					:for="`settings-${id}-streaming-status`"
+					class="label inline"
+				>
+					Streaming
+				</label>
+				<input
+					:id="`settings-${id}-streaming-status`"
+					v-model="showStreaming"
+					class="inline ml-2"
+					type="checkbox"
+				>
+			</div>
+			<div class="field">
+				<label
+					:for="`settings-${id}-recording-status`"
+					class="label inline"
+				>
+					Recording
+				</label>
+				<input
+					:id="`settings-${id}-recording-status`"
+					v-model="showRecording"
+					class="inline ml-2"
+					type="checkbox"
+				>
+			</div>
+			<div class="field">
+				<label
+					:for="`settings-${id}-studio-mode-status`"
+					class="label inline"
+				>
+					Studio mode
+				</label>
+				<input
+					:id="`settings-${id}-studio-mode-status`"
+					v-model="showStudioMode"
+					class="inline ml-2"
+					type="checkbox"
+				>
+			</div>
+		</template>
 	</panel-wrapper>
 </template>
 
@@ -48,7 +95,32 @@ export default {
 			studioMode: state => state.stream.studioMode
 		}),
 		...mapGetters('obs',
-			['recordingText', 'streamingText', 'studioModeText'])
+			['recordingText', 'streamingText', 'studioModeText']),
+
+		showStreaming: {
+			get() {
+				return this.settings.showStreaming
+			},
+			set(value) {
+				this.setSetting('showStreaming', value)
+			}
+		},
+		showRecording: {
+			get() {
+				return this.settings.showRecording
+			},
+			set(value) {
+				this.setSetting('showRecording', value)
+			}
+		},
+		showStudioMode: {
+			get() {
+				return this.settings.showStudioMode
+			},
+			set(value) {
+				this.setSetting('showStudioMode', value)
+			}
+		}
 	},
 	methods: {
 		...mapActions('obs', {

@@ -105,7 +105,14 @@ const PANELS_INFO = [
 		description: 'Manage stream & recording status',
 		icon: 'dot-circle',
 		iconSettings: {},
-		type: 'Stream'
+		type: 'Stream',
+		defaults() {
+			return {
+				showStreaming: true,
+				showRecording: true,
+				showStudioMode: true
+			}
+		}
 	},
 	{
 		name: 'Frame',
