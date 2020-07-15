@@ -1,7 +1,9 @@
 export default {
 	state: {
 		current: null,
-		list: []
+		list: [],
+		currentCollection: null,
+		collectionList: []
 	},
 	actions: {
 		'connection/closed'({commit}) {
@@ -11,6 +13,15 @@ export default {
 			return dispatch('scenes/reload')
 		},
 		async 'scenes/reload'({commit, getters: {client}}) {
+			const {'scene-collections': collections} = await client.send({'request-type': 'ListSceneCollections'})
+			commit('scenes/collectionList', {
+				'scene-collections': collections
+			})
+			const {'sc-name': currentSceneCollection} = await client.send({'request-type': 'GetCurrentSceneCollection'})
+			commit('scenes/currentCollection', {
+				'sc-name': currentSceneCollection
+			})
+			
 			const {'current-scene': current, scenes} = await client.send({'request-type': 'GetSceneList'})
 
 			commit('scenes/list', {scenes})
@@ -20,6 +31,9 @@ export default {
 		},
 		'scenes/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentScene', 'scene-name': name})
+		},
+		'scenes/currentCollection'({getters: {client}}, {name}) {
+			return client.send({'request-type': 'SetCurrentSceneCollection', 'sc-name': name})
 		},
 		async 'sources/render'({getters: {client}}, {scene, source, render}) {
 			return client.send({
@@ -52,6 +66,12 @@ export default {
 		}
 	},
 	mutations: {
+		'scenes/collectionList'(state, {'scene-collections': sceneCollections}) {
+			state.collectionList = sceneCollections
+		},
+		'scenes/currentCollection'(state, {'sc-name': name}) {
+			state.currentCollection = name
+		},
 		'scenes/current'(state, {'scene-name': name}) {
 			state.current = name
 		},
@@ -61,6 +81,8 @@ export default {
 		'scenes/reset'(state) {
 			state.current = null
 			state.list = []
+			state.currentCollection = null
+			state.collectionList = []
 		},
 		'scenes/itemVisibilityChanged'(state, {'scene-name': sceneName, 'item-name': sourceName, 'item-visible': render}) {
 			const scene = state.list.find(scene => scene.name === sceneName)

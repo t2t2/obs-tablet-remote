@@ -15,6 +15,28 @@
 		</button>
 
 		<template #settings>
+			<div
+				class="field"
+				style="padding-bottom: 20px;"
+			>
+				<label
+					:for="`settings-${id}-scene-collection`"
+					class="label"
+				>Scene Collection:</label>
+				<select
+					:id="`settings-${id}-scene-collection`"
+					v-model="sceneCollection"
+					class="select"
+				>
+					<option
+						v-for="collection in collections"
+						:key="collection['sc-name']"
+						:value="collection['sc-name']"
+					>
+						{{ collection['sc-name'] }}
+					</option>
+				</select>
+			</div>
 			<div class="field">
 				<label
 					:for="`settings-${id}-per-row`"
@@ -88,6 +110,19 @@ import panelMixin from '@/mixins/panel'
 export default {
 	mixins: [panelMixin],
 	computed: {
+		sceneCollection: {
+			get() {
+				if (this.settings.sceneCollection) {
+					return this.settings.sceneCollection
+				}
+
+				return ''
+			},
+			set(value) {
+				this.setSetting('sceneCollection', value)
+				this.switchSceneCollection(value)
+			}
+		},
 		perRow: {
 			get() {
 				if (this.settings.perRow) {
@@ -118,7 +153,9 @@ export default {
 		},
 		...mapState('obs', {
 			currentScene: state => state.scenes.current,
-			scenes: state => state.scenes.list
+			scenes: state => state.scenes.list,
+			currentCollection: state => state.scenes.currentCollection,
+			collections: state => state.scenes.collectionList
 		})
 	},
 	methods: {
@@ -130,8 +167,12 @@ export default {
 
 			await this.setScene({name})
 		},
+		async switchSceneCollection(name) {
+			await this.setCollection({name})
+		},
 		...mapActions('obs', {
-			setScene: 'scenes/current'
+			setScene: 'scenes/current',
+			setCollection: 'scenes/currentCollection'
 		})
 	}
 }
