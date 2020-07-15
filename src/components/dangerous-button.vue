@@ -14,7 +14,11 @@
 <script>
 export default {
 	props: {
-		vibrate: Boolean
+		vibrate: Boolean,
+		time: {
+			type: [Number, Boolean],
+			default: 1000
+		}
 	},
 	data() {
 		return {
@@ -24,6 +28,11 @@ export default {
 	},
 	methods: {
 		buttonClick() {
+			if (!this.time) {
+				this.$emit('click')
+				return
+			}
+
 			if (this.cooldown) {
 				return
 			}
@@ -43,7 +52,7 @@ export default {
 					this.isPrimed = false
 					this._timeout = null
 				}, 5000)
-			}, 1000)
+			}, this.time)
 
 			if (this.vibrate && window.navigator.vibrate) {
 				window.navigator.vibrate(200)

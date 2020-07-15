@@ -20,6 +20,7 @@
 		<DangerousButton
 			:class="[studioMode ? 'is-active' : 'is-inactive']"
 			:vibrate="true"
+			:time="false"
 			@click="setStudioMode({status: !studioMode})"
 		>
 			Studio Mode: {{ studioModeText }}
