@@ -9,6 +9,7 @@ import Mixer from './mixer'
 import Stream from './stream'
 import Transitions from './transitions'
 import Durations from './durations'
+import Queue from './queue'
 import panelMixin from '@/mixins/panel'
 
 const components = {
@@ -20,7 +21,8 @@ const components = {
 	Mixer,
 	Transitions,
 	Durations,
-	Stream
+	Stream,
+	Queue
 }
 
 export default {

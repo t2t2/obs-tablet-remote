@@ -16,6 +16,12 @@ export default {
 				key,
 				value
 			})
+		},
+		setName(value) {
+			this.$store.dispatch('layout/setName', {
+				id: this.id,
+				value
+			})
 		}
 	},
 	props: {

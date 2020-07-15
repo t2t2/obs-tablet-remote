@@ -15,3 +15,8 @@ export async function removePanel({commit, dispatch, getters}, {id}) {
 export function setSetting({commit}, data) {
 	commit('setSetting', data)
 }
+
+export function setName({commit}, data) {
+	commit('setName', data)
+}
+

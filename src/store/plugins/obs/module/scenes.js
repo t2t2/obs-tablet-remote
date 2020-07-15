@@ -11,16 +11,11 @@ export default {
 		async 'connection/ready'({dispatch}) {
 			return dispatch('scenes/reload')
 		},
-		async 'scenes/reload'({commit, getters: {client}, state}) {
+		async 'scenes/reload'({commit, getters: {client}}) {
 			const {'current-scene': current, scenes} = await client.send({'request-type': 'GetSceneList'})
 
 			commit('scenes/list', {scenes})
 			commit('scenes/current', current)
-
-			if (state.stream.studioMode === true) {
-				const {name: preview} = await client.send({'request-type': 'GetPreviewScene'})
-				commit('scenes/preview', preview)
-			}
 		},
 		async 'scenes/current'({getters: {client}}, {name}) {
 			return client.send({'request-type': 'SetCurrentScene', 'scene-name': name})
@@ -72,6 +67,10 @@ export default {
 		'event/TransitionEnd'({commit}, data) {
 			const {'to-scene': current} = data
 			commit('scenes/current', current)
+		},
+		async 'stream/studioModeAvailable'({commit, getters: {client}}) {
+			const {name: preview} = await client.send({'request-type': 'GetPreviewScene'})
+			commit('scenes/preview', preview)
 		}
 	},
 	getters: {
@@ -104,6 +103,7 @@ export default {
 		},
 		'scenes/reset'(state) {
 			state.current = null
+			state.preview = null
 			state.list = []
 		},
 		'scenes/itemVisibilityChanged'(state, {'scene-name': sceneName, 'item-name': sourceName, 'item-visible': render}) {

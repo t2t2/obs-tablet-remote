@@ -5,7 +5,7 @@
 			:key="item.name"
 			class="button is-list-item flex w-full px-1 py-2"
 			:disabled="!canBeAdded(item)"
-			@click="addPanel(item)"
+			@click="tryAddPanel(item)"
 		>
 			<div class="w-16 text-5xl mr-2">
 				<FontAwesomeIcon
@@ -121,7 +121,17 @@ const PANELS_INFO = [
 		iconSettings: {},
 		type: 'Iframe'
 	}
+
+	// {
+	// 	name: 'Queue',
+	// 	description: 'Plan events in queue',
+	// 	icon: 'clipboard-list',
+	// 	iconSettings: {},
+	// 	type: 'Queue'
+	// }
 ]
+
+import {mapActions} from 'vuex'
 
 export default {
 	props: {
@@ -140,13 +150,14 @@ export default {
 		}
 	},
 	methods: {
-		addPanel(item) {
+		tryAddPanel(item) {
 			if (!this.canBeAdded(item)) {
 				return
 			}
 
-			this.$store.dispatch('layout/addPanel', {
+			this.addPanel({
 				type: item.type,
+				name: item.name,
 				parent: this.parentId,
 				settings: item.defaults ? item.defaults() : {}
 			})
@@ -158,7 +169,8 @@ export default {
 			}
 
 			return true
-		}
+		},
+		...mapActions('layout', ['addPanel'])
 	}
 }
 </script>

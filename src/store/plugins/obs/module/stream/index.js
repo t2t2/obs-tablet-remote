@@ -52,10 +52,5 @@ export default {
 			return state.studioMode
 		}
 	},
-	mutations: {
-		'stream/studioMode'(state, stat) {
-			state.studioMode = stat
-		},
-		...mutations
-	}
+	mutations
 }

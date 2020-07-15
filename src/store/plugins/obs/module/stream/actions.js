@@ -70,7 +70,11 @@ async function setStudioMode({getters: {client}}, {status}) {
 	await client.send({'request-type': request})
 }
 
-async function streamReload({commit, getters: {client}}) {
+async function streamReload({commit, getters: {client}, dispatch}) {
+	const {'studio-mode': studioMode} = await client.send({'request-type': 'GetStudioModeStatus'})
+	commit('stream/set/studioMode', studioMode)
+	dispatch('stream/studioModeAvailable')
+
 	const {
 		streaming,
 		recording,
@@ -78,14 +82,10 @@ async function streamReload({commit, getters: {client}}) {
 		'rec-timecode': recTimecode
 	} = await client.send({'request-type': 'GetStreamingStatus'})
 
-	const {'studio-mode': studioMode} = await client.send({'request-type': 'GetStudioModeStatus'})
-
 	commit('stream/set/streaming', streaming)
 	commit('stream/set/recording', recording)
 	commit('stream/set/streamTimecode', streamTimecode)
 	commit('stream/set/recTimecode', recTimecode)
-
-	commit('stream/studioMode', studioMode)
 }
 
 export default {

@@ -158,6 +158,10 @@ export default {
 			if (value) {
 				this.showAddPanel = false
 			}
+		},
+		isHorizontal(value) {
+			this.setName((value ? 'Horizontal' : 'Vertical') + ' Splitter')
+			console.log('isHorizontal:', value)
 		}
 	},
 	methods: {

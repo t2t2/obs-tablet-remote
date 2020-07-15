@@ -8,7 +8,7 @@
 			class="pb-2 flex"
 		>
 			<div class="flex-1 min-w-0 overflow-hidden whitespace-no-wrap text-overflow-ellipsis">
-				<slot name="name" />
+				{{ name }}
 			</div>
 			<button
 				v-if="hasSettings"
@@ -76,6 +76,9 @@ export default {
 	},
 	computed: {
 		...mapState(['editing']),
+		name() {
+			return this.$parent.panel.name
+		},
 		depth() {
 			return this.$parent.depth
 		},
