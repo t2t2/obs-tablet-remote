@@ -3,7 +3,7 @@
 		<template slot="name">
 			Sources
 		</template>
-		<div class="p-2 relative">
+		<div class="p-2 relative h-10">
 			<h3 class="text-center font-bold">
 				{{ viewScene ? viewScene.name : 'Unknown Scene' }}
 			</h3>
@@ -15,6 +15,7 @@
 				<FontAwesomeIcon
 					icon="redo"
 					fixed-width
+					color="orange"
 				/>
 			</button>
 		</div>
@@ -25,11 +26,16 @@
 			<button
 				v-for="source in viewScene.sources"
 				:key="source.name"
-				class="button"
+				class="button relative"
 				:class="[source.render ? 'is-active' : 'is-inactive']"
 				@click="setRender({scene: viewScene.name, source: source.name, render: !source.render})"
 			>
-				{{ source.name }}
+				<span
+					:title="source.name"
+					class="w-1/5 h-full max-w-2 title-zone absolute left-0 top-0"
+					@click.stop
+				></span>
+				<span>{{ source.name }}</span>
 			</button>
 		</div>
 		<div v-else>
@@ -68,8 +74,11 @@ import panelMixin from '@/mixins/panel'
 export default {
 	mixins: [panelMixin],
 	computed: {
-		...mapGetters('obs', ['previewOrCurrentScene']),
-		...mapGetters('obs', ['currentScene']),
+		...mapGetters('obs', {
+			previewOrCurrentScene: 'scenes/previewOrCurrentScene',
+			currentScene: 'scenes/currentScene'
+		}),
+		...mapGetters('obs', ['']),
 		viewScene() {
 			if (this.settings.view === 'preview') {
 				return this.previewOrCurrentScene

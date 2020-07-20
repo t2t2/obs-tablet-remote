@@ -5,7 +5,7 @@
 			:key="item.name"
 			class="button is-list-item flex w-full px-1 py-2"
 			:disabled="!canBeAdded(item)"
-			@click="tryAddPanel(item)"
+			@click="addPanel(item)"
 		>
 			<div class="w-16 text-5xl mr-2">
 				<FontAwesomeIcon
@@ -32,7 +32,7 @@ const PANELS_INFO = [
 		icon: 'columns',
 		iconSettings: {},
 		type: 'Grid',
-		maxDepth: 2,
+		maxDepth: 4,
 		defaults() {
 			return {
 				direction: 'row'
@@ -47,7 +47,7 @@ const PANELS_INFO = [
 			rotation: 270
 		},
 		type: 'Grid',
-		maxDepth: 2,
+		maxDepth: 4,
 		defaults() {
 			return {
 				direction: 'column'
@@ -120,18 +120,15 @@ const PANELS_INFO = [
 		icon: 'window-maximize',
 		iconSettings: {},
 		type: 'Iframe'
+	},
+	{
+		name: 'Queue',
+		description: 'Plan events in queue',
+		icon: 'clipboard-list',
+		iconSettings: {},
+		type: 'Queue'
 	}
-
-	// {
-	// 	name: 'Queue',
-	// 	description: 'Plan events in queue',
-	// 	icon: 'clipboard-list',
-	// 	iconSettings: {},
-	// 	type: 'Queue'
-	// }
 ]
-
-import {mapActions} from 'vuex'
 
 export default {
 	props: {
@@ -150,12 +147,12 @@ export default {
 		}
 	},
 	methods: {
-		tryAddPanel(item) {
+		addPanel(item) {
 			if (!this.canBeAdded(item)) {
 				return
 			}
 
-			this.addPanel({
+			this.$store.dispatch('layout/addPanel', {
 				type: item.type,
 				name: item.name,
 				parent: this.parentId,
@@ -169,8 +166,7 @@ export default {
 			}
 
 			return true
-		},
-		...mapActions('layout', ['addPanel'])
+		}
 	}
 }
 </script>

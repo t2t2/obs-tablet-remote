@@ -1,4 +1,4 @@
-import {updateStateKey} from '../../../../../util'
+import {updateStateKey} from '@/util'
 
 const setBytesPerSec = updateStateKey('bytesPerSec')
 const setFps = updateStateKey('fps')

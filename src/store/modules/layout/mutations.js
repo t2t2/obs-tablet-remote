@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
-export function addPanel(state, {type, name, parent, settings}) {
-	const id = state.nextId++
+export function addPanel(state, {id, type, name, parent, settings}) {
 	Vue.set(state.panels, id, {type, name, parent, settings})
 }
 
@@ -19,25 +18,6 @@ export function setName(state, {id, value}) {
 
 export function resetLayout(state) {
 	state.nextId = 3
-	state.panels = {
-		1: {
-			type: 'Grid',
-			name: 'Horizontal Splitter',
-			parent: null,
-			settings: {direction: 'row'}
-		},
-		2: {
-			type: 'Scenes',
-			name: 'Scenes Switcher',
-			parent: 1,
-			settings: {}
-		}
-	}
-	state.tabs = [
-		{
-			id: 1,
-			name: 'Home',
-			root: 1
-		}
-	]
+	state.panels = state.defaultStructure.panels
+	state.tabs = state.defaultStructure.tabs
 }

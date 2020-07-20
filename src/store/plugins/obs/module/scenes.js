@@ -25,7 +25,7 @@ export default {
 		},
 		async 'sources/render'({getters: {client}}, {scene, source, render}) {
 			return client.send({
-				'request-type': 'SetSourceRender',
+				'request-type': 'SetSceneItemRender',
 				'scene-name': scene,
 				source,
 				render
@@ -74,18 +74,21 @@ export default {
 		}
 	},
 	getters: {
-		currentScene(state) {
+		'scenes/currentScene'(state) {
 			return state.list.find(scene => scene.name === state.current)
 		},
-		previewScene(state) {
+		'scenes/previewScene'(state) {
 			return state.list.find(scene => scene.name === state.preview)
 		},
-		previewOrCurrentScene(state) {
+		'scenes/previewOrCurrentScene'(state) {
 			const name = state.preview || state.current
 			return state.list.find(scene => scene.name === name)
 		},
-		scenes(state) {
+		'scenes/sceneList'(state) {
 			return state.list
+		},
+		'scenes/sceneNames'(state) {
+			return state.list.map(scene => scene.name)
 		}
 	},
 	mutations: {

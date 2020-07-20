@@ -5,7 +5,7 @@
 		@click.self="$emit('close')"
 	>
 		<div
-			class="w-full md:w-2/5 bg-white text-gray-800 color-modal max-h-full overflow-y-auto"
+			class="w-full md:w-4/5 bg-white text-gray-800 color-modal max-h-full overflow-y-auto"
 			:class="modalClass"
 		>
 			<div class="p-4">

@@ -7,13 +7,18 @@
 		<button
 			v-for="scene in scenes"
 			:key="scene.name"
-			class="button"
+			class="button relative"
 			:class="[scene.name === currentScene ? 'is-active' :
 				scene.name === previewScene ? 'is-preview-scene' :
 				'is-inactive']"
 			@click="switchScenes(scene.name)"
 		>
-			{{ scene.name }}
+			<span
+				:title="scene.name"
+				class="w-1/5 h-1/4 max-w-2 title-zone absolute left-0 top-0"
+				@click.stop
+			></span>
+			<span>{{ scene.name }}</span>
 		</button>
 
 		<template #settings>

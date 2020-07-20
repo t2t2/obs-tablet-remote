@@ -40,6 +40,22 @@
 				</button>
 			</div>
 		</div>
+		<div class="flex -mx-2">
+			<div class="w-1/2 px-2">
+				<div class="field">
+					<label
+						:for="`settings-show-grid`"
+						class="label inline"
+					>Show borders</label>
+					<input
+						:id="`settings-show-grid`"
+						v-model="showBorders"
+						class="inline ml-2"
+						type="checkbox"
+					>
+				</div>
+			</div>
+		</div>
 	</overlay>
 </template>
 
@@ -60,6 +76,14 @@ export default {
 			},
 			set(value) {
 				this.setSetting({key: 'theme', value})
+			}
+		},
+		showBorders: {
+			get({settings}) {
+				return settings.showBorders
+			},
+			set(value) {
+				this.setSetting({key: 'showBorders', value})
 			}
 		}
 	},

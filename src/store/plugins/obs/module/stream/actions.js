@@ -49,7 +49,7 @@ function eventStreamStopped({commit}) {
 }
 
 function eventStudioModeSwitched({commit}, {'new-state': status}) {
-	commit('stream/studioMode', status)
+	commit('stream/set/studioMode', status)
 }
 
 async function setStreaming({getters: {client}}, {status}) {

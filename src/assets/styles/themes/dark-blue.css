@@ -81,6 +81,19 @@
 		}
 	}
 
+	& .queue-top {
+		@apply text-gray-800 bg-red-900;
+	}
+
+	& .panels-border {
+		@apply border-gray-900;
+	}
+
+	& .title-zone {
+		@apply bg-gray-900;
+		@apply bg-opacity-25;
+	}
+
 	& a {
 		@apply .text-blue-500;
 

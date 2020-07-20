@@ -6,27 +6,56 @@
 		<DangerousButton
 			v-if="showStreaming"
 			:class="[streaming ? 'is-active' : 'is-inactive']"
+			class="relative"
 			:vibrate="true"
+			:time="500"
 			@click="setStreaming({status: !streaming})"
 		>
-			Streaming: {{ streamingText }}
+			<span
+				:title="streamingText"
+				class="w-1/5 h-1/3 max-w-2 title-zone absolute left-0 top-0"
+				@click.stop
+			></span>
+			<p class="mb-2">
+				Streaming:
+			</p>
+			<p>{{ streamingText }}</p>
 		</DangerousButton>
 		<DangerousButton
 			v-if="showRecording"
 			:class="[recording ? 'is-active' : 'is-inactive']"
+			class="relative"
 			:vibrate="true"
+			:time="500"
 			@click="setRecording({status: !recording})"
 		>
-			Recording: {{ recordingText }}
+			<span
+				:title="streamingText"
+				class="w-1/5 h-1/3 max-w-2 title-zone absolute left-0 top-0"
+				@click.stop
+			></span>
+			<p class="mb-2">
+				Recording:
+			</p>
+			<p>{{ recordingText }}</p>
 		</DangerousButton>
 		<DangerousButton
 			v-if="showStudioMode"
 			:class="[studioMode ? 'is-active' : 'is-inactive']"
+			class="relative"
 			:vibrate="true"
 			:time="false"
 			@click="setStudioMode({status: !studioMode})"
 		>
-			Studio Mode: {{ studioModeText }}
+			<span
+				:title="studioModeText"
+				class="w-1/5 h-1/3 max-w-2 title-zone absolute left-0 top-0"
+				@click.stop
+			></span>
+			<p class="mb-2">
+				Studio Mode:
+			</p>
+			<p>{{ studioModeText }}</p>
 		</DangerousButton>
 		<template slot="settings">
 			<div class="field">

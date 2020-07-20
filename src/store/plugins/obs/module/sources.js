@@ -1,8 +1,7 @@
 export const state = {
 	list: [],
 	types: {},
-	browsersProperties: {},
-	test: null
+	browsersProperties: {}
 }
 
 export const actions = {
@@ -41,7 +40,7 @@ export const actions = {
 		commit('sources/browserProperties', response)
 	},
 	async 'sources/refreshSceneBrowsers'({dispatch, getters}, name) {
-		const sceneSources = getters.scenes.find(scene => scene.name === name).sources
+		const sceneSources = getters['scenes/sceneList'].find(scene => scene.name === name).sources
 		const sceneBrowserSources = sceneSources.filter(source => isBrowser(source, true))
 		await Promise.all(sceneBrowserSources.map(
 			source => dispatch('sources/refreshBrowser', source.name)
@@ -124,9 +123,6 @@ export const mutations = {
 		if (volume !== undefined) {
 			source.volume = volume
 		}
-	},
-	'sources/test'(state, value) {
-		state.test = value
 	}
 }
 
@@ -139,6 +135,9 @@ export const getters = {
 	},
 	'sources/audioSources'(state) {
 		return state.list.filter(source => sourceHasAudio(source, state.types))
+	},
+	'sources/sourceNames'(state) {
+		return state.list.map(source => source.name)
 	}
 }
 

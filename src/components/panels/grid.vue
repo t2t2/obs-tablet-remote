@@ -12,10 +12,10 @@
 			{{ isHorizontal ? 'Horizontal' : 'Vertical' }} Splitter
 		</template>
 
-		<template v-for="(panel, id, index) in childPanels">
+		<template v-for="(panel, childId, index) in childPanels">
 			<div
 				v-if="editing && index > 0"
-				:key="id + '-resize'"
+				:key="childId + '-resize'"
 				:class="[isHorizontal ? 'flex-col' : 'flex-row']"
 				class="flex justify-center cursor-move p-2"
 				draggable="true"
@@ -30,9 +30,9 @@
 				/>
 			</div>
 			<panel
-				:id="id"
+				:id="childId"
 				ref="panels"
-				:key="id"
+				:key="childId"
 				:panel="panel"
 				:depth="depth + 1"
 				:style="{
@@ -60,7 +60,7 @@
 			@close="showAddPanel=false"
 		>
 			<template #title>
-				Add Panel
+				Add Task
 			</template>
 			<panel-list
 				:parent-id="id"

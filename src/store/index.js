@@ -32,11 +32,12 @@ const store = new Store({
 	plugins: [
 		obs,
 		createPersistedState({
-			key: 'obs-remote-tablet-vuex',
-			filter({type}) {
-				return type.startsWith('layout') || type.startsWith('settings')
-			},
-			paths: ['layout', 'settings']
+			key: 'obs-remote-tablet-vuex'
+			// Filter({type}) {
+			// 	return type.startsWith('layout') || type.startsWith('settings') ||
+			// 		type.startsWith('queue')
+			// },
+			// paths: ['layout', 'settings', 'obs.queue']
 		}),
 		migrate
 	]

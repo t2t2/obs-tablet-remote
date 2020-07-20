@@ -1,6 +1,9 @@
 <template>
 	<div
-		:class="{'color-editing-panel border p-2': editing}"
+		:class="{
+			'color-editing-panel border p-2': editing,
+			'border panels-border': showBorders && !isGrid && !editing
+		}"
 		class="flex flex-auto flex-col overflow-hidden h-full"
 	>
 		<div
@@ -75,6 +78,10 @@ export default {
 		}
 	},
 	computed: {
+		...mapState(['settings']),
+		showBorders() {
+			return this.settings.showBorders
+		},
 		...mapState(['editing']),
 		name() {
 			return this.$parent.panel.name
@@ -101,6 +108,7 @@ export default {
 	},
 	methods: {
 		remove() {
+			this.$emit('remove')
 			this.$store.dispatch('layout/removePanel', {id: this.id})
 		}
 	}
