@@ -5,6 +5,7 @@ export default {
 		hasEdited: false,
 		theme: 'default',
 		showBorders: true,
+		bordersSize: 1,
 		version: 1
 	},
 	mutations: {

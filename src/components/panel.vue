@@ -2,7 +2,7 @@
 	<div
 		:class="{
 			'color-editing-panel border p-2': editing,
-			'border panels-border': showBorders && !isGrid && !editing
+			[`border-${bordersSize} panels-border`]: showBorders && !isGrid && !editing
 		}"
 		class="flex flex-auto flex-col overflow-hidden h-full"
 	>
@@ -86,6 +86,9 @@ export default {
 		...mapState(['settings']),
 		showBorders() {
 			return this.settings.showBorders
+		},
+		bordersSize() {
+			return this.settings.bordersSize
 		},
 		...mapState(['editing']),
 		name() {

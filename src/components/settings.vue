@@ -41,7 +41,7 @@
 			</div>
 		</div>
 		<div class="flex -mx-2">
-			<div class="w-1/2 px-2">
+			<div class="w-1/3 px-2">
 				<div class="field">
 					<div class="flex">
 						<label
@@ -54,6 +54,28 @@
 							class="inline ml-2 mt-1"
 							type="checkbox"
 						>
+					</div>
+				</div>
+			</div>
+			<div class="w-2/3 px-2">
+				<div class="field">
+					<label
+						:for="`settings-borders-size`"
+						class="label"
+					>Borders size</label>
+					<div class="flex">
+						<input
+							:id="`settings-borders-size`"
+							v-model.number="bordersSize"
+							type="range"
+							class="flex-grow"
+							min="1"
+							max="4"
+						>
+						<span
+							class="w-10 p-2"
+							v-text="bordersSize"
+						/>
 					</div>
 				</div>
 			</div>
@@ -86,6 +108,14 @@ export default {
 			},
 			set(value) {
 				this.setSetting({key: 'showBorders', value})
+			}
+		},
+		bordersSize: {
+			get({settings}) {
+				return settings.bordersSize
+			},
+			set(value) {
+				this.setSetting({key: 'bordersSize', value})
 			}
 		}
 	},

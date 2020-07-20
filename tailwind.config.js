@@ -16,6 +16,10 @@ module.exports = {
 				'xl-light': lightVariant(defaultTheme.boxShadow.xl),
 				'2xl-light': lightVariant(defaultTheme.boxShadow['2xl'])
 			},
+			borderWidth: {
+				1: '1px',
+				3: '3px'
+			},
 			width: {
 				'1/2': 'calc(100%/2)',
 				'1/3': 'calc(100%/3)',
