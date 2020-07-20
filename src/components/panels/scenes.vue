@@ -1,5 +1,8 @@
 <template>
-	<panel-wrapper :content-class="['button-grid', 'has-per-row-' + perRow, 'overflow-y-auto', 'flex-wrap', 'text-3xl']">
+	<panel-wrapper
+		wide-settings
+		:content-class="['button-grid', 'has-per-row-' + perRow, 'overflow-y-auto', 'flex-wrap', 'text-3xl']">
+
 		<template #name>
 			Scenes
 		</template>

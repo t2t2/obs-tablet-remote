@@ -11,7 +11,7 @@
 			class="pb-2 flex"
 		>
 			<div class="flex-1 min-w-0 overflow-hidden whitespace-no-wrap text-overflow-ellipsis">
-				{{ name }}
+				<span :title="name">{{ name }}</span>
 			</div>
 			<button
 				v-if="hasSettings"
@@ -43,6 +43,7 @@
 		</div>
 		<overlay
 			v-if="settingsOpen"
+			:wide="wideSettings"
 			@close="settingsOpen = false"
 		>
 			<template #title>
@@ -70,6 +71,10 @@ export default {
 		isGrid: {
 			type: Boolean,
 			default: () => false
+		},
+		wideSettings: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
