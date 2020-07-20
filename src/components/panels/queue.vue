@@ -40,7 +40,7 @@
 				<button
 					v-for="(task, taskId) in queue.tasks"
 					:key="`task-${taskId}`"
-					class="flex-grow button-grid button relative p-2"
+					class="flex-grow button-grid button relative p-2 max-h-1/5 min-h-8"
 					style="max-height: 20%; margin-bottom: 1px"
 					:class="[task.active ? 'is-active' : 'is-inactive']"
 					@click="task.active = !task.active"
@@ -66,7 +66,7 @@
 						</p>
 					</div>
 					<button
-						class="button absolute top-0 right-0"
+						class="button p-2 absolute top-0 right-0"
 						@click.stop="removeTask({panelId: id, taskId})"
 					>
 						<FontAwesomeIcon

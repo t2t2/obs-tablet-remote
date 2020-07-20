@@ -5,7 +5,7 @@
 		</template>
 
 		<button
-			v-for="scene in scenes"
+			v-for="scene in filteredScenes"
 			:key="scene.name"
 			class="button relative"
 			:class="[scene.name === currentScene ? 'is-active' :
@@ -42,19 +42,55 @@
 					/>
 				</div>
 			</div>
-			<div class="field">
-				<label
-					:for="`settings-${id}-only-current`"
-					class="label inline"
-				>
-					Only current
-				</label>
-				<input
-					:id="`settings-${id}-only-current`"
-					v-model="onlyCurrent"
-					class="inline ml-2"
-					type="checkbox"
-				>
+			<div class="flex -mx-2 mb-2">
+				<div class="w-1/2 px-2">
+					<div class="field">
+						<div class="flex">
+							<label
+								:for="`settings-${id}-only-current`"
+								class="label"
+							>
+								Only current
+							</label>
+							<input
+								:id="`settings-${id}-only-current`"
+								v-model="onlyCurrent"
+								class="ml-2 mt-1"
+								type="checkbox"
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="flex -mx-2">
+				<div class="w-1/2 px-2">
+					<div class="field">
+						<label
+							:for="`settings-${id}-tags-to-hide`"
+							class="label"
+						>Tags to hide (sep: '; ')</label>
+						<input
+							:id="`settings-${id}-tags-to-hide`"
+							v-model="tagsToHide"
+							class="input"
+							type="text"
+						>
+					</div>
+				</div>
+				<div class="w-1/2 px-2">
+					<div class="field">
+						<label
+							:for="`settings-${id}-hide-by-tag`"
+							class="label"
+						>Hide by tag</label>
+						<input
+							:id="`settings-${id}-hide-by-tag`"
+							v-model="hideByTag"
+							class=""
+							type="checkbox"
+						>
+					</div>
+				</div>
 			</div>
 
 			<!--			<h3 class="text-xl mb-2">-->
@@ -142,12 +178,42 @@ export default {
 				this.setSetting('onlyCurrent', value)
 			}
 		},
+		hideByTag: {
+			get() {
+				return this.settings.hideByTag
+			},
+			set(value) {
+				this.setSetting('hideByTag', value)
+			}
+		},
+		tagsToHide: {
+			get() {
+				return this.settings.tagsToHide
+			},
+			set(value) {
+				this.setSetting('tagsToHide', value)
+			}
+		},
 		...mapState('obs', {
 			currentScene: state => state.scenes.current,
 			previewScene: state => state.scenes.preview,
 			scenes: state => state.scenes.list,
 			studioMode: state => state.stream.studioMode
-		})
+		}),
+		filteredScenes() {
+			let scenes = [...this.scenes] // No need to clone since don't work with inner content
+
+			if (this.hideByTag && this.tagsToHide) {
+				const tagsToHideArray = this.tagsToHide.split('; ')
+				for (const tag of tagsToHideArray) {
+					scenes = scenes.filter(scene => !scene.name.startsWith(tag))
+				}
+			}
+
+			// ...more filters )
+
+			return scenes
+		}
 	},
 	methods: {
 		async switchScenes(name) {

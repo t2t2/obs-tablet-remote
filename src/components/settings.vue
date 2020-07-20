@@ -7,7 +7,7 @@
 			Global Settings
 		</template>
 
-		<div class="flex -mx-2">
+		<div class="flex -mx-2 mb-4">
 			<div class="w-1/2 px-2">
 				<div class="field">
 					<label
@@ -43,16 +43,18 @@
 		<div class="flex -mx-2">
 			<div class="w-1/2 px-2">
 				<div class="field">
-					<label
-						:for="`settings-show-grid`"
-						class="label inline"
-					>Show borders</label>
-					<input
-						:id="`settings-show-grid`"
-						v-model="showBorders"
-						class="inline ml-2"
-						type="checkbox"
-					>
+					<div class="flex">
+						<label
+							:for="`settings-show-grid`"
+							class="label"
+						>Show borders</label>
+						<input
+							:id="`settings-show-grid`"
+							v-model="showBorders"
+							class="inline ml-2 mt-1"
+							type="checkbox"
+						>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -63,7 +63,9 @@ const PANELS_INFO = [
 		defaults() {
 			return {
 				perRow: 4,
-				onlyCurrent: false
+				onlyCurrent: false,
+				hideByTag: false,
+				tagsToHide: '~~'
 			}
 		}
 	},
