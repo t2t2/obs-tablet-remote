@@ -65,7 +65,7 @@ const PANELS_INFO = [
 				perRow: 4,
 				onlyCurrent: false,
 				hideByTag: false,
-				tagsToHide: '~~'
+				prefixesToHide: '~~'
 			}
 		}
 	},

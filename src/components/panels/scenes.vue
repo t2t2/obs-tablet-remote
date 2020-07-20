@@ -66,12 +66,12 @@
 				<div class="w-1/2 px-2">
 					<div class="field">
 						<label
-							:for="`settings-${id}-tags-to-hide`"
+							:for="`settings-${id}-prefixes-to-hide`"
 							class="label"
-						>Tags to hide (sep: '; ')</label>
+						>Prefixes to hide (sep: '; ')</label>
 						<input
-							:id="`settings-${id}-tags-to-hide`"
-							v-model="tagsToHide"
+							:id="`settings-${id}-prefixes-to-hide`"
+							v-model="prefixesToHide"
 							class="input"
 							type="text"
 						>
@@ -186,12 +186,12 @@ export default {
 				this.setSetting('hideByTag', value)
 			}
 		},
-		tagsToHide: {
+		prefixesToHide: {
 			get() {
-				return this.settings.tagsToHide
+				return this.settings.prefixesToHide
 			},
 			set(value) {
-				this.setSetting('tagsToHide', value)
+				this.setSetting('prefixesToHide', value)
 			}
 		},
 		...mapState('obs', {
@@ -203,10 +203,10 @@ export default {
 		filteredScenes() {
 			let scenes = [...this.scenes] // No need to clone since don't work with inner content
 
-			if (this.hideByTag && this.tagsToHide) {
-				const tagsToHideArray = this.tagsToHide.split('; ')
-				for (const tag of tagsToHideArray) {
-					scenes = scenes.filter(scene => !scene.name.startsWith(tag))
+			if (this.hideByTag && this.prefixesToHide) {
+				const prefixesToHideArray = this.prefixesToHide.split('; ')
+				for (const prefix of prefixesToHideArray) {
+					scenes = scenes.filter(scene => !scene.name.startsWith(prefix))
 				}
 			}
 
