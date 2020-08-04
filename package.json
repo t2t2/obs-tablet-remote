@@ -13,7 +13,8 @@
     "deploy:upload:ci": "gh-pages -d dist --repo \"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git\" --user \"GH Action <1122555+t2t2@users.noreply.github.com>\"",
     "dev": "npm run serve",
     "lint": "vue-cli-service lint",
-    "serve": "vue-cli-service serve"
+    "serve": "vue-cli-service serve",
+    "start": "node server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
@@ -21,7 +22,10 @@
     "@fortawesome/vue-fontawesome": "^0.1.10",
     "core-js": "^3.6.4",
     "eventemitter3": "^4.0.4",
+    "express": "^4.17.1",
     "lodash": "^4.17.15",
+    "path": "^0.12.7",
+    "serve-static": "^1.14.1",
     "sha.js": "^2.4.11",
     "vue": "^2.6.11",
     "vuex": "^3.4.0",
