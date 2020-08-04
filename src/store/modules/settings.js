@@ -4,6 +4,8 @@ export default {
 		defaultPort: 4444,
 		hasEdited: false,
 		theme: 'default',
+		showBorders: true,
+		bordersSize: 1,
 		version: 1
 	},
 	mutations: {

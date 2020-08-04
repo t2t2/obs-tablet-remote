@@ -1,4 +1,4 @@
-import {updateStateKey} from '../../../../../util'
+import {updateStateKey} from '@/util'
 
 const setBytesPerSec = updateStateKey('bytesPerSec')
 const setFps = updateStateKey('fps')
@@ -11,6 +11,8 @@ const setStrain = updateStateKey('strain')
 const setStreaming = updateStateKey('streaming')
 const setStreamTimecode = updateStateKey('streamTimecode')
 const setTotalStreamTime = updateStateKey('totalStreamTime')
+
+const setStudioMode = updateStateKey('studioMode')
 
 function streamReset(state) {
 	setStreaming(state, false)
@@ -54,5 +56,7 @@ export default {
 	'stream/set/recording': setRecording,
 	'stream/set/recTimecode': setRecTimecode,
 	'stream/set/streaming': setStreaming,
-	'stream/set/streamTimecode': setStreamTimecode
+	'stream/set/streamTimecode': setStreamTimecode,
+
+	'stream/set/studioMode': setStudioMode
 }

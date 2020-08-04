@@ -32,7 +32,7 @@ const PANELS_INFO = [
 		icon: 'columns',
 		iconSettings: {},
 		type: 'Grid',
-		maxDepth: 2,
+		maxDepth: 4,
 		defaults() {
 			return {
 				direction: 'row'
@@ -47,7 +47,7 @@ const PANELS_INFO = [
 			rotation: 270
 		},
 		type: 'Grid',
-		maxDepth: 2,
+		maxDepth: 4,
 		defaults() {
 			return {
 				direction: 'column'
@@ -59,14 +59,27 @@ const PANELS_INFO = [
 		description: 'Switch the current scene',
 		icon: 'tv',
 		iconSettings: {},
-		type: 'Scenes'
+		type: 'Scenes',
+		defaults() {
+			return {
+				perRow: 4,
+				onlyCurrent: false,
+				hideByTag: false,
+				prefixesToHide: '~~'
+			}
+		}
 	},
 	{
 		name: 'Sources List',
 		description: 'Toggle sources on and off',
 		icon: 'video',
 		iconSettings: {},
-		type: 'Sources'
+		type: 'Sources',
+		defaults() {
+			return {
+				view: 'preview'
+			}
+		}
 	},
 	{
 		name: 'Audio Devices',
@@ -94,7 +107,14 @@ const PANELS_INFO = [
 		description: 'Manage stream & recording status',
 		icon: 'dot-circle',
 		iconSettings: {},
-		type: 'Stream'
+		type: 'Stream',
+		defaults() {
+			return {
+				showStreaming: true,
+				showRecording: true,
+				showStudioMode: true
+			}
+		}
 	},
 	{
 		name: 'Frame',
@@ -102,6 +122,13 @@ const PANELS_INFO = [
 		icon: 'window-maximize',
 		iconSettings: {},
 		type: 'Iframe'
+	},
+	{
+		name: 'Queue',
+		description: 'Plan events in queue',
+		icon: 'clipboard-list',
+		iconSettings: {},
+		type: 'Queue'
 	}
 ]
 
@@ -129,6 +156,7 @@ export default {
 
 			this.$store.dispatch('layout/addPanel', {
 				type: item.type,
+				name: item.name,
 				parent: this.parentId,
 				settings: item.defaults ? item.defaults() : {}
 			})

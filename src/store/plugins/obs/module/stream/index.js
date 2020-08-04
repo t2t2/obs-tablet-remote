@@ -5,6 +5,7 @@ export default {
 	state: {
 		streaming: false,
 		recording: false,
+		studioMode: false,
 		bytesPerSec: 0,
 		kbitsPerSec: 0,
 		strain: 0,
@@ -38,6 +39,17 @@ export default {
 			}
 
 			return state.streaming
+		},
+		studioModeText(state) {
+			if (state.studioMode === true) {
+				return 'On'
+			}
+
+			if (state.studioMode === false) {
+				return 'Off'
+			}
+
+			return state.studioMode
 		}
 	},
 	mutations

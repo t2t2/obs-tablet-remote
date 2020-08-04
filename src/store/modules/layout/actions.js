@@ -1,5 +1,11 @@
-export function addPanel({commit}, data) {
-	commit('addPanel', data)
+export function addPanel({commit, dispatch, state}, data) {
+	const id = state.nextId++
+
+	commit('addPanel', {...data, id})
+
+	dispatch(`obs/${data.type[0].toLowerCase() + data.type.slice(1)}/panelAdded`,
+		{id}, {root: true}
+	) // For Sources it's gonna be obs/sources/panelAdded
 }
 
 export async function removePanel({commit, dispatch, getters}, {id}) {
@@ -15,3 +21,8 @@ export async function removePanel({commit, dispatch, getters}, {id}) {
 export function setSetting({commit}, data) {
 	commit('setSetting', data)
 }
+
+export function setName({commit}, data) {
+	commit('setName', data)
+}
+

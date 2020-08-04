@@ -1,6 +1,9 @@
 <template>
 	<div
-		:class="{'color-editing-panel border p-2': editing}"
+		:class="{
+			'color-editing-panel border p-2': editing,
+			[`border-${bordersSize} panels-border`]: showBorders && !isGrid && !editing
+		}"
 		class="flex flex-auto flex-col overflow-hidden h-full"
 	>
 		<div
@@ -8,7 +11,7 @@
 			class="pb-2 flex"
 		>
 			<div class="flex-1 min-w-0 overflow-hidden whitespace-no-wrap text-overflow-ellipsis">
-				<slot name="name" />
+				<span :title="name">{{ name }}</span>
 			</div>
 			<button
 				v-if="hasSettings"
@@ -40,6 +43,7 @@
 		</div>
 		<overlay
 			v-if="settingsOpen"
+			:wide="wideSettings"
 			@close="settingsOpen = false"
 		>
 			<template #title>
@@ -67,6 +71,10 @@ export default {
 		isGrid: {
 			type: Boolean,
 			default: () => false
+		},
+		wideSettings: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -75,7 +83,17 @@ export default {
 		}
 	},
 	computed: {
+		...mapState(['settings']),
+		showBorders() {
+			return this.settings.showBorders
+		},
+		bordersSize() {
+			return this.settings.bordersSize
+		},
 		...mapState(['editing']),
+		name() {
+			return this.$parent.panel.name
+		},
 		depth() {
 			return this.$parent.depth
 		},
@@ -98,6 +116,7 @@ export default {
 	},
 	methods: {
 		remove() {
+			this.$emit('remove')
 			this.$store.dispatch('layout/removePanel', {id: this.id})
 		}
 	}

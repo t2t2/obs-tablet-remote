@@ -26,6 +26,13 @@
 			@apply bg-teal-500;
 		}
 	}
+	& .button.is-preview-scene {
+		@apply text-gray-800 bg-yellow-300;
+
+		&:hover, &:focus {
+			@apply bg-yellow-400;
+		}
+	}
 	& .button.is-inactive {
 		@apply text-gray-800 bg-gray-300;
 
@@ -65,6 +72,19 @@
 				@apply bg-transparent;
 			}
 		}
+	}
+
+	& .queue-top {
+		@apply text-gray-800 bg-orange-200;
+	}
+
+	& .panels-border {
+		@apply border-gray-400;
+	}
+
+	& .title-zone {
+		@apply bg-gray-500;
+		@apply bg-opacity-25;
 	}
 
 	& a {
