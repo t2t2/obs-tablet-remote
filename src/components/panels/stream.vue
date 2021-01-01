@@ -5,7 +5,7 @@
 		</template>
 
 		<div class="stats flex items-center justify-center button is-inactive is-disabled">
-			{{ fps }} fps, {{ cpuUsage }}% CPU, {{ outputSkippedFrames }} skipped frames
+			{{ fps }} fps, {{ cpuUsage }}% CPU, {{ numDroppedFrames }} dropped frames
 		</div>
 
 		<DangerousButton
@@ -13,14 +13,14 @@
 			:vibrate="true"
 			@click="setStreaming({status: !streaming})"
 		>
-			Streaming: {{ streamingText }}
+			Streaming: {{ streamingTextCleaned }}
 		</DangerousButton>
 		<DangerousButton
 			:class="[recording ? 'is-active' : 'is-inactive']"
 			:vibrate="true"
 			@click="setRecording({status: !recording})"
 		>
-			Recording: {{ recordingText }}
+			Recording: {{ recordingTextCleaned }}
 		</DangerousButton>
 
 		<!-- Editing -->
@@ -77,12 +77,26 @@ export default {
 			streamTimecode: state => state.stream.streamTimecode,
 			fps: state => Math.round(state.stream.fps),
 			cpuUsage: state => round(state.stream.cpuUsage, 1),
-			outputSkippedFrames: state => state.stream.outputSkippedFrames
+			numDroppedFrames: state => state.stream.numDroppedFrames
 		}),
-		...mapGetters('obs', ['recordingText', 'streamingText']),
+
+		...mapGetters('obs', [
+			'recordingText',
+			'streamingText'
+		]),
+
+		streamingTextCleaned() {
+			return this.streamingText.replace(/\.\d{3}$/, '')
+		},
+
+		recordingTextCleaned() {
+			return this.recordingText.replace(/\.\d{3}$/, '')
+		},
+
 		isHorizontal() {
 			return this.settings.direction ? this.settings.direction === 'row' : true
 		},
+
 		perRow() {
 			return this.isHorizontal ? 3 : 1
 		}
