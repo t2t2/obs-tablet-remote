@@ -8,7 +8,7 @@
 			class="h-full w-full object-contain"
 			alt="preview"
 			:src="imgSrc"
-		/>
+		>
 
 		<template #settings>
 			<div class="field">
@@ -32,7 +32,6 @@
 				</div>
 			</div>
 		</template>
-
 	</panel-wrapper>
 </template>
 
