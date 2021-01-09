@@ -18,7 +18,8 @@ import {
 	faVolumeMute,
 	faVolumeUp,
 	faWindowMaximize,
-	faPhotoVideo
+	faPhotoVideo,
+	faFileCode
 } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
@@ -40,7 +41,8 @@ library.add(
 	faVolumeMute,
 	faVolumeUp,
 	faWindowMaximize,
-	faPhotoVideo
+	faPhotoVideo,
+	faFileCode
 )
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)

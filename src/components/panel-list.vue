@@ -119,6 +119,18 @@ const PANELS_INFO = [
 		icon: 'window-maximize',
 		iconSettings: {},
 		type: 'Iframe'
+	},
+	{
+		name: 'External Component',
+		description: 'Load an external Vue Component',
+		icon: 'file-code',
+		iconSettings: {},
+		type: 'External',
+		defaults() {
+			return {
+				url: false
+			}
+		}
 	}
 ]
 
