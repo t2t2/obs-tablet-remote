@@ -137,7 +137,7 @@ export default {
 
 			const file = event.target.files[0]
 			const reader = new FileReader()
-			const self = this;
+			const self = this
 
 			reader.addEventListener('load', () => {
 				let layout
