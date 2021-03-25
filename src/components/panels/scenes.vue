@@ -5,7 +5,7 @@
 		</template>
 
 		<button
-			v-for="scene in scenes"
+			v-for="scene in filteredScenes"
 			:key="scene.name"
 			class="button"
 			:class="[scene.name === currentScene ? 'is-active' : 'is-inactive']"
@@ -118,7 +118,12 @@ export default {
 		},
 		...mapState('obs', {
 			currentScene: state => state.scenes.current,
-			scenes: state => state.scenes.list
+			scenes: state => state.scenes.list,
+			filteredScenes(state) {
+				return state.scenes.list.filter(scene => {
+					return ~/.*(?:\[hidden]|\^\^}~~)$/i.test(scene.name)
+				})
+			}
 		})
 	},
 	methods: {
