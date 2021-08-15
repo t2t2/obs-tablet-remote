@@ -121,7 +121,11 @@ export default {
 			scenes: state => state.scenes.list,
 			filteredScenes(state) {
 				return state.scenes.list.filter(scene => {
-					return ~/.*(?:\[hidden]|\^\^}~~)$/i.test(scene.name)
+					// Bad RegEx:
+					//	"~/.*(?:\[hidden]|\^\^}~~)$/i"
+					// Fixed RegEx:
+					//	"!/.*(?:\[hidden]|\^\^|~~)$/i"
+					return !/.*(?:\[hidden]|\^\^|~~)$/i.test(scene.name)
 				})
 			}
 		})
