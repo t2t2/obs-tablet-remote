@@ -4,6 +4,28 @@
 			OBS Remote
 		</div>
 		<div class="self-stretch flex-grow" />
+		<div
+			v-if="connectionReady"
+			class="md:mx-2"
+			:class="['text-gray-100', {'text-opacity-25': !streaming}]"
+		>
+			<FontAwesomeIcon
+				icon="cloud-upload-alt"
+			/><span
+				class="hidden md:inline"
+			>&nbsp;Streaming</span>
+		</div>
+		<div
+			v-if="connectionReady"
+			class="md:mx-8"
+			:class="['text-gray-100', {'text-opacity-25': !recording}]"
+		>
+			<FontAwesomeIcon
+				icon="circle"
+			/><span
+				class="hidden md:inline"
+			>&nbsp;Recording</span>
+		</div>
 		<button
 			v-if="connectionReady"
 			key="editing-button"
@@ -54,7 +76,13 @@ export default {
 	computed: {
 		...mapState(['editing', 'showingSettings']),
 		...mapState('settings', ['hasEdited']),
-		...mapGetters('obs', ['connectionReady'])
+		...mapGetters('obs', ['connectionReady']),
+		streaming() {
+			return this.$store.state.obs.stream.streaming
+		},
+		recording() {
+			return this.$store.state.obs.stream.recording
+		}
 	},
 	methods: {
 		toggleEditing() {
@@ -91,4 +119,3 @@ export default {
 		}
 	}
 </style>
-
