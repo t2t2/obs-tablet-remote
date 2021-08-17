@@ -3,7 +3,9 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {
 	faChartBar,
 	faCheck,
+	faCircle,
 	faClock,
+	faCloudUploadAlt,
 	faColumns,
 	faCog,
 	faDotCircle,
@@ -24,7 +26,9 @@ import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 library.add(
 	faChartBar,
 	faCheck,
+	faCircle,
 	faClock,
+	faCloudUploadAlt,
 	faColumns,
 	faCog,
 	faDotCircle,
