@@ -31,7 +31,7 @@
     "@ky-is/vue-cli-plugin-tailwind": "^2.0.0",
     "@vue/cli-plugin-babel": "^4.4.4",
     "@vue/cli-plugin-eslint": "^4.4.4",
-    "@vue/cli-service": "^4.4.4",
+    "@vue/cli-service": "^5.0.8",
     "autoprefixer": "^9.8.1",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
